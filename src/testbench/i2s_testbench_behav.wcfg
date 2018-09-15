@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="i2s_testbench_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="glbl" />
+            <top_module name="i2s_testbench" />
+            <top_module name="types_pkg" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="18500000000fs"></ZoomStartTime>
+      <ZoomEndTime time="21538697843fs"></ZoomEndTime>
+      <Cursor1Time time="145886317000fs"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="151"></NameColumnWidth>
+      <ValueColumnWidth column_width="66"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="12" />
+   <wvobject type="logic" fp_name="/i2s_testbench/clock">
+      <obj_property name="ElementShortName">clock</obj_property>
+      <obj_property name="ObjectShortName">clock</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/i2s_testbench/resetn">
+      <obj_property name="ElementShortName">resetn</obj_property>
+      <obj_property name="ObjectShortName">resetn</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/i2s_testbench/MCLK">
+      <obj_property name="ElementShortName">MCLK</obj_property>
+      <obj_property name="ObjectShortName">MCLK</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/i2s_testbench/SCLK">
+      <obj_property name="ElementShortName">SCLK</obj_property>
+      <obj_property name="ObjectShortName">SCLK</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/i2s_testbench/LRCK">
+      <obj_property name="ElementShortName">LRCK</obj_property>
+      <obj_property name="ObjectShortName">LRCK</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/i2s_testbench/SDIN">
+      <obj_property name="ElementShortName">SDIN</obj_property>
+      <obj_property name="ObjectShortName">SDIN</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/i2s_testbench/wave_left">
+      <obj_property name="ElementShortName">wave_left[23:0]</obj_property>
+      <obj_property name="ObjectShortName">wave_left[23:0]</obj_property>
+      <obj_property name="Radix">BINARYRADIX</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/i2s_testbench/wave_right">
+      <obj_property name="ElementShortName">wave_right[23:0]</obj_property>
+      <obj_property name="ObjectShortName">wave_right[23:0]</obj_property>
+      <obj_property name="Radix">BINARYRADIX</obj_property>
+   </wvobject>
+   <wvobject type="other" fp_name="/i2s_testbench/i2s/SDIN_cnt">
+      <obj_property name="ElementShortName">SDIN_cnt</obj_property>
+      <obj_property name="ObjectShortName">SDIN_cnt</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/i2s_testbench/i2s/wave_left">
+      <obj_property name="ElementShortName">wave_left[23:0]</obj_property>
+      <obj_property name="ObjectShortName">wave_left[23:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/i2s_testbench/i2s/wave_right">
+      <obj_property name="ElementShortName">wave_right[23:0]</obj_property>
+      <obj_property name="ObjectShortName">wave_right[23:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/i2s_testbench/i2s/shift_reg">
+      <obj_property name="ElementShortName">shift_reg[23:0]</obj_property>
+      <obj_property name="ObjectShortName">shift_reg[23:0]</obj_property>
+      <obj_property name="Radix">BINARYRADIX</obj_property>
+   </wvobject>
+</wave_config>

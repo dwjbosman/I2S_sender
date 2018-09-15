@@ -144,36 +144,36 @@ update_ip_catalog -rebuild
 # Set 'sources_1' fileset object
 set obj [get_filesets sources_1]
 set files [list \
- [file normalize "${origin_dir}/vivado_project/vivado_project.srcs/sources_1/bd/design_1/design_1.bd"] \
- [file normalize "${origin_dir}/vivado_project/vivado_project.srcs/sources_1/imports/design/types.vhd"] \
- [file normalize "${origin_dir}/vivado_project/vivado_project.srcs/sources_1/imports/design/square_wave.vhd"] \
- [file normalize "${origin_dir}/vivado_project/vivado_project.srcs/sources_1/imports/design/i2s_sender.vhd"] \
- [file normalize "${origin_dir}/vivado_project/vivado_project.srcs/sources_1/imports/design/design_1_wrapper.vhd"] \
+ [file normalize "${origin_dir}/src/blockdesign/design_1.bd"] \
+ [file normalize "${origin_dir}/src/design/types.vhd"] \
+ [file normalize "${origin_dir}/src/design/square_wave.vhd"] \
+ [file normalize "${origin_dir}/src/design/i2s_sender.vhd"] \
+ [file normalize "${origin_dir}/src/design/design_1_wrapper.vhd"] \
 ]
 add_files -norecurse -fileset $obj $files
 
 # Set 'sources_1' fileset file properties for remote files
-set file "$origin_dir/vivado_project/vivado_project.srcs/sources_1/bd/design_1/design_1.bd"
+set file "$origin_dir/src/block_design/design_1.bd"
 set file [file normalize $file]
 set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
 set_property -name "registered_with_manager" -value "1" -objects $file_obj
 
-set file "$origin_dir/vivado_project/vivado_project.srcs/sources_1/imports/design/types.vhd"
+set file "$origin_dir/src/design/types.vhd"
 set file [file normalize $file]
 set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
 set_property -name "file_type" -value "VHDL 2008" -objects $file_obj
 
-set file "$origin_dir/vivado_project/vivado_project.srcs/sources_1/imports/design/square_wave.vhd"
+set file "$origin_dir/src/design/square_wave.vhd"
 set file [file normalize $file]
 set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
 set_property -name "file_type" -value "VHDL 2008" -objects $file_obj
 
-set file "$origin_dir/vivado_project/vivado_project.srcs/sources_1/imports/design/i2s_sender.vhd"
+set file "$origin_dir/src/design/i2s_sender.vhd"
 set file [file normalize $file]
 set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
 set_property -name "file_type" -value "VHDL 2008" -objects $file_obj
 
-set file "$origin_dir/vivado_project/vivado_project.srcs/sources_1/imports/design/design_1_wrapper.vhd"
+set file "$origin_dir/src/design/design_1_wrapper.vhd"
 set file [file normalize $file]
 set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
 set_property -name "file_type" -value "VHDL 2008" -objects $file_obj
@@ -195,9 +195,9 @@ if {[string equal [get_filesets -quiet constrs_1] ""]} {
 set obj [get_filesets constrs_1]
 
 # Add/Import constrs file and set constrs file properties
-set file "[file normalize ${origin_dir}/vivado_project/vivado_project.srcs/constrs_1/imports/design/Nexys-4-DDR-Master.xdc]"
+set file "[file normalize ${origin_dir}/src/design/Nexys-4-DDR-Master.xdc]"
 set file_added [add_files -norecurse -fileset $obj [list $file]]
-set file "$origin_dir/vivado_project/vivado_project.srcs/constrs_1/imports/design/Nexys-4-DDR-Master.xdc"
+set file "$origin_dir/src/design/Nexys-4-DDR-Master.xdc"
 set file [file normalize $file]
 set file_obj [get_files -of_objects [get_filesets constrs_1] [list "*$file"]]
 set_property -name "file_type" -value "XDC" -objects $file_obj
@@ -205,38 +205,6 @@ set_property -name "file_type" -value "XDC" -objects $file_obj
 # Set 'constrs_1' fileset properties
 set obj [get_filesets constrs_1]
 set_property -name "target_part" -value "xc7a100tcsg324-1" -objects $obj
-
-# Create 'sim_1' fileset (if not found)
-if {[string equal [get_filesets -quiet sim_1] ""]} {
-  create_fileset -simset sim_1
-}
-
-# Set 'sim_1' fileset object
-set obj [get_filesets sim_1]
-set files [list \
- [file normalize "${origin_dir}/vivado_project/vivado_project.srcs/sim_1/new/testbench.vhd"] \
- [file normalize "${origin_dir}/vivado_project/vivado_project.srcs/sim_1/imports/nexys4ddr_tst/testbench_behav.wcfg"] \
-]
-add_files -norecurse -fileset $obj $files
-
-# Set 'sim_1' fileset file properties for remote files
-set file "$origin_dir/vivado_project/vivado_project.srcs/sim_1/new/testbench.vhd"
-set file [file normalize $file]
-set file_obj [get_files -of_objects [get_filesets sim_1] [list "*$file"]]
-set_property -name "file_type" -value "VHDL 2008" -objects $file_obj
-set_property -name "used_in" -value "simulation" -objects $file_obj
-set_property -name "used_in_synthesis" -value "0" -objects $file_obj
-
-
-# Set 'sim_1' fileset file properties for local files
-# None
-
-# Set 'sim_1' fileset properties
-set obj [get_filesets sim_1]
-set_property -name "sim_mode" -value "post-implementation" -objects $obj
-set_property -name "top" -value "testbench" -objects $obj
-set_property -name "top_auto_set" -value "0" -objects $obj
-set_property -name "top_lib" -value "xil_defaultlib" -objects $obj
 
 # Create 'sim_i2s' fileset (if not found)
 if {[string equal [get_filesets -quiet sim_i2s] ""]} {
@@ -246,13 +214,13 @@ if {[string equal [get_filesets -quiet sim_i2s] ""]} {
 # Set 'sim_i2s' fileset object
 set obj [get_filesets sim_i2s]
 set files [list \
- [file normalize "${origin_dir}/vivado_project/vivado_project.srcs/sim_i2s/imports/new/i2s_testbench.vhd"] \
- [file normalize "${origin_dir}/vivado_project/vivado_project.srcs/sim_i2s/imports/nexys4ddr_tst/i2s_testbench_behav.wcfg"] \
+ [file normalize "${origin_dir}/src/testbench/i2s_testbench.vhd"] \
+ [file normalize "${origin_dir}/src/testbench/i2s_testbench_behav.wcfg"] \
 ]
 add_files -norecurse -fileset $obj $files
 
 # Set 'sim_i2s' fileset file properties for remote files
-set file "$origin_dir/vivado_project/vivado_project.srcs/sim_i2s/imports/new/i2s_testbench.vhd"
+set file "$origin_dir/src/testbench/i2s_testbench.vhd"
 set file [file normalize $file]
 set file_obj [get_files -of_objects [get_filesets sim_i2s] [list "*$file"]]
 set_property -name "file_type" -value "VHDL" -objects $file_obj
