@@ -153,7 +153,7 @@ set files [list \
 add_files -norecurse -fileset $obj $files
 
 # Set 'sources_1' fileset file properties for remote files
-set file "$origin_dir/src/block_design/design_1.bd"
+set file "$origin_dir/src/blockdesign/design_1.bd"
 set file [file normalize $file]
 set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
 set_property -name "registered_with_manager" -value "1" -objects $file_obj
