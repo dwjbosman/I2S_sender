@@ -10,9 +10,9 @@ preplace port reset_rtl_0 -pg 1 -y 0 -defaultsOSRD
 preplace port reset -pg 1 -y 20 -defaultsOSRD
 preplace inst clk_wiz_0 -pg 1 -lvl 1 -y 20 -defaultsOSRD
 preplace netloc clk_wiz_0_MCLK 1 1 1 N
-preplace netloc clk_wiz_0_locked 1 1 1 290
+preplace netloc clk_wiz_0_locked 1 1 1 N
 preplace netloc sys_clock_1 1 0 1 -40
-preplace netloc clk_wiz_0_clk_out1 1 1 1 300
+preplace netloc clk_wiz_0_clk_out1 1 1 1 290
 preplace netloc reset_rtl_0_1 1 0 1 -40
 preplace netloc reset_1 1 0 1 N
 levelinfo -pg 1 -60 190 830 -top -290 -bot 600
