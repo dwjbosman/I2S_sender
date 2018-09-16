@@ -1,0 +1,7 @@
+design_1.bxml
+hdl  
+ipshared
+design_*
+hw_handoff  
+sim  
+synth
