@@ -1,0 +1,3 @@
+[submodule "src/design/sincos"]
+	path = src/design/sincos
+	url = https://github.com/jorisvr/vhdl_sincos_gen.git
