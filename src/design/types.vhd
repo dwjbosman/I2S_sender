@@ -25,6 +25,7 @@ use IEEE.STD_LOGIC_1164.ALL;
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
 use IEEE.NUMERIC_STD.ALL;
+use ieee.math_real.all;
 
 -- Uncomment the following library declaration if instantiating
 -- any Xilinx leaf cells in this code.
@@ -34,6 +35,8 @@ use IEEE.NUMERIC_STD.ALL;
 package types_pkg is    
     --see datasheet https://statics.cirrus.com/pubs/proDatasheet/CS4344-45-48_F2.pdf
     constant MCLK_FREQ : integer := 18432000; -- Hz
+    constant MCLK_BITS : natural := integer(ceil(log2(real(MCLK_FREQ))));
+
     -- 48Khz sample rate
     constant LRCK_FREQ : integer := 48000; -- MCLK/384 
     --24 bits per LRCK phase (low = left channel)
