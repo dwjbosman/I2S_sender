@@ -52,7 +52,7 @@ architecture Behavioral of sine_testbench  is
     **/
                   
 begin
-    --Report_Constants();
+    Report_Constants(0);
 
     resetn <= '0', '1' after 100ns;
     clock <= not clock after 10 ns;
