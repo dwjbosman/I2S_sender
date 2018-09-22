@@ -40,41 +40,34 @@ architecture Behavioral of sine_testbench  is
     signal resetn: std_logic := '0';
     
     
-    /**
-    signal MCLK: std_logic := '0';
-    signal SCLK: std_logic := '0';
-    signal SDIN: std_logic := '0';
-    signal LRCK: std_logic := '0';
-    signal wave_left: sample_t;
-    signal wave_right: sample_t;
-    
-    signal shift_reg: std_logic_vector(23 downto 0);
-    **/
                   
 begin
     Report_Constants(0);
 
     resetn <= '0', '1' after 100ns;
     clock <= not clock after 10 ns;
-    /**
-    MCLK <= not MCLK after 54.253472222222 ns; -- 18.4320 Mhz
-    sqwv : entity work.square_wave
-        port map (
-         resetn => resetn,
-         MCLK_in => MCLK,
-         wave_left_out => wave_left,
-         wave_right_out => wave_right
-        );
-             
-    i2s : entity work.i2s_sender
-            port map (
-            MCLK_in => MCLK,
-            resetn => resetn,
-            LRCK_out => LRCK,
-            SCLK_out => SCLK,
-            SDIN_out => SDIN,
-            wave_left_in => wave_left,
-            wave_right_in => wave_right
-            ); 
-    **/   
+    
+    
+    tst_process : process (n_reset) is 
+        variable in1: frequency_scaled := 440*32;
+        variable out1: phase_step_t;
+        variable out2: phase_step_fraction_t;
+        begin
+            Calculate_Phase_Step(in1,out1,out2);
+            
+            write( l, string'("in1             = " ));                    
+            write( l, in1);
+            writeline( output, l );
+    
+            write( l, string'("out1             = " ));                    
+            write( l, out1);
+            writeline( output, l );
+    
+            write( l, string'("out2             = " ));                    
+            write( l, out2);
+            writeline( output, l );
+                        
+        end process;
+    end block;
+
 end Behavioral;
