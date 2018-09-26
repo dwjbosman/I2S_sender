@@ -30,6 +30,8 @@ use UNISIM.VComponents.all;
 
 use work.types_pkg.all;
 use work.sine_generator_types_pkg.all;
+use STD.textio.all;
+
 
 entity sine_testbench is
 --  Port ( );
@@ -39,7 +41,7 @@ architecture Behavioral of sine_testbench  is
     signal clock: std_logic := '0';
     signal resetn: std_logic := '0';
     
-    
+
                   
 begin
     Report_Constants(0);
@@ -48,10 +50,11 @@ begin
     clock <= not clock after 10 ns;
     
     
-    tst_process : process (n_reset) is 
-        variable in1: frequency_scaled := 440*32;
-        variable out1: phase_step_t;
-        variable out2: phase_step_fraction_t;
+    tst_process : process (resetn) is 
+        variable in1: frequency_t := to_unsigned(440*32+1, FREQUENCY_SCALED_BITS);
+        variable out1: phase_step_t := (others => '0');
+        variable out2: phase_step_fraction_t := (others => '0');
+        variable l: line;
         begin
             Calculate_Phase_Step(in1,out1,out2);
             
@@ -68,6 +71,6 @@ begin
             writeline( output, l );
                         
         end process;
-    end block;
+    
 
 end Behavioral;
