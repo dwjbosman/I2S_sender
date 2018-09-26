@@ -109,9 +109,12 @@ package sine_generator_types_pkg is
         -- max frequency = POWER2_PHASE_SPACE_SIZE/2
     constant FREQUENCY_SCALED_BITS : natural := SAMPLE_RATE_BITS -1 + POWER2_PHASE_STEP_BITS; 
     subtype frequency_t is unsigned(FREQUENCY_SCALED_BITS-1 downto 0);
+    
+    constant MAX_FREQUENCY_SCALED : natural := MAX_FREQUENCY * POWER2_PHASE_STEP;   
+        
 
     constant MAX_QUANTISED_PHASE_STEP_ERROR : real := 1.0/MAX_FREQUENCY;
-    constant MAX_QUANTISED_PHASE_STEP_ERROR_BITS : real := log2(MAX_QUANTISED_PHASE_STEP_ERROR);
+    constant MAX_QUANTISED_PHASE_STEP_ERROR_BITS : real := abs(log2(MAX_QUANTISED_PHASE_STEP_ERROR));
     
     constant SCALED_PHASE_STEP_BITS : natural := natural(ceil( PHASE_STEP_BITS + MAX_QUANTISED_PHASE_STEP_ERROR_BITS));
     
@@ -145,6 +148,8 @@ package sine_generator_types_pkg is
         decimal: out phase_step_t;
         fractional: out phase_step_fraction_t);
 
+    procedure Rand(rand_inout: inout unsigned(30 downto 0));
+    
 end;
 
 package body sine_generator_types_pkg is 
@@ -307,6 +312,13 @@ package body sine_generator_types_pkg is
     end Report_Constants ;
     -- synthesis translate_on     
 
+
+
+    procedure Rand(rand_inout: inout unsigned(30 downto 0)) is
+    begin
+        rand_inout := resize((rand_inout * 16807) mod 2147483647,31);
+    end;
+
     procedure Calculate_Phase_Step(
         frequency_scaled: in frequency_t;
               
@@ -333,37 +345,37 @@ package body sine_generator_types_pkg is
             write( l, decimal'length);
             writeline( output, l );
 
-            write( l, string'("phase_step_numerator_incl_decimal_bits             = " ));                    
+            write( l, string'("phase_step_numerator_incl_decimal_bits   = " ));                    
             write( l, phase_step_numerator_incl_decimal'length);
             writeline( output, l );
 
-            write( l, string'("decimal_scaled_bits             = " ));                    
+            write( l, string'("decimal_scaled_bits                      = " ));                    
             write( l, decimal_scaled'length);
             writeline( output, l );
 
-            write( l, string'("fractional_bits             = " ));                    
+            write( l, string'("fractional_bits                          = " ));                    
             write( l, fractional'length);
             writeline( output, l );
 
-            write( l, string'("frequency_scaled             = " ));                    
-            write( l, to_hstring(frequency_scaled));
+            write( l, string'("frequency_scaled                         = " ));                    
+            write( l, to_hstring(frequency_scaled)); 
             writeline( output, l );
         
             scaled_phase  := resize(frequency_scaled * SCALED_PHASE_STEP, scaled_phase'length);
     
-            write( l, string'("sc1             = " ));                    
+            write( l, string'("sc1                                      = " ));                    
             write( l, to_hstring(scaled_phase));
             writeline( output, l );
             
-            write( l, string'("assert " ));                    
-            write( l, (SCALED_PHASE_STEP_BITS + FREQUENCY_SCALED_BITS - DECIMAL_DIVIDER_BITS -1 ));
-            write( l, string'(" == " ));                    
-            write( l, MAX_POWER2_PHASE_STEP_BITS);
-            writeline( output, l );                        
-            assert(SCALED_PHASE_STEP_BITS + FREQUENCY_SCALED_BITS - DECIMAL_DIVIDER_BITS -1 = MAX_POWER2_PHASE_STEP_BITS) report "Assertion violation." severity error;
+            --write( l, string'("assert " ));                    
+            --write( l, (SCALED_PHASE_STEP_BITS + FREQUENCY_SCALED_BITS - DECIMAL_DIVIDER_BITS -1 ));
+            --write( l, string'(" == " ));                    
+            --write( l, MAX_POWER2_PHASE_STEP_BITS);
+            --writeline( output, l );                        
+            --assert(SCALED_PHASE_STEP_BITS + FREQUENCY_SCALED_BITS - DECIMAL_DIVIDER_BITS -1 = MAX_POWER2_PHASE_STEP_BITS) report "Assertion violation." severity error;
                         
             decimal := scaled_phase(DECIMAL_DIVIDER_BITS + decimal'length -1 downto DECIMAL_DIVIDER_BITS);
-            write( l, string'("decimal             = " ));                    
+            write( l, string'("decimal                                  = " ));                    
             write( l, to_hstring(decimal));
             writeline( output, l );
    
@@ -374,26 +386,38 @@ package body sine_generator_types_pkg is
             -- size: FREQUENCY_SCALED_BITS + POWER2_PHASE_SPACE_BITS - POWER2_PHASE_STEP_BITS
             phase_step_numerator_incl_decimal := frequency_scaled & to_unsigned(0, POWER2_PHASE_SPACE_BITS - POWER2_PHASE_STEP_BITS);
             
-            write( l, string'("phase_step_numerator_incl_decimal             = " ));                    
+            write( l, string'("phase_step_numerator_incl_decimal        = " ));                    
             write( l, to_hstring(phase_step_numerator_incl_decimal));
             writeline( output, l );
                         
             decimal_scaled := resize(decimal * SAMPLE_RATE, decimal_scaled'length);
-            write( l, string'("decimal_truncated             = " ));                    
+            write( l, string'("decimal_truncated                        = " ));                    
             write( l, to_hstring(decimal_scaled));
             writeline( output, l );
                         
             fractional := resize(
                 phase_step_numerator_incl_decimal(fractional'length -1 downto 0) - decimal_scaled(fractional'length -1 downto 0),
                 fractional'length);
-            write( l, string'("fractional             = " ));                    
+            write( l, string'("fractional                               = " ));                    
             write( l, to_hstring(fractional));
             writeline( output, l );
                         
             if (fractional >= PHASE_STEP_FRACTION_DIVIDER) then
                 fractional := fractional - PHASE_STEP_FRACTION_DIVIDER;
-                decimal := decimal + 1;
+                decimal := decimal + to_unsigned(1,decimal'length);
+
+                write( l, string'("wrap" ));                    
+                writeline( output, l );
+                write( l, string'("decimal                                  = " ));                    
+                write( l, to_hstring(decimal));
+                writeline( output, l );
+                write( l, string'("fractional                               = " ));                    
+                write( l, to_hstring(fractional));
+                writeline( output, l );
+
             end if;
+            
+            
     end Calculate_Phase_Step;
  
 
