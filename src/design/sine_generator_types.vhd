@@ -84,11 +84,11 @@ package sine_generator_types_pkg is
    
     constant POWER2_PHASE_SPACE_BITS: natural := natural(ceil(log(real(PHASE_SPACE_SIZE))/log(2.0)));
     constant POWER2_PHASE_SPACE_SIZE: natural := 2 ** POWER2_PHASE_SPACE_BITS;
-
-    
     
     -- at 0.5 FS  POWER2_PHASE_SPACE_BITS-1 is the maximum step
     constant MAX_POWER2_PHASE_STEP_BITS : natural := POWER2_PHASE_SPACE_BITS-1;
+    
+    subtype phase_t is unsigned(MAX_POWER2_PHASE_SPACE_BITS-1 downto 0);
     subtype phase_step_t is unsigned(MAX_POWER2_PHASE_STEP_BITS-1 downto 0);
     subtype phase_step_fraction_t is unsigned(SAMPLE_RATE_BITS-1 downto 0);
      
