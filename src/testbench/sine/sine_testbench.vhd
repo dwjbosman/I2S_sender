@@ -52,8 +52,11 @@ begin
     
     tst_process : process is 
         variable freq_in: frequency_t := to_unsigned(440*32+1, FREQUENCY_SCALED_BITS);
-        variable dec_out: phase_step_t := (others => '0');
-        variable fract_out: phase_step_fraction_t := (others => '0');
+        
+        variable step: phase_step_t;
+        
+        --variable dec_out: phase_step_decimal_t := (others => '0');
+        --variable fract_out: phase_step_fraction_t := (others => '0');
         variable l: line;
         
         variable phase_step_real: real;
@@ -63,8 +66,16 @@ begin
         variable diff_fract: real;
         variable rnd: unsigned(30 downto 0) := to_unsigned(12, 31);
         
+       
+        variable phase_state : phase_state_t; 
+        variable expected_phase: real;
+        variable diff_phase: real;
+        
         begin
             wait for 100ns;
+            
+            step := ZERO_PHASE_STEP;
+            
             for iteration in 1 to 2**6 -1 loop --frequency_t'length-1  loop
                 
                 Rand(rnd);
@@ -84,10 +95,10 @@ begin
                 write( l, to_integer(freq_in));
                 writeline( output, l );
                                                 
-                Calculate_Phase_Step(freq_in,dec_out,fract_out);
+                Calculate_Phase_Step(freq_in,step);
                  
-                diff_dec:= dec_step_real - real(to_integer(dec_out));
-                diff_fract:= fract_step_real - real(to_integer(fract_out));
+                diff_dec:= dec_step_real - real(to_integer(step.decimal));
+                diff_fract:= fract_step_real - real(to_integer(step.fraction));
                             
                  
                 write( l, string'("  p="));                        
@@ -115,9 +126,43 @@ begin
                                                    
                 writeline( output, l );
                 writeline( output, l );
+                            
+                if iteration = 2**6-1 then
+                
+                    phase_state := ZERO_PHASE_STATE;
+                    phase_state.step := step;
+                
+                    write( l, string'("Step iterations"));                        
+                    writeline( output, l );
+                                                                
+                    for step_iteration in 1 to 2**6 -1 loop   loop
+                        write( l, string'("step="));                        
+                        write( l, step_iteration);
+                        writeline( output, l );
+                                            
+                        Advance_Phase(phase_state);
+                        
+                        expected_phase := phase_step_real * step_iteration;
+                        calculated_phase := real(to_integer(phase_state.current)) + real(to_integer(phase_state.current_fraction))/SAMPLE_RATE;
+                        diff_phase := expected_phase - calculated_phase;
+                                        
+                        write( l, string'("expected phase="));                        
+                        write( l, expected_phase);
+                        write( l, string'("  calculated phase="));                        
+                        write( l, calculated_phase);
+                        write( l, string'("  diff="));                        
+                        write( l, diff_phase);
+                        if (abs(diff_phase)>0.1) then
+                            write( l, string'("  phase error "));                     
+                        end if;
+                        writeline( output, l );
+                    end for;
+                end if;
                                 
                 wait for 10ns;  
             end loop;
+            
+            
             
             
             wait;

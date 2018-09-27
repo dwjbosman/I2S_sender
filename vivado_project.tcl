@@ -125,7 +125,6 @@ set_property -name "webtalk.modelsim_export_sim" -value "134" -objects $obj
 set_property -name "webtalk.questa_export_sim" -value "134" -objects $obj
 set_property -name "webtalk.riviera_export_sim" -value "134" -objects $obj
 set_property -name "webtalk.vcs_export_sim" -value "134" -objects $obj
-set_property -name "webtalk.xcelium_export_sim" -value "41" -objects $obj
 set_property -name "webtalk.xsim_export_sim" -value "134" -objects $obj
 set_property -name "webtalk.xsim_launch_sim" -value "329" -objects $obj
 set_property -name "xpm_libraries" -value "XPM_CDC" -objects $obj
@@ -152,7 +151,7 @@ set files [list \
  [file normalize "${origin_dir}/src/design/design_1_wrapper.vhd"] \
  [file normalize "${origin_dir}/src/design/sincos/rtl/sincos_gen.vhdl"] \
  [file normalize "${origin_dir}/src/design/sine_generator_types.vhd"] \
- [file normalize "${origin_dir}/src/design/sincos_gen_d24_p20.vhd"] \
+ [file normalize "${origin_dir}/src/design/sine_wave.vhd"] \
 ]
 add_files -norecurse -fileset $obj $files
 
@@ -196,7 +195,7 @@ set file [file normalize $file]
 set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
 set_property -name "file_type" -value "VHDL 2008" -objects $file_obj
 
-set file "$origin_dir/src/design/sincos_gen_d24_p20.vhd"
+set file "$origin_dir/src/design/sine_wave.vhd"
 set file [file normalize $file]
 set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
 set_property -name "file_type" -value "VHDL 2008" -objects $file_obj

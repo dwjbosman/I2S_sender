@@ -31,24 +31,30 @@ use ieee.math_real.all;
 entity sine_wave is
     Port ( resetn : std_logic;
            MCLK_in : in std_logic;
+           
+           freq_in_ce: in std_logic;
            freq_in: in frequency_t;
+
            wave_out : out sample_t
            );
 
     CONSTANT MAX_WAVE : sample_t := to_signed(2**(SAMPLE_WIDTH-3), SAMPLE_WIDTH)+1; 
 
-end square_wave;
+end sine_wave;
 
 architecture Behavioral of sine_wave is
-    constant SAMPLE_CLK_DIVIDER : integer := MCLK_FREQ / LRCK_FREQ;
-    subtype sample_div_clk_t  is integer range (0 to SAMPLE_CLK_DIVIDER);
-    --subtype div_wave_right_t  is unsigned(WAVE_RIGHT_BITS-1 downto 0);
-    signal sample_div_clk_cnt : div_clk_t :=0; 
-    signal sample_clk : std_logic;
+    
+
   
     signal sin_clk_en : std_logic;
     signal sin_phase: phase_t;
     signal dummy_cos : sample_t;
+
+
+    signal phase : phase_state_t;
+    signal phase_step: phase_step_t;
+    signal sample_clk : std_logic;
+
 begin
     -- assert LRCK_FREQ == SAMPLE_RATE
     gen0: entity work.sincos_gen
@@ -59,67 +65,72 @@ begin
             table_addrbits  => 10,
             taylor_order    => 1 )
         port map (
-            clk             => clk,
+            clk             => MCLK_in,
             clk_en          => sin_clk_en,
-            in_phase        => sin_phase,
+            in_phase        => phase.current,
             out_sin         => wave_out,
             out_cos         => dummy_cos );
 
 
 
-    testseq2 : process (dummy) is
-    begin
-        --print the dividers once
-        report "WAVE_LEFT_DIV " & integer'image(WAVE_LEFT_DIV);
-        report "WAVE_RIGHT_DIV " & integer'image(WAVE_RIGHT_DIV);
-        report "WAVE_LEFT_BITS " & integer'image(WAVE_LEFT_BITS);
-        report "WAVE_RIGHT_BITS " & integer'image(WAVE_RIGHT_BITS);
-
-    end process;
-
-    sample_clock: process (MCLK_in, resetn) is
-    begin
-        if resetn = '0' then -- ASynchronous reset (active low)
-            div_cnt <= 0;
-        elsif (MCLK_in'event) and (MCLK_in = '1') then     
-            if div_cnt = (SAMPLE_CLK_DIVIDER-1) then
-                sample_clk <= not sample_clk;
-                div_cnt <= 0;
-            else
-                div_cnt <= div_cnt + 1;
-            end if;
-        end if;
-     end;
-
-    freq_process : process (MCLK_in, freq_in, resetn) is --runs at Fs
-    begin
-        if resetn = '0' then -- ASynchronous reset (active low)
-        elsif (MCLK_in'event) and (MCLK_in = '1') then     
-        end if
-    end
+    sample_clk_process_scope: block 
+        signal internal_sample_clk : std_logic;
+        constant SAMPLE_CLK_DIVIDER : integer := MCLK_FREQ / LRCK_FREQ;
     
-    -- a process to generate the audio waveform
-    waveform_process : process (MCLK_in, resetn) is --runs at Fs
+        subtype sample_div_clk_t  is integer range 0 to SAMPLE_CLK_DIVIDER;
+        --subtype div_wave_right_t  is unsigned(WAVE_RIGHT_BITS-1 downto 0);
     begin
-        if resetn = '0' then -- ASynchronous reset (active low)
-            div_cnt <= 0;            
-                                      
-        elsif (MCLK_in'event) and (MCLK_in = '1') then     
-            
-            if wave_left_cnt = WAVE_LEFT_DIV then
-                wave_left_cnt <= (others => '0');
-                wave_left_out <= -wave_left_out;
-            else
-                wave_left_cnt <= wave_left_cnt +1;
-            end if;                    
-            
-            if wave_right_cnt = WAVE_RIGHT_DIV then
-                wave_right_cnt <= (others => '0');
-                wave_right_out <= -wave_right_out;
-            else
-                wave_right_cnt <= wave_right_cnt +1;
-            end if;                    
-        end if;
-    end process;
+            sample_clk_process: process (MCLK_in, resetn) is
+                variable sample_div_clk_cnt : sample_div_clk_t :=0; 
+            begin
+                if resetn = '0' then -- ASynchronous reset (active low)
+                    internal_sample_clk <= '0';
+                    sample_div_clk_cnt := 0;
+                elsif (MCLK_in'event) and (MCLK_in = '1') then     
+                    if sample_div_clk_cnt = (SAMPLE_CLK_DIVIDER-1) then
+                        internal_sample_clk <= not internal_sample_clk;
+                        sample_div_clk_cnt := 0;
+                    else
+                        sample_div_clk_cnt := sample_div_clk_cnt + 1;
+                    end if;
+                end if;
+             end process;
+             sample_clk <= internal_sample_clk;
+     end block;
 
+    freq_process_scope: block
+    begin
+            freq_process : process (MCLK_in, resetn) is 
+                variable phase_step_internal :  phase_step_t;   
+            begin
+                if resetn = '0' then -- ASynchronous reset (active low)
+                    phase_step_internal := ZERO_PHASE_STEP;
+                elsif (MCLK_in'event) and (MCLK_in = '1') then     
+                    if freq_in_ce then
+                        Calculate_Phase_Step(freq_in,phase_step_internal);
+                    end if;
+                end if;
+                phase_step <= phase_step_internal;
+            end process;
+    end block;
+ 
+    waveform_process_scope: block
+        
+    begin
+        -- a process to generate the audio waveform
+        waveform_process : process (sample_clk, resetn) is --runs at Fs
+            variable internal_phase: phase_state_t;
+        begin
+            if resetn = '0' then -- ASynchronous reset (active low)
+                internal_phase := ZERO_PHASE_STATE;
+                sin_clk_en <= '0';                           
+            elsif (sample_clk'event) and (sample_clk = '1') then     
+                sin_clk_en <= '1';
+                internal_phase.step := phase_step;
+                Advance_Phase(internal_phase);
+                 
+            end if;
+            phase <= internal_phase;
+        end process;
+    end block;
 end Behavioral;
