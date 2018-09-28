@@ -106,7 +106,7 @@ begin
                 if resetn = '0' then -- ASynchronous reset (active low)
                     phase_step_internal := ZERO_PHASE_STEP;
                 elsif (MCLK_in'event) and (MCLK_in = '1') then     
-                    if freq_in_ce then
+                    if freq_in_ce = '1' then
                         Calculate_Phase_Step(freq_in,phase_step_internal);
                     end if;
                 end if;
