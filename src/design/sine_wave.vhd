@@ -47,7 +47,6 @@ architecture Behavioral of sine_wave is
 
   
     signal sin_clk_en : std_logic;
-    signal sin_phase: phase_t;
     signal dummy_cos : sample_t;
 
 
@@ -56,14 +55,13 @@ architecture Behavioral of sine_wave is
     signal sample_clk : std_logic;
 
 begin
-    -- assert LRCK_FREQ == SAMPLE_RATE
     gen0: entity work.sincos_gen
         generic map (
             data_bits       => sample_t'length,
             phase_bits      => POWER2_PHASE_SPACE_BITS,
             phase_extrabits => 2,
             table_addrbits  => 10,
-            taylor_order    => 1 )
+            taylor_order    => 2 )
         port map (
             clk             => MCLK_in,
             clk_en          => sin_clk_en,
@@ -75,7 +73,7 @@ begin
 
     sample_clk_process_scope: block 
         signal internal_sample_clk : std_logic;
-        constant SAMPLE_CLK_DIVIDER : integer := MCLK_FREQ / LRCK_FREQ;
+        constant SAMPLE_CLK_DIVIDER : integer := MCLK_FREQ / (LRCK_FREQ*2)-1;
     
         subtype sample_div_clk_t  is integer range 0 to SAMPLE_CLK_DIVIDER;
         --subtype div_wave_right_t  is unsigned(WAVE_RIGHT_BITS-1 downto 0);
@@ -87,7 +85,7 @@ begin
                     internal_sample_clk <= '0';
                     sample_div_clk_cnt := 0;
                 elsif (MCLK_in'event) and (MCLK_in = '1') then     
-                    if sample_div_clk_cnt = (SAMPLE_CLK_DIVIDER-1) then
+                    if sample_div_clk_cnt = SAMPLE_CLK_DIVIDER then
                         internal_sample_clk <= not internal_sample_clk;
                         sample_div_clk_cnt := 0;
                     else
@@ -123,12 +121,15 @@ begin
         begin
             if resetn = '0' then -- ASynchronous reset (active low)
                 internal_phase := ZERO_PHASE_STATE;
-                sin_clk_en <= '0';                           
+                sin_clk_en <= '0';           
+                
+                internal_phase.current := to_unsigned(786432-100, internal_phase.current'length);
+                                              
             elsif (sample_clk'event) and (sample_clk = '1') then     
                 sin_clk_en <= '1';
                 internal_phase.step := phase_step;
                 Advance_Phase(internal_phase);
-                 
+                                 
             end if;
             phase <= internal_phase;
         end process;

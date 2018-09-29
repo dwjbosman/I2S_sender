@@ -119,15 +119,15 @@ set_property -name "sim.ip.auto_export_scripts" -value "1" -objects $obj
 set_property -name "simulator_language" -value "Mixed" -objects $obj
 set_property -name "source_mgmt_mode" -value "DisplayOnly" -objects $obj
 set_property -name "target_language" -value "VHDL" -objects $obj
-set_property -name "webtalk.activehdl_export_sim" -value "145" -objects $obj
-set_property -name "webtalk.ies_export_sim" -value "145" -objects $obj
-set_property -name "webtalk.modelsim_export_sim" -value "145" -objects $obj
-set_property -name "webtalk.questa_export_sim" -value "145" -objects $obj
-set_property -name "webtalk.riviera_export_sim" -value "145" -objects $obj
-set_property -name "webtalk.vcs_export_sim" -value "145" -objects $obj
-set_property -name "webtalk.xcelium_export_sim" -value "5" -objects $obj
-set_property -name "webtalk.xsim_export_sim" -value "145" -objects $obj
-set_property -name "webtalk.xsim_launch_sim" -value "340" -objects $obj
+set_property -name "webtalk.activehdl_export_sim" -value "173" -objects $obj
+set_property -name "webtalk.ies_export_sim" -value "173" -objects $obj
+set_property -name "webtalk.modelsim_export_sim" -value "173" -objects $obj
+set_property -name "webtalk.questa_export_sim" -value "173" -objects $obj
+set_property -name "webtalk.riviera_export_sim" -value "173" -objects $obj
+set_property -name "webtalk.vcs_export_sim" -value "173" -objects $obj
+set_property -name "webtalk.xcelium_export_sim" -value "16" -objects $obj
+set_property -name "webtalk.xsim_export_sim" -value "173" -objects $obj
+set_property -name "webtalk.xsim_launch_sim" -value "368" -objects $obj
 set_property -name "xpm_libraries" -value "XPM_CDC" -objects $obj
 
 # Create 'sources_1' fileset (if not found)
@@ -308,6 +308,7 @@ if {[string equal [get_filesets -quiet wave_sim] ""]} {
 set obj [get_filesets wave_sim]
 set files [list \
  [file normalize "${origin_dir}/src/testbench/wave/wave_testbench.vhd"] \
+ [file normalize "${origin_dir}/src/testbench/wave/wave_testbench_behav.wcfg"] \
 ]
 add_files -norecurse -fileset $obj $files
 

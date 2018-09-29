@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="wave_testbench_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="glbl" />
+            <top_module name="sine_generator_func_pkg" />
+            <top_module name="sine_generator_types_pkg" />
+            <top_module name="types_pkg" />
+            <top_module name="wave_testbench" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="0fs"></ZoomStartTime>
+      <ZoomEndTime time="6700000000001fs"></ZoomEndTime>
+      <Cursor1Time time="1115000000000fs"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="95"></NameColumnWidth>
+      <ValueColumnWidth column_width="66"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="5" />
+   <wave_markers>
+      <marker label="" time="6800000000000" />
+      <marker label="" time="3410000000000" />
+   </wave_markers>
+   <wvobject type="logic" fp_name="/wave_testbench/MCLK">
+      <obj_property name="ElementShortName">MCLK</obj_property>
+      <obj_property name="ObjectShortName">MCLK</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/wave_testbench/resetn">
+      <obj_property name="ElementShortName">resetn</obj_property>
+      <obj_property name="ObjectShortName">resetn</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/wave_testbench/freq">
+      <obj_property name="ElementShortName">freq[19:0]</obj_property>
+      <obj_property name="ObjectShortName">freq[19:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/wave_testbench/wave">
+      <obj_property name="ElementShortName">wave[23:0]</obj_property>
+      <obj_property name="ObjectShortName">wave[23:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/wave_testbench/wave">
+      <obj_property name="ElementShortName">wave[23:0]</obj_property>
+      <obj_property name="ObjectShortName">wave[23:0]</obj_property>
+      <obj_property name="WaveformStyle">STYLE_ANALOG</obj_property>
+      <obj_property name="CellHeight">100</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+</wave_config>
