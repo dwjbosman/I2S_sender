@@ -96,13 +96,17 @@ package sine_generator_types_pkg is
         decimal : phase_step_decimal_t;
         fraction : phase_step_fraction_t; -- fractional / sample_rate
     end record;
-    constant ZERO_PHASE_STEP: phase_step_t := (decimal => (others => '0'), fraction => (others => '0'));
-
+    
     type phase_state_t is record
         step : phase_step_t;
-        current: phase_t;
-        current_fraction: phase_fraction_t;
+        -- the decimal part, added each step
+        current: phase_t; 
+        -- the fractional part, if it overflows (above sample_rate)
+        -- then the it is reset and current is increased by one
+        current_fraction: phase_fraction_t; 
+        
     end record; 
+    constant ZERO_PHASE_STEP: phase_step_t := (decimal => (others => '0'), fraction => (others => '0'));
     constant ZERO_PHASE_STATE: phase_state_t := 
         (
             current => (others => '0'),
@@ -128,7 +132,7 @@ package sine_generator_types_pkg is
     constant POWER2_PHASE_STEP_BITS : natural := sel(POWER2_PHASE_STEP_BITS1_USABLE, POWER2_PHASE_STEP_BITS1, POWER2_PHASE_STEP_BITS2);    
     constant POWER2_PHASE_STEP : natural := 2 ** POWER2_PHASE_STEP_BITS;
     
-        -- max frequency = POWER2_PHASE_SPACE_SIZE/2
+    -- max frequency = POWER2_PHASE_SPACE_SIZE/2
     constant FREQUENCY_SCALED_BITS : natural := SAMPLE_RATE_BITS -1 + POWER2_PHASE_STEP_BITS; 
     subtype frequency_t is unsigned(FREQUENCY_SCALED_BITS-1 downto 0);
     
@@ -171,6 +175,7 @@ package sine_generator_types_pkg is
 
     procedure Rand(variable rand_inout: inout unsigned(30 downto 0));
    
+    --update phase according to the step field.
     procedure Advance_Phase(
         variable phase: inout phase_state_t);
  
@@ -180,10 +185,6 @@ package body sine_generator_types_pkg is
 
 
     -- synthesis translate_off
-
-
-
-
     procedure Report_Constants ( constant dummy: in integer) is 
         variable l: line;
     begin
@@ -348,15 +349,11 @@ package body sine_generator_types_pkg is
         variable phase_step: out phase_step_t) is
         
         variable scaled_phase: unsigned(SCALED_PHASE_STEP_BITS + FREQUENCY_SCALED_BITS -1  downto 0);
-        
-        
-        --variable tmp: unsigned(FREQUENCY_SCALED_BITS + POWER2_PHASE_SPACE_BITS -1 downto 0);
-        
+                
         variable phase_step_numerator_incl_decimal: unsigned(FREQUENCY_SCALED_BITS + POWER2_PHASE_SPACE_BITS - POWER2_PHASE_STEP_BITS -1 downto 0);
         variable decimal_scaled: unsigned(FREQUENCY_SCALED_BITS + POWER2_PHASE_SPACE_BITS - POWER2_PHASE_STEP_BITS -1 downto 0);
    
-        variable l: line;
-                                     
+        variable l: line;                                  
     begin
     
             write( l, string'("sc1_bits             = " ));                    
@@ -388,24 +385,12 @@ package body sine_generator_types_pkg is
             write( l, string'("sc1                                      = " ));                    
             write( l, to_hstring(scaled_phase));
             writeline( output, l );
-            
-            --write( l, string'("assert " ));                    
-            --write( l, (SCALED_PHASE_STEP_BITS + FREQUENCY_SCALED_BITS - DECIMAL_DIVIDER_BITS -1 ));
-            --write( l, string'(" == " ));                    
-            --write( l, MAX_POWER2_PHASE_STEP_BITS);
-            --writeline( output, l );                        
-            --assert(SCALED_PHASE_STEP_BITS + FREQUENCY_SCALED_BITS - DECIMAL_DIVIDER_BITS -1 = MAX_POWER2_PHASE_STEP_BITS) report "Assertion violation." severity error;
                         
             phase_step.decimal := scaled_phase(DECIMAL_DIVIDER_BITS + phase_step.decimal'length -1 downto DECIMAL_DIVIDER_BITS);
             write( l, string'("decimal                                  = " ));                    
             write( l, to_hstring(phase_step.decimal));
             writeline( output, l );
    
-   
-            -- num: frequency_scaled * power2_phase_space_size
-            -- size: FREQUENCY_SCALED_BITS + POWER2_PHASE_SPACE_BITS 
-            -- num: (frequency_scaled * power2_phase_space_size)/ power2_phase_space_size
-            -- size: FREQUENCY_SCALED_BITS + POWER2_PHASE_SPACE_BITS - POWER2_PHASE_STEP_BITS
             phase_step_numerator_incl_decimal := frequency_scaled & to_unsigned(0, POWER2_PHASE_SPACE_BITS - POWER2_PHASE_STEP_BITS);
             
             write( l, string'("phase_step_numerator_incl_decimal        = " ));                    

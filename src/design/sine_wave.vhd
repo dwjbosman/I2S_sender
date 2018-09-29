@@ -30,22 +30,17 @@ use ieee.math_real.all;
 
 entity sine_wave is
     Port ( resetn : std_logic;
-           MCLK_in : in std_logic;
+           MCLK_in : in std_logic; -- Master clock of the I2S Sender
            
-           freq_in_ce: in std_logic;
-           freq_in: in frequency_t;
+           freq_in_ce: in std_logic; -- if '1' freq_in will be sampled on rising edge
+           freq_in: in frequency_t; -- the scaled frequency of the sine
 
-           wave_out : out sample_t
+           wave_out : out sample_t -- the generated output samples
            );
-
-    CONSTANT MAX_WAVE : sample_t := to_signed(2**(SAMPLE_WIDTH-3), SAMPLE_WIDTH)+1; 
-
 end sine_wave;
 
 architecture Behavioral of sine_wave is
     
-
-  
     signal sin_clk_en : std_logic;
     signal dummy_cos : sample_t;
 
@@ -105,6 +100,7 @@ begin
                     phase_step_internal := ZERO_PHASE_STEP;
                 elsif (MCLK_in'event) and (MCLK_in = '1') then     
                     if freq_in_ce = '1' then
+                        -- update phase_step_internal based on the new freq_in value
                         Calculate_Phase_Step(freq_in,phase_step_internal);
                     end if;
                 end if;
@@ -113,7 +109,6 @@ begin
     end block;
  
     waveform_process_scope: block
-        
     begin
         -- a process to generate the audio waveform
         waveform_process : process (sample_clk, resetn) is --runs at Fs
@@ -122,14 +117,10 @@ begin
             if resetn = '0' then -- ASynchronous reset (active low)
                 internal_phase := ZERO_PHASE_STATE;
                 sin_clk_en <= '0';           
-                
-                internal_phase.current := to_unsigned(786432-100, internal_phase.current'length);
-                                              
             elsif (sample_clk'event) and (sample_clk = '1') then     
                 sin_clk_en <= '1';
                 internal_phase.step := phase_step;
-                Advance_Phase(internal_phase);
-                                 
+                Advance_Phase(internal_phase);                                 
             end if;
             phase <= internal_phase;
         end process;
