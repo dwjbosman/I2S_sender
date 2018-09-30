@@ -101,11 +101,9 @@ begin
             )  when SW(2) else
         (others => '0');
         
-    wave_left <= wave_sine when SW(0) else
-        wave_sine when SW(1) else
-        wave_sine when SW(2) else
-        wave_left_sq when SW(3) else
-        wave_right_sq when SW(4) else
+    wave_left <= wave_sine when SW(3) else
+        wave_left_sq when SW(4) else
+        wave_right_sq when SW(5) else
         (others => '0');
     
     wave_right <= wave_left;    
