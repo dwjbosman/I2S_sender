@@ -92,6 +92,7 @@ package sine_generator_types_pkg is
     subtype phase_step_decimal_t is unsigned(MAX_POWER2_PHASE_STEP_BITS-1 downto 0);
     subtype phase_step_fraction_t is unsigned(SAMPLE_RATE_BITS-1 downto 0);
     subtype phase_fraction_t is unsigned(SAMPLE_RATE_BITS+1 downto 0);
+    
     type phase_step_t is record 
         decimal : phase_step_decimal_t;
         fraction : phase_step_fraction_t; -- fractional / sample_rate
@@ -106,6 +107,7 @@ package sine_generator_types_pkg is
         current_fraction: phase_fraction_t; 
         
     end record; 
+    
     constant ZERO_PHASE_STEP: phase_step_t := (decimal => (others => '0'), fraction => (others => '0'));
     constant ZERO_PHASE_STATE: phase_state_t := 
         (
@@ -125,9 +127,9 @@ package sine_generator_types_pkg is
     constant PHASE_STEP_BITS : real := log2(PHASE_STEP);
         
     constant POWER2_PHASE_STEP_BITS1: natural :=  natural(floor(log(PHASE_STEP)/log(2.0)));
-    constant FREQ_RES1 : real := 1.0 / POWER2_PHASE_STEP_BITS1;
+    constant FREQ_RES1 : real := 1.0 / real(POWER2_PHASE_STEP_BITS1);
     constant POWER2_PHASE_STEP_BITS2: natural :=  natural(ceil(log(PHASE_STEP)/log(2.0)));
-    constant FREQ_RES2 : real := 1.0 / POWER2_PHASE_STEP_BITS2;
+    constant FREQ_RES2 : real := 1.0 / real(POWER2_PHASE_STEP_BITS2);
     constant POWER2_PHASE_STEP_BITS1_USABLE: boolean := FREQ_RES1 < TARGET_FREQUENCY_RESOLUTION;
     constant POWER2_PHASE_STEP_BITS : natural := sel(POWER2_PHASE_STEP_BITS1_USABLE, POWER2_PHASE_STEP_BITS1, POWER2_PHASE_STEP_BITS2);    
     constant POWER2_PHASE_STEP : natural := 2 ** POWER2_PHASE_STEP_BITS;
@@ -138,8 +140,7 @@ package sine_generator_types_pkg is
     
     constant MAX_FREQUENCY_SCALED : natural := MAX_FREQUENCY * POWER2_PHASE_STEP;   
         
-
-    constant MAX_QUANTISED_PHASE_STEP_ERROR : real := 1.0/MAX_FREQUENCY;
+    constant MAX_QUANTISED_PHASE_STEP_ERROR : real := 1.0/real(MAX_FREQUENCY);
     constant MAX_QUANTISED_PHASE_STEP_ERROR_BITS : real := abs(log2(MAX_QUANTISED_PHASE_STEP_ERROR));
     
     constant SCALED_PHASE_STEP_BITS : natural := natural(ceil( PHASE_STEP_BITS + MAX_QUANTISED_PHASE_STEP_ERROR_BITS));
@@ -148,13 +149,13 @@ package sine_generator_types_pkg is
     constant PHASE_STEP_SCALING_FACTOR1: natural := 2 ** ( PHASE_STEP_SCALING_FACTOR_BITS1 );
     constant SCALED_PHASE_STEP1 : natural := natural( floor( real(PHASE_STEP_SCALING_FACTOR1) * PHASE_STEP));
     constant PHASE_STEP_ERROR1: real := PHASE_STEP - real(SCALED_PHASE_STEP1) / real(PHASE_STEP_SCALING_FACTOR1);
-    constant PHASE_STEP_MAX_ERROR1: real := MAX_FREQUENCY * PHASE_STEP_ERROR1;
+    constant PHASE_STEP_MAX_ERROR1: real := real(MAX_FREQUENCY) * real(PHASE_STEP_ERROR1);
 
     constant PHASE_STEP_SCALING_FACTOR_BITS2 : natural := natural(ceil ( MAX_QUANTISED_PHASE_STEP_ERROR_BITS ));
     constant PHASE_STEP_SCALING_FACTOR2: natural := 2 ** ( PHASE_STEP_SCALING_FACTOR_BITS2 );
     constant SCALED_PHASE_STEP2 : natural := natural( floor( real(PHASE_STEP_SCALING_FACTOR2) * PHASE_STEP));
     constant PHASE_STEP_ERROR2: real := PHASE_STEP - real(SCALED_PHASE_STEP2) / real(PHASE_STEP_SCALING_FACTOR2);
-    constant PHASE_STEP_MAX_ERROR2: real := MAX_FREQUENCY * PHASE_STEP_ERROR2;
+    constant PHASE_STEP_MAX_ERROR2: real := real(MAX_FREQUENCY) * real(PHASE_STEP_ERROR2);
                 
     constant PHASE_STEP_SCALING_FACTOR_BITS1_USABLE: boolean := PHASE_STEP_MAX_ERROR1<1.0;
     constant PHASE_STEP_SCALING_FACTOR_BITS : natural := sel(PHASE_STEP_SCALING_FACTOR_BITS1_USABLE, PHASE_STEP_SCALING_FACTOR_BITS1, PHASE_STEP_SCALING_FACTOR_BITS2);    

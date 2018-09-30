@@ -3,18 +3,16 @@
    guistr: "# # String gsaved with Nlview 6.8.5  2018-01-30 bk=1.4354 VDI=40 GEI=35 GUI=JA:1.6 TLS
 #  -string -flagsOSRD
 preplace port locked_reset -pg 1 -y 40 -defaultsOSRD
-preplace port MCLK_gen_out -pg 1 -y 60 -defaultsOSRD
-preplace port clk_out -pg 1 -y 100 -defaultsOSRD
+preplace port MCLK_gen_out -pg 1 -y 20 -defaultsOSRD
+preplace port clk_out -pg 1 -y -10 -defaultsOSRD
 preplace port sys_clock -pg 1 -y 40 -defaultsOSRD
-preplace port reset_rtl_0 -pg 1 -y 0 -defaultsOSRD
 preplace port reset -pg 1 -y 20 -defaultsOSRD
 preplace inst clk_wiz_0 -pg 1 -lvl 1 -y 20 -defaultsOSRD
 preplace netloc clk_wiz_0_MCLK 1 1 1 N
 preplace netloc clk_wiz_0_locked 1 1 1 N
 preplace netloc sys_clock_1 1 0 1 -40
 preplace netloc clk_wiz_0_clk_out1 1 1 1 290
-preplace netloc reset_rtl_0_1 1 0 1 -40
-preplace netloc reset_1 1 0 1 N
+preplace netloc reset_1 1 0 1 -40
 levelinfo -pg 1 -60 190 830 -top -290 -bot 600
 ",
 }

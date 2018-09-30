@@ -1,19 +1,9 @@
---Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
-----------------------------------------------------------------------------------
---Tool Version: Vivado v.2018.1 (lin64) Build 2188600 Wed Apr  4 18:39:19 MDT 2018
---Date        : Mon Jun 18 22:38:55 2018
---Host        : dinne-Aspire-VN7-593G running 64-bit Ubuntu 16.04.4 LTS
---Command     : generate_target design_1_wrapper.bd
---Design      : design_1_wrapper
---Purpose     : IP block netlist
-----------------------------------------------------------------------------------
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use ieee.numeric_std.all;
 
-
-
 use work.types_pkg.all;
+use work.sine_generator_types_pkg.all;
 
 entity design_1_wrapper is
   port (
@@ -48,23 +38,17 @@ architecture STRUCTURE of design_1_wrapper is
     signal counter_clk: STD_LOGIC;
     signal n_reset: STD_LOGIC;
       
-    
-    
-    signal wave_left: sample_t := (others=> '0');
-    signal wave_right: sample_t := (others=> '0');
-        
-    
     signal wave_left_sq: sample_t := (others=> '0');
     signal wave_right_sq: sample_t := (others=> '0');
-    
-    signal wave_left_sine: sample_t := (others=> '0');
-    signal wave_right_sine: sample_t := (others=> '0');
-        
+          
+    signal wave_sine: sample_t := (others=> '0');
+    signal frequency_ce: std_logic;
+    signal frequency: frequency_t;     
     
     signal MCLK_tmp : std_logic := '0';
      
 
-    signal shift_reg: std_logic_vector(23 downto 0) := (others=> '0');
+    signal second_counter: unsigned(MCLK_BITS-1 downto 0) := (others=> '0');
           
 
 begin
@@ -74,35 +58,49 @@ begin
       clk_out => counter_clk,
       MCLK_gen_out => MCLK_tmp,
       locked_reset => n_reset,
-      reset => CPU_RESETN,
+      reset => not CPU_RESETN,
       sys_clock => CLK100MHZ
     );
     
+    
+        sqwv : entity work.square_wave
+            port map (
+                resetn => n_reset,
+                MCLK_in => MCLK_tmp,
+                wave_left_out => wave_left_sq,
+                wave_right_out => wave_right_sq
+                );
 
-    sqwv : entity work.square_wave
-        port map (
-            resetn => n_reset,
-            MCLK_in => MCLK_tmp,
-            wave_left_out => wave_left_sq,
-            wave_right_out => wave_right_sq
-            );
-
-    /**
+    
     snwv : entity work.sine_wave
         port map (
             resetn => n_reset,
             MCLK_in => MCLK_tmp,
-            wave_left_out => wave_left_sine,
-            wave_right_out => wave_right_sine
+            freq_in => frequency,
+            freq_in_ce => frequency_ce,
+            wave_out => wave_sine
             );
-    **/ 
-    wave_left <= (wave_left_sq and SW(0));
-    wave_right <= (wave_right_sq and SW(0));
-        
-    -- wave_left <= (wave_left_sq and SW(0)) + (wave_left_sine and SW(1));
-    -- wave_right <= (wave_right_sq and SW(0)) + (wave_right_sine and SW(1));
-                
- 
+     
+     frequency_ce <= '1' when SW(0) or SW(1) or SW(2) else '0';
+          
+     -- press button 0 to get 440 hz
+     -- press button 1 to get 880 hz
+     -- button 2 -> sweep from 100 Hz to 100+4*255 Hz in one second  
+     frequency <= to_unsigned(440 * POWER2_PHASE_STEP, frequency'length) when SW(0) else
+        to_unsigned(880 * POWER2_PHASE_STEP, frequency'length) when SW(1)  else
+        to_unsigned(100* POWER2_PHASE_STEP, frequency'length) + 
+            resize(
+                to_unsigned( 4 * POWER2_PHASE_STEP, frequency'length) 
+                * second_counter(second_counter'length -1 downto second_counter'length -1 -7), frequency'length
+            )  when SW(2) else
+        (others => '0');
+     /**
+     frequency <= to_unsigned(440 * POWER2_PHASE_STEP, frequency'length) when SW(0) else
+                to_unsigned(880 * POWER2_PHASE_STEP, frequency'length) when SW(1)  else
+                to_unsigned(100* POWER2_PHASE_STEP, frequency'length) +
+                    to_unsigned( 4 * POWER2_PHASE_STEP, frequency'length) * second_counter(second_counter'length -1 downto second_counter'length -1 -8) when SW(2) else
+                (others => '0');
+        **/        
     i2s : entity work.i2s_sender
         port map (
             resetn => n_reset,
@@ -110,59 +108,25 @@ begin
             SCLK_out => SCLK_out,
             LRCK_out => LRCK_out,
             SDIN_out => SDIN_out,
-            wave_left_in => wave_left,
-            wave_right_in => wave_right
+            wave_left_in => wave_sine,
+            wave_right_in => wave_right_sq
         );
             
-    /**
-    led_process : process (MCLK_tmp) is 
-        variable cnt : unsigned(23 downto 0);
-        begin
-                if n_reset = '0' then               -- ASynchronous reset (active low)
-                    cnt:= (others => '0');    
-                elsif MCLK_out'event and MCLK_out = '1' then     -- Rising clock edge
-                    cnt := cnt + 1;
-                end if;
-                LED(15 downto 0) <= std_logic_vector(cnt(23 downto (23-15)));
-        end process;
-       **/ 
-    MCLK_out <= MCLK_tmp;
-    blaat: block
---        alias some_cnt is <<signal sqwv.wave_left_cnt : integer>>;  
-     
+    --LED(8) <= frequency_ce;   
+    --LED(7 downto 0) <= std_logic_vector(second_counter(second_counter'length -1 downto second_counter'length -1 - 7)) when SW(2) else
+    --    (others => '0');
+   
+    --LED(15 downto 0) <= std_logic_vector(second_counter(second_counter'length -1 downto second_counter'length -1 - 15)); 
+    LED(15 downto 0) <= std_logic_vector(wave_sine(wave_sine'length-1 downto wave_sine'length-1-15)); 
+                
+    counter_process : process (MCLK_tmp, n_reset) is 
     begin
-    led_process : process (MCLK_tmp, n_reset) is 
-        variable old: std_logic;
-        variable cnt : unsigned(15 downto 0);
-        begin
-                if n_reset = '0' then               -- ASynchronous reset (active low)
-                    cnt:= (others => '0');
-                    old:= '0';
-                elsif MCLK_tmp'event and MCLK_tmp = '1' then     -- Rising clock edge
-                                
-                    if old = SDIN_out then     -- Rising clock edge
-                    else
-                        old := SDIN_out;
-                        cnt := cnt + 1;
-                    end if;
-                end if;
-                LED(15 downto 0) <= std_logic_vector(cnt(15 downto (15-15)));
-        end process;
-    end block;
-    
+        if n_reset = '0' then -- ASynchronous reset (active low)
+            second_counter <= (others=>'0');
+        elsif (MCLK_tmp'event) and (MCLK_tmp = '1') then     
+            second_counter <= second_counter + 1;
+        end if;
+    end process;
 
-
+ 
 end STRUCTURE;
-
---Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
-----------------------------------------------------------------------------------
---Tool Version: Vivado v.2018.1 (lin64) Build 2188600 Wed Apr  4 18:39:19 MDT 2018
---Date        : Sun Jul 22 22:19:38 2018
---Host        : dinne-Aspire-VN7-593G running 64-bit Ubuntu 16.04.4 LTS
---Command     : generate_target design_1_wrapper.bd
---Design      : design_1_wrapper
---Purpose     : IP block netlist
-----------------------------------------------------------------------------------
-
-
-

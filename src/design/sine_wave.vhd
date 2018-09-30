@@ -23,10 +23,9 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 
 use IEEE.NUMERIC_STD.ALL;
-
+use ieee.math_real.all;
 use work.types_pkg.all;
 use work.sine_generator_types_pkg.all;
-use ieee.math_real.all;
 
 entity sine_wave is
     Port ( resetn : std_logic;
@@ -50,6 +49,9 @@ architecture Behavioral of sine_wave is
     signal sample_clk : std_logic;
 
 begin
+    
+    -- Note: with taylor_order => 1 I am getting  wrong sine values 
+    -- TODO determine required addbirs, extrabits....
     gen0: entity work.sincos_gen
         generic map (
             data_bits       => sample_t'length,
