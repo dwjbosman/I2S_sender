@@ -100,7 +100,7 @@ begin
                 * second_counter(second_counter'length -1 downto second_counter'length -1 -7), frequency'length
             )  when SW(2) else
         (others => '0');
-        
+     
     wave_left <= wave_sine when SW(3) else
         wave_left_sq when SW(4) else
         wave_right_sq when SW(5) else
