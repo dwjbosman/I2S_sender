@@ -13,6 +13,9 @@ entity design_1_wrapper is
     CLK100MHZ : in STD_LOGIC;
     LED: out STD_LOGIC_VECTOR(15 downto 0);
     
+    SSEG_CA: out STD_LOGIC_VECTOR(7 downto 0);
+    AN: out STD_LOGIC_VECTOR(7 downto 0);
+    
     SW: in std_logic_vector(15 downto 0);
     
     -- for i2s pmod
@@ -26,11 +29,13 @@ end design_1_wrapper;
 architecture STRUCTURE of design_1_wrapper is
   component design_1 is
   port (
+
+
     sys_clock : in STD_LOGIC;
     reset : in STD_LOGIC;
     clk_out : out STD_LOGIC;
     MCLK_gen_out : out STD_LOGIC;
-    locked_reset : out STD_LOGIC        
+    locked_reset : out STD_LOGIC
     
   );
   end component design_1;
@@ -41,6 +46,8 @@ architecture STRUCTURE of design_1_wrapper is
     
     
     signal wave_left: sample_t := (others=> '0');
+            
+    
     signal wave_right: sample_t := (others=> '0');
         
     
@@ -56,11 +63,28 @@ architecture STRUCTURE of design_1_wrapper is
 
     signal second_counter: unsigned(MCLK_BITS-1 downto 0) := (others=> '0');
           
+          
 
+    attribute mark_debug of MCLK_out : signal is "true"; 
+    attribute keep of MCLK_out : signal is "true"; 
+   
+    attribute mark_debug of LRCK_out : signal is "true"; 
+    attribute keep of LRCK_out : signal is "true"; 
+
+    attribute mark_debug of SCLK_out : signal is "true"; 
+    attribute keep of SCLK_out : signal is "true"; 
+
+    attribute mark_debug of SDIN_out : signal is "true"; 
+    attribute keep of SDIN_out : signal is "true"; 
+
+    attribute mark_debug of wave_left : signal is "true"; 
+    attribute keep of wave_left : signal is "true"; 
+          
 begin
 
   design_1_i: component design_1
      port map (
+      
       clk_out => counter_clk,
       MCLK_gen_out => MCLK_tmp,
       locked_reset => n_reset,
@@ -84,6 +108,7 @@ begin
             MCLK_in => MCLK_tmp,
             freq_in => frequency,
             freq_in_ce => frequency_ce,
+            sample_clk_in => LRCK_out,
             wave_out => wave_sine
             );
     
@@ -138,10 +163,14 @@ begin
         end process;
        **/ 
     MCLK_out <= MCLK_tmp;
-    
+
+
+    --monitor: block 
+       -- alias internal is <<signal snwv.phase : phase_state_t>>;  
+    --begin
+    --end block;
     
     blaat: block
---        alias some_cnt is <<signal sqwv.wave_left_cnt : integer>>;  
      
     begin
     led_process : process (MCLK_tmp, n_reset) is 
@@ -172,5 +201,9 @@ begin
             second_counter <= second_counter + 1;
         end if;
     end process;
+    
+    -- turn all segments off for now
+    SSEG_CA <= (others => '0');
+    AN <= (others => '1');
 
 end STRUCTURE;

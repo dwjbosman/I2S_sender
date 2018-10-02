@@ -46,47 +46,69 @@ architecture Behavioral of segment_display is
     signal BCD : array (7 downto 0) of BCD_t;
 begin
 
+            --TODO state enum, switch statement
+
+            --https://pubweb.eng.utah.edu/~nmcdonal/Tutorials/BCDTutorial/BCDConversion.html
             bcd_converter: process (CLK_in, resetn) is
                 variable bit_counter: integer range 0 to 31;
-                variable decimal_counter: integer range 0 to 7;    
+                variable decimal_index: integer range 0 to 7;    
                 variable BCD_build : array (7 downto 0) of BCD_t;
                 variable BCD_current : BCD_t;
                 variable value_build : unsigned(31 downto 0);
-
                 variable state: BCD_builder_it; 
+                variable carry: std_logic;
             begin
 
                 if resetn = '0' then -- ASynchronous reset (active low)
                     bit_counter := 0;
-                    decimal_counter :=0;
-                    shift_counter := 0;
+                    decimal_index :=0;
                     BCD_build := (others => BCD_ZERO);
                     value_build := (others => '0');
                     state := START;
                 elsif (CLK_in'event) and (CLK_in = '1') then     
                     
                     if state = START then
-                        BCD <= BCD_build;
+                        --initialize by sampling the current value 
                         value_build := value_in;
+                        --reset current BCD representation
                         BCD_build := (others => BCD_ZERO);
                         bit_counter :=0;
-                        decimal_counter :=0;
+                        decimal_index :=0;
                         state := DECIMALS
                     elsif state = DECIMALS then
-                        BCD_current := BCD_build(decimal_counter);
+                        BCD_current := BCD_build(decimal_index);
                         if (BCD_current>=5 then
                             BCD_current := BCD_current + 3;
-                            BCD_build(decimal_counter) := BCD_current;
+                            BCD_build(decimal_index) := BCD_current;
                         end if;
-                        if decimal_counter = 7 then
+                        if decimal_index = 7 then
                             state := SHIFT;
-                            shift_counter := 7;
                         else
-                            decimal_counter := decimal_counter + 1;
+                            decimal_index := decimal_index + 1;
                         end if;
                     elsif state = SHIFT then
-                         
-                       https://pubweb.eng.utah.edu/~nmcdonal/Tutorials/BCDTutorial/BCDConversion.html 
+                        if decimal_index>0 then
+                            -- shift bcd to the left, use carry from next BCD.
+                            carry:= BCD_build(decimal_index-1)(BCD_t'length-1);
+                            BCD_build(decimal_index) := BCD_build(decimal_index)(3 downto 1) & carry;
+                            decimal_index := decimal_index - 1;
+                        else
+                            -- first BCD, shift left and use carry from value
+                            carry:= value_build(value_build'length-1);
+                            BCD_build(decimal_index) := BCD_build(decimal_index)(3 downto 1) & carry;
+                            
+                            -- shift value left
+                            value_build := shift_left(value_build,1);
+                            if bit_counter = bitcounter'max then
+                                --all done, return the result and restart
+                                BCD <= BCD_build;
+                                state := START;
+                            else
+                                --next iteration
+                                bit_counter := bit_counter + 1;
+                                state := DECIMALS;
+                            end if;
+                        end if;
                     end if
 
 

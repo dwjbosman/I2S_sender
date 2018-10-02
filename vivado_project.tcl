@@ -125,9 +125,8 @@ set_property -name "webtalk.modelsim_export_sim" -value "174" -objects $obj
 set_property -name "webtalk.questa_export_sim" -value "174" -objects $obj
 set_property -name "webtalk.riviera_export_sim" -value "174" -objects $obj
 set_property -name "webtalk.vcs_export_sim" -value "174" -objects $obj
-set_property -name "webtalk.xcelium_export_sim" -value "1" -objects $obj
 set_property -name "webtalk.xsim_export_sim" -value "174" -objects $obj
-set_property -name "webtalk.xsim_launch_sim" -value "369" -objects $obj
+set_property -name "webtalk.xsim_launch_sim" -value "372" -objects $obj
 set_property -name "xpm_libraries" -value "XPM_CDC" -objects $obj
 
 # Create 'sources_1' fileset (if not found)
@@ -228,7 +227,9 @@ set_property -name "file_type" -value "XDC" -objects $file_obj
 
 # Set 'constrs_1' fileset properties
 set obj [get_filesets constrs_1]
+set_property -name "target_constrs_file" -value "[file normalize "$origin_dir/src/design/Nexys-4-DDR-Master.xdc"]" -objects $obj
 set_property -name "target_part" -value "xc7a100tcsg324-1" -objects $obj
+set_property -name "target_ucf" -value "[file normalize "$origin_dir/src/design/Nexys-4-DDR-Master.xdc"]" -objects $obj
 
 # Create 'sim_1' fileset (if not found)
 if {[string equal [get_filesets -quiet sim_1] ""]} {
@@ -325,6 +326,34 @@ set_property -name "file_type" -value "VHDL 2008" -objects $file_obj
 # Set 'wave_sim' fileset properties
 set obj [get_filesets wave_sim]
 set_property -name "top" -value "wave_testbench" -objects $obj
+set_property -name "top_auto_set" -value "0" -objects $obj
+
+# Create 'sine_i2s' fileset (if not found)
+if {[string equal [get_filesets -quiet sine_i2s] ""]} {
+  create_fileset -simset sine_i2s
+}
+
+# Set 'sine_i2s' fileset object
+set obj [get_filesets sine_i2s]
+set files [list \
+ [file normalize "${origin_dir}/src/testbench/i2s_sine/i2s_sine_testbench.vhd"] \
+ [file normalize "${origin_dir}/src/testbench/i2s_sine/i2s_sine_testbench_behav.wcfg"] \
+]
+add_files -norecurse -fileset $obj $files
+
+# Set 'sine_i2s' fileset file properties for remote files
+set file "$origin_dir/src/testbench/i2s_sine/i2s_sine_testbench.vhd"
+set file [file normalize $file]
+set file_obj [get_files -of_objects [get_filesets sine_i2s] [list "*$file"]]
+set_property -name "file_type" -value "VHDL 2008" -objects $file_obj
+
+
+# Set 'sine_i2s' fileset file properties for local files
+# None
+
+# Set 'sine_i2s' fileset properties
+set obj [get_filesets sine_i2s]
+set_property -name "top" -value "i2s_sine_testbench" -objects $obj
 set_property -name "top_auto_set" -value "0" -objects $obj
 
 # Create 'synth_1' run (if not found)

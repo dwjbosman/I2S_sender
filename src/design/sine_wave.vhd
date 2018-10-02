@@ -30,11 +30,13 @@ use work.sine_generator_types_pkg.all;
 entity sine_wave is
     Port ( resetn : std_logic;
            MCLK_in : in std_logic; -- Master clock of the I2S Sender
+           sample_clk_in : in std_logic; -- the sample clock (eg. 48kHz)
            
            freq_in_ce: in std_logic; -- if '1' freq_in will be sampled on rising edge
            freq_in: in frequency_t; -- the scaled frequency of the sine
-
+                 
            wave_out : out sample_t -- the generated output samples
+           
            );
 end sine_wave;
 
@@ -46,7 +48,6 @@ architecture Behavioral of sine_wave is
 
     signal phase : phase_state_t;
     signal phase_step: phase_step_t;
-    signal sample_clk : std_logic;
 
 begin
     
@@ -68,30 +69,6 @@ begin
 
 
 
-    sample_clk_process_scope: block 
-        signal internal_sample_clk : std_logic;
-        constant SAMPLE_CLK_DIVIDER : integer := MCLK_FREQ / (LRCK_FREQ*2)-1;
-    
-        subtype sample_div_clk_t  is integer range 0 to SAMPLE_CLK_DIVIDER;
-        --subtype div_wave_right_t  is unsigned(WAVE_RIGHT_BITS-1 downto 0);
-    begin
-            sample_clk_process: process (MCLK_in, resetn) is
-                variable sample_div_clk_cnt : sample_div_clk_t :=0; 
-            begin
-                if resetn = '0' then -- ASynchronous reset (active low)
-                    internal_sample_clk <= '0';
-                    sample_div_clk_cnt := 0;
-                elsif (MCLK_in'event) and (MCLK_in = '1') then     
-                    if sample_div_clk_cnt = SAMPLE_CLK_DIVIDER then
-                        internal_sample_clk <= not internal_sample_clk;
-                        sample_div_clk_cnt := 0;
-                    else
-                        sample_div_clk_cnt := sample_div_clk_cnt + 1;
-                    end if;
-                end if;
-             end process;
-             sample_clk <= internal_sample_clk;
-     end block;
 
     freq_process_scope: block
     begin
@@ -113,13 +90,13 @@ begin
     waveform_process_scope: block
     begin
         -- a process to generate the audio waveform
-        waveform_process : process (sample_clk, resetn) is --runs at Fs
+        waveform_process : process (sample_clk_in, resetn) is --runs at Fs
             variable internal_phase: phase_state_t;
         begin
             if resetn = '0' then -- ASynchronous reset (active low)
                 internal_phase := ZERO_PHASE_STATE;
                 sin_clk_en <= '0';           
-            elsif (sample_clk'event) and (sample_clk = '1') then     
+            elsif (sample_clk_in'event) and (sample_clk_in = '1') then     
                 sin_clk_en <= '1';
                 internal_phase.step := phase_step;
                 Advance_Phase(internal_phase);                                 

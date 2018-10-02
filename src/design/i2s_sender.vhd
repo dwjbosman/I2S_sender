@@ -4,7 +4,7 @@
 -- 
 -- Create Date: 09/06/2018 11:49:12 PM
 -- Design Name: 
--- Module Name: square_wave_gen - Behavioral
+-- Module Name: i2s_sender - Behavioral
 -- Project Name: 
 -- Target Devices: 
 -- Tool Versions: 
@@ -40,8 +40,8 @@ entity i2s_sender is
            SCLK_out : out std_logic;
            SDIN_out : out std_logic;
            wave_left_in : in sample_t;
-           wave_right_in : in sample_t 
-           
+           wave_right_in : in sample_t
+
     );
 end i2s_sender;
 
@@ -67,6 +67,13 @@ architecture Behavioral of i2s_sender is
     signal wave_right: sample_t := (others => '0');  
           
     signal shift_reg: std_logic_vector(SAMPLE_WIDTH-1 downto 0);
+               
+   
+    attribute mark_debug of shift_reg : signal is "true"; 
+    attribute keep of shift_reg : signal is "true"; 
+           
+    attribute mark_debug of SDIN_cnt : signal is "true"; 
+    attribute keep of SDIN_cnt : signal is "true"; 
                
     -- synthesis translate_off
     signal dummy: std_logic;
@@ -136,12 +143,8 @@ begin
             --sample data
             wave_left <= wave_left_in;
             wave_right <= wave_right_in;
-            
-        
         end if;
     end process;
-
-
 
     -- a process to shift out the wave data
     i2s_gen_process : process (SCLK_out, resetn) is
@@ -152,23 +155,15 @@ begin
 
         elsif SCLK_out'event and SCLK_out = '0' then     -- Falling clock edge
                         
-                if SDIN_cnt=0 then
-                    -- load shift register
-                                        
+                if SDIN_cnt = 47 then
+                    -- load shift register for output
                     shift_reg <= std_logic_vector(wave_left); 
-                    
-                    
-                elsif SDIN_cnt=24 then
+                elsif SDIN_cnt = 23 then
                     shift_reg <= std_logic_vector(wave_right);
-                    
                 else 
                     shift_reg <= shift_reg(shift_reg'HIGH-1 downto 0) & '0';
-                
                 end if;
-               
-            
                 SDIN_out <= shift_reg(shift_reg'HIGH);
-            
         end if;
             
     end process;

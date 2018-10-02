@@ -53,7 +53,7 @@ begin
    
     resetn <= '0', '1' after 100ns;
     clock <= not clock after 10 ns;
-    MCLK <= not MCLK after 54.253472222222 ns; -- 18.4320 Mhz
+    MCLK <= not MCLK after 27.1267361111 ns; -- 18.4320 Mhz
     
     sqwv : entity work.square_wave
         port map (

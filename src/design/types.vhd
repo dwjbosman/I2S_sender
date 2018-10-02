@@ -44,6 +44,10 @@ package types_pkg is
     constant SAMPLE_WIDTH : integer := 24;
 
     subtype sample_t is signed(SAMPLE_WIDTH-1 downto 0);
+    
+    attribute mark_debug : string; 
+    attribute keep : string; 
+    
 end;
 
 package body types_pkg is 
