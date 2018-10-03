@@ -32,18 +32,22 @@ use work.types_pkg.all;
 
 entity i2s_sender is
     --wave_x_in are sampled at the rising edge of MCLK
-
+    generic (
+        DEBUG : boolean := false
+    );
     Port ( 
-           resetn : in std_logic;
-           MCLK_in : in std_logic;
-           LRCK_out : out std_logic;
-           SCLK_out : out std_logic;
-           SDIN_out : out std_logic;
-           wave_left_in : in sample_t;
-           wave_right_in : in sample_t
+        resetn : in std_logic;
+        MCLK_in : in std_logic;
+        LRCK_out : out std_logic;
+        SCLK_out : out std_logic;
+        SDIN_out : out std_logic;
+        wave_left_in : in sample_t;
+        wave_right_in : in sample_t
 
     );
 end i2s_sender;
+
+
 
 architecture Behavioral of i2s_sender is
    --Change level every _DIV ticks of MCLK
@@ -69,20 +73,17 @@ architecture Behavioral of i2s_sender is
     signal shift_reg: std_logic_vector(SAMPLE_WIDTH-1 downto 0);
                
    
-    attribute mark_debug of shift_reg : signal is "true"; 
-    attribute keep of shift_reg : signal is "true"; 
+    attribute mark_debug of shift_reg : signal is boolean'image(debug);
+    attribute keep of shift_reg : signal is boolean'image(debug); 
            
-    attribute mark_debug of SDIN_cnt : signal is "true"; 
-    attribute keep of SDIN_cnt : signal is "true"; 
-               
-    -- synthesis translate_off
-    signal dummy: std_logic;
-    -- synthesis translate_on
-    
+    attribute mark_debug of SDIN_cnt : signal is boolean'image(debug);
+    attribute keep of SDIN_cnt : signal is boolean'image(debug);
+                  
 begin
+
     
     -- synthesis translate_off
-    debug : process (dummy) is
+    debug_process : process is
     begin
         --print the dividers when in simulation mode
         report "MCLK_FREQ hz " & integer'image(MCLK_FREQ);
@@ -92,6 +93,7 @@ begin
 
         report "LRCK_DIV" & integer'image(LRCK_DIV);
         report "SCLK_DIV" & integer'image(SCLK_DIV);
+        wait;
     end process;
     -- synthesis translate_on
     

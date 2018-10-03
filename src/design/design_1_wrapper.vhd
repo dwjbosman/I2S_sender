@@ -6,6 +6,9 @@ use work.types_pkg.all;
 use work.sine_generator_types_pkg.all;
 
 entity design_1_wrapper is
+  generic(
+    DEBUG: boolean := false
+  );
   port (
     -- clk_out : out STD_LOGIC;
     -- locked_reset : out STD_LOGIC;
@@ -65,20 +68,20 @@ architecture STRUCTURE of design_1_wrapper is
           
           
 
-    attribute mark_debug of MCLK_out : signal is "true"; 
-    attribute keep of MCLK_out : signal is "true"; 
+    attribute mark_debug of MCLK_out : signal is boolean'image(DEBUG);
+    attribute keep of MCLK_out : signal is boolean'image(DEBUG); 
    
-    attribute mark_debug of LRCK_out : signal is "true"; 
-    attribute keep of LRCK_out : signal is "true"; 
+    attribute mark_debug of LRCK_out : signal is boolean'image(DEBUG);
+    attribute keep of LRCK_out : signal is boolean'image(DEBUG);
 
-    attribute mark_debug of SCLK_out : signal is "true"; 
-    attribute keep of SCLK_out : signal is "true"; 
+    attribute mark_debug of SCLK_out : signal is boolean'image(DEBUG); 
+    attribute keep of SCLK_out : signal is boolean'image(DEBUG);
 
-    attribute mark_debug of SDIN_out : signal is "true"; 
-    attribute keep of SDIN_out : signal is "true"; 
+    attribute mark_debug of SDIN_out : signal is boolean'image(DEBUG); 
+    attribute keep of SDIN_out : signal is boolean'image(DEBUG); 
 
-    attribute mark_debug of wave_left : signal is "true"; 
-    attribute keep of wave_left : signal is "true"; 
+    attribute mark_debug of wave_left : signal is boolean'image(DEBUG); 
+    attribute keep of wave_left : signal is boolean'image(DEBUG); 
           
 begin
 
@@ -93,13 +96,13 @@ begin
     );
     
     
-        sqwv : entity work.square_wave
-            port map (
-                resetn => n_reset,
-                MCLK_in => MCLK_tmp,
-                wave_left_out => wave_left_sq,
-                wave_right_out => wave_right_sq
-                );
+    sqwv : entity work.square_wave
+        port map (
+            resetn => n_reset,
+            MCLK_in => MCLK_tmp,
+            wave_left_out => wave_left_sq,
+            wave_right_out => wave_right_sq
+            );
 
     
     snwv : entity work.sine_wave
@@ -117,6 +120,7 @@ begin
      -- press button 0 to get 440 hz
      -- press button 1 to get 880 hz
      -- button 2 -> sweep from 100 Hz to 100+4*255 Hz in one second  
+     -- button 3, 4 turn on square wave
      frequency <= to_unsigned(440 * POWER2_PHASE_STEP, frequency'length) when SW(0) else
         to_unsigned(880 * POWER2_PHASE_STEP, frequency'length) when SW(1)  else
         to_unsigned(100* POWER2_PHASE_STEP, frequency'length) + 
@@ -165,33 +169,24 @@ begin
     MCLK_out <= MCLK_tmp;
 
 
-    --monitor: block 
-       -- alias internal is <<signal snwv.phase : phase_state_t>>;  
-    --begin
-    --end block;
-    
-    blaat: block
-     
-    begin
     led_process : process (MCLK_tmp, n_reset) is 
         variable old: std_logic;
         variable cnt : unsigned(15 downto 0);
-        begin
-                if n_reset = '0' then               -- ASynchronous reset (active low)
-                    cnt:= (others => '0');
-                    old:= '0';
-                elsif MCLK_tmp'event and MCLK_tmp = '1' then     -- Rising clock edge
-                                
-                    if old = SDIN_out then     -- Rising clock edge
-                    else
-                        old := SDIN_out;
-                        cnt := cnt + 1;
-                    end if;
+    begin
+            if n_reset = '0' then               -- ASynchronous reset (active low)
+                cnt:= (others => '0');
+                old:= '0';
+            elsif MCLK_tmp'event and MCLK_tmp = '1' then     -- Rising clock edge
+                            
+                if old = SDIN_out then     -- Rising clock edge
+                else
+                    old := SDIN_out;
+                    cnt := cnt + 1;
                 end if;
-                LED(15 downto 0) <= std_logic_vector(cnt(15 downto (15-15)));
-        end process;
-    end block;
-    
+            end if;
+            LED(15 downto 0) <= std_logic_vector(cnt(15 downto (15-15)));
+    end process;
+
  
     counter_process : process (MCLK_tmp, n_reset) is 
     begin
@@ -202,7 +197,7 @@ begin
         end if;
     end process;
     
-    -- turn all segments off for now
+    -- turn all led segments off for now
     SSEG_CA <= (others => '0');
     AN <= (others => '1');
 
