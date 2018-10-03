@@ -94,6 +94,7 @@ begin
             SDIN_cnt <= 0;      
             wave_left <= (others => '0');
             wave_right <= (others => '0');
+            shift_reg <= (others => '0');
 
         elsif MCLK_in'event and MCLK_in = '1' then     -- Rising clock edge
             -- MCLK == 18.4320 Mhz
@@ -116,6 +117,20 @@ begin
                 if (SCLK_cnt = SCLK_DIV) and (SCLK_out='1') then
                     --SCLK will go low
                     SDIN_cnt <= SDIN_cnt + 1;
+                    --SDIN_cnt is still the current bit in the LRCK left-righ frame
+                    --before the update        
+                    if SDIN_cnt = 0 then
+                        -- load shift register for output
+                        shift_reg <= std_logic_vector(wave_left); 
+                    elsif SDIN_cnt = 24 then
+                        -- load shift register for output
+                        shift_reg <= std_logic_vector(wave_right);
+                    else 
+                        --shift one bit to the right
+                        shift_reg <= shift_reg(shift_reg'HIGH-1 downto 0) & '0';
+                    end if;
+
+
                 end if;                            
                 LRCK_cnt <= LRCK_cnt + 1;  
             end if;
@@ -133,20 +148,23 @@ begin
         end if;
     end process;
 
+    SDIN_out <= shift_reg(shift_reg'HIGH);
+
+    /**
     -- a process to shift out the wave data
     i2s_gen_process : process (SCLK_out, resetn) is
     begin
         if resetn = '0' then               -- ASynchronous reset (active low)
             shift_reg <= (others => '0');
-            SDIN_out <= '0';
+            --SDIN_out <= '0';
 
         elsif SCLK_out'event and SCLK_out = '0' then     -- Falling clock edge
-                
+
                 --SDIN_cnt is the current bit in the LRCK left-righ frame        
-                if SDIN_cnt = 0 then
+                if SDIN_cnt = 1 then
                     -- load shift register for output
                     shift_reg <= std_logic_vector(wave_left); 
-                elsif SDIN_cnt = 24 then
+                elsif SDIN_cnt = 25 then
                     -- load shift register for output
                     shift_reg <= std_logic_vector(wave_right);
                 else 
@@ -155,10 +173,11 @@ begin
                 end if;
                 
                 --send previous bit to the DA converter
-                SDIN_out <= shift_reg(shift_reg'HIGH);
+                --SDIN_out <= shift_reg(shift_reg'HIGH);
                       
         end if;
             
-    end process;    
+    end process;
+    **/    
     
 end Behavioral;

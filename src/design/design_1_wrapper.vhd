@@ -23,7 +23,7 @@ use work.sine_generator_types_pkg.all;
 
 entity design_1_wrapper is
   generic(
-    DEBUG: boolean := false
+    DEBUG: boolean := true
   );
   port (
     -- clk_out : out STD_LOGIC;
@@ -36,7 +36,7 @@ entity design_1_wrapper is
     AN: out STD_LOGIC_VECTOR(7 downto 0); --8 segment display
     
     SW: in std_logic_vector(15 downto 0); -- switches
-    
+        
     -- for i2s pmod
     MCLK_out: out STD_LOGIC;
     SCLK_out: out STD_LOGIC;
@@ -76,6 +76,10 @@ architecture STRUCTURE of design_1_wrapper is
     signal wave_sine: sample_t := (others=> '0');
     signal frequency_ce: std_logic;
     signal frequency: frequency_t;     
+    
+    --for sweep signal
+    signal second_counter: unsigned(MCLK_BITS-1 downto 0) := (others=> '0');
+
     
     --allow debugging using ila if DEBUG==true
     attribute mark_debug of MCLK_out : signal is boolean'image(DEBUG);
@@ -117,6 +121,7 @@ begin
 
     
     snwv : entity work.sine_wave
+
         port map (
             resetn => n_reset,
             MCLK_in => MCLK,
@@ -151,6 +156,9 @@ begin
     wave_right <= wave_left;    
         
     i2s : entity work.i2s_sender
+        generic map (
+            DEBUG => true
+        )
         port map (
             resetn => n_reset,
             MCLK_in => MCLK,
@@ -179,6 +187,19 @@ begin
                 end if;
             end if;
             LED(15 downto 0) <= std_logic_vector(cnt(15 downto (15-15)));
+    end process;
+    
+    counter_process : process (MCLK, n_reset) is 
+    begin
+        if n_reset = '0' then -- ASynchronous reset (active low)
+            second_counter <= (others=>'0');
+        elsif (MCLK'event) and (MCLK = '1') then
+            if second_counter = MCLK_FREQ then
+                second_counter <= (others=>'0');
+            else
+                second_counter <= second_counter + 1;
+            end if;
+        end if;
     end process;
 
     -- turn all led segments off for now
