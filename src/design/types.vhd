@@ -1,36 +1,24 @@
 ----------------------------------------------------------------------------------
--- Company: 
--- Engineer: 
+-- Engineer: D.W.J. Bosman
 -- 
--- Create Date: 09/04/2018 11:51:51 PM
--- Design Name: 
--- Module Name: types - Behavioral
--- Project Name: 
--- Target Devices: 
--- Tool Versions: 
--- Description: 
+-- Create Date: 09/06/2018 11:49:12 PM
+-- Module Name: types - package
 -- 
--- Dependencies: 
--- 
--- Revision:
--- Revision 0.01 - File Created
 -- Additional Comments:
--- 
+-- https://store.digilentinc.com/pmod-i2s2-stereo-audio-input-and-output/
+-- https://statics.cirrus.com/pubs/proDatasheet/CS4344-45-48_F2.pdf
+-- PMOD pin 1: MCLK
+-- PMOD pin 2 LRCK
+-- PMOD pin 3 SCLK
+-- PMOD pin 4 SDIN
+--
+-- This packagae contains I2S sender configuration constants 
 ----------------------------------------------------------------------------------
-
 
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
-
--- Uncomment the following library declaration if using
--- arithmetic functions with Signed or Unsigned values
 use IEEE.NUMERIC_STD.ALL;
 use ieee.math_real.all;
-
--- Uncomment the following library declaration if instantiating
--- any Xilinx leaf cells in this code.
---library UNISIM;
---use UNISIM.VComponents.all;
 
 package types_pkg is    
     --see datasheet https://statics.cirrus.com/pubs/proDatasheet/CS4344-45-48_F2.pdf
@@ -45,9 +33,9 @@ package types_pkg is
 
     subtype sample_t is signed(SAMPLE_WIDTH-1 downto 0);
     
+    --used to support debugging with optional embedded ila
     attribute mark_debug : string; 
     attribute keep : string; 
-
 end;
 
 package body types_pkg is 

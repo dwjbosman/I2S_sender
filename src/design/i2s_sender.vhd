@@ -1,26 +1,12 @@
 ----------------------------------------------------------------------------------
--- Company:  The Future Group - Smart Tech
 -- Engineer: D.W.J. Bosman
 -- 
 -- Create Date: 09/06/2018 11:49:12 PM
--- Design Name: 
 -- Module Name: i2s_sender - Behavioral
--- Project Name: 
--- Target Devices: 
--- Tool Versions: 
--- Description: 
 -- 
--- Dependencies: 
--- 
--- Revision:
--- Revision 0.01 - File Created
 -- Additional Comments:
 -- https://store.digilentinc.com/pmod-i2s2-stereo-audio-input-and-output/
 -- https://statics.cirrus.com/pubs/proDatasheet/CS4344-45-48_F2.pdf
--- PMOD pin 1: MCLK
--- PMOD pin 2 LRCK
--- PMOD pin 3 SCLK
--- PMOD pin 4 SDIN
 -- 
 ----------------------------------------------------------------------------------
 
@@ -43,7 +29,6 @@ entity i2s_sender is
         SDIN_out : out std_logic;
         wave_left_in : in sample_t;
         wave_right_in : in sample_t
-
     );
 end i2s_sender;
 
@@ -73,12 +58,12 @@ architecture Behavioral of i2s_sender is
     signal shift_reg: std_logic_vector(SAMPLE_WIDTH-1 downto 0);
                
    
-    attribute mark_debug of shift_reg : signal is boolean'image(debug);
+    --set optional debugging signals
+    attribute mark_debug of shift_reg : signal is boolean'image(DEBUG);
     attribute keep of shift_reg : signal is boolean'image(debug); 
            
-    attribute mark_debug of SDIN_cnt : signal is boolean'image(debug);
-    attribute keep of SDIN_cnt : signal is boolean'image(debug);
-                  
+    attribute mark_debug of SDIN_cnt : signal is boolean'image(DEBUG);
+    attribute keep of SDIN_cnt : signal is boolean'image(DEBUG); 
 begin
 
     
@@ -152,22 +137,28 @@ begin
     i2s_gen_process : process (SCLK_out, resetn) is
     begin
         if resetn = '0' then               -- ASynchronous reset (active low)
-            SDIN_out <= '0';
             shift_reg <= (others => '0');
+            SDIN_out <= '0';
 
         elsif SCLK_out'event and SCLK_out = '0' then     -- Falling clock edge
-                        
-                if SDIN_cnt = 47 then
+                
+                --SDIN_cnt is the current bit in the LRCK left-righ frame        
+                if SDIN_cnt = 0 then
                     -- load shift register for output
                     shift_reg <= std_logic_vector(wave_left); 
-                elsif SDIN_cnt = 23 then
+                elsif SDIN_cnt = 24 then
+                    -- load shift register for output
                     shift_reg <= std_logic_vector(wave_right);
                 else 
+                    --shift one bit to the right
                     shift_reg <= shift_reg(shift_reg'HIGH-1 downto 0) & '0';
                 end if;
+                
+                --send previous bit to the DA converter
                 SDIN_out <= shift_reg(shift_reg'HIGH);
+                      
         end if;
             
-    end process;
+    end process;    
     
 end Behavioral;
