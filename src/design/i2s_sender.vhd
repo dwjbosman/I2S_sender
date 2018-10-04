@@ -1,26 +1,12 @@
 ----------------------------------------------------------------------------------
--- Company:  The Future Group - Smart Tech
 -- Engineer: D.W.J. Bosman
 -- 
 -- Create Date: 09/06/2018 11:49:12 PM
--- Design Name: 
--- Module Name: square_wave_gen - Behavioral
--- Project Name: 
--- Target Devices: 
--- Tool Versions: 
--- Description: 
+-- Module Name: i2s_sender - Behavioral
 -- 
--- Dependencies: 
--- 
--- Revision:
--- Revision 0.01 - File Created
 -- Additional Comments:
 -- https://store.digilentinc.com/pmod-i2s2-stereo-audio-input-and-output/
 -- https://statics.cirrus.com/pubs/proDatasheet/CS4344-45-48_F2.pdf
--- PMOD pin 1: MCLK
--- PMOD pin 2 LRCK
--- PMOD pin 3 SCLK
--- PMOD pin 4 SDIN
 -- 
 ----------------------------------------------------------------------------------
 
@@ -32,16 +18,17 @@ use work.types_pkg.all;
 
 entity i2s_sender is
     --wave_x_in are sampled at the rising edge of MCLK
-
+    generic (
+        DEBUG : boolean := false
+    );
     Port ( 
-           resetn : in std_logic;
-           MCLK_in : in std_logic;
-           LRCK_out : out std_logic;
-           SCLK_out : out std_logic;
-           SDIN_out : out std_logic;
-           wave_left_in : in sample_t;
-           wave_right_in : in sample_t 
-           
+       resetn : in std_logic;
+       MCLK_in : in std_logic;
+       LRCK_out : out std_logic;
+       SCLK_out : out std_logic;
+       SDIN_out : out std_logic;
+       wave_left_in : in sample_t;
+       wave_right_in : in sample_t 
     );
 end i2s_sender;
 
@@ -67,15 +54,17 @@ architecture Behavioral of i2s_sender is
     signal wave_right: sample_t := (others => '0');  
           
     signal shift_reg: std_logic_vector(SAMPLE_WIDTH-1 downto 0);
-               
-    -- synthesis translate_off
-    signal dummy: std_logic;
-    -- synthesis translate_on
-    
+   
+    --set optional debugging signals
+    attribute mark_debug of shift_reg : signal is boolean'image(DEBUG);
+    attribute keep of shift_reg : signal is boolean'image(debug); 
+           
+    attribute mark_debug of SDIN_cnt : signal is boolean'image(DEBUG);
+    attribute keep of SDIN_cnt : signal is boolean'image(DEBUG); 
 begin
     
     -- synthesis translate_off
-    debug : process (dummy) is
+    debug_process : process is
     begin
         --print the dividers when in simulation mode
         report "MCLK_FREQ hz " & integer'image(MCLK_FREQ);
@@ -85,6 +74,7 @@ begin
 
         report "LRCK_DIV" & integer'image(LRCK_DIV);
         report "SCLK_DIV" & integer'image(SCLK_DIV);
+        wait;
     end process;
     -- synthesis translate_on
     
@@ -136,39 +126,29 @@ begin
             --sample data
             wave_left <= wave_left_in;
             wave_right <= wave_right_in;
-            
-        
         end if;
     end process;
 
-
+    SDIN_out <= shift_reg(shift_reg'HIGH);
 
     -- a process to shift out the wave data
     i2s_gen_process : process (SCLK_out, resetn) is
     begin
         if resetn = '0' then               -- ASynchronous reset (active low)
-            SDIN_out <= '0';
             shift_reg <= (others => '0');
 
         elsif SCLK_out'event and SCLK_out = '0' then     -- Falling clock edge
-                        
-                if SDIN_cnt=0 then
+                --SDIN_cnt is the current bit in the LRCK left-righ frame        
+                if SDIN_cnt = 1 then
                     -- load shift register
-                                        
                     shift_reg <= std_logic_vector(wave_left); 
-                    
-                    
-                elsif SDIN_cnt=24 then
+                elsif SDIN_cnt = 25 then
+                    -- load shift register for output
                     shift_reg <= std_logic_vector(wave_right);
-                    
                 else 
+                    --shift one bit to the right
                     shift_reg <= shift_reg(shift_reg'HIGH-1 downto 0) & '0';
-                
                 end if;
-               
-            
-                SDIN_out <= shift_reg(shift_reg'HIGH);
-            
         end if;
             
     end process;
