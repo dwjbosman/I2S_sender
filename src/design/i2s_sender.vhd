@@ -150,34 +150,4 @@ begin
 
     SDIN_out <= shift_reg(shift_reg'HIGH);
 
-    /**
-    -- a process to shift out the wave data
-    i2s_gen_process : process (SCLK_out, resetn) is
-    begin
-        if resetn = '0' then               -- ASynchronous reset (active low)
-            shift_reg <= (others => '0');
-            --SDIN_out <= '0';
-
-        elsif SCLK_out'event and SCLK_out = '0' then     -- Falling clock edge
-
-                --SDIN_cnt is the current bit in the LRCK left-righ frame        
-                if SDIN_cnt = 1 then
-                    -- load shift register for output
-                    shift_reg <= std_logic_vector(wave_left); 
-                elsif SDIN_cnt = 25 then
-                    -- load shift register for output
-                    shift_reg <= std_logic_vector(wave_right);
-                else 
-                    --shift one bit to the right
-                    shift_reg <= shift_reg(shift_reg'HIGH-1 downto 0) & '0';
-                end if;
-                
-                --send previous bit to the DA converter
-                --SDIN_out <= shift_reg(shift_reg'HIGH);
-                      
-        end if;
-            
-    end process;
-    **/    
-    
 end Behavioral;
