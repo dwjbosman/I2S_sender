@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="i2s_sine_testbench_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="glbl" />
+            <top_module name="i2s_sine_testbench" />
+            <top_module name="sine_generator_func_pkg" />
+            <top_module name="sine_generator_types_pkg" />
+            <top_module name="types_pkg" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="13343020608739fs"></ZoomStartTime>
+      <ZoomEndTime time="13345078608740fs"></ZoomEndTime>
+      <Cursor1Time time="13353118609000fs"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="277"></NameColumnWidth>
+      <ValueColumnWidth column_width="195"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="11" />
+   <wvobject type="logic" fp_name="/i2s_sine_testbench/MCLK">
+      <obj_property name="ElementShortName">MCLK</obj_property>
+      <obj_property name="ObjectShortName">MCLK</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/i2s_sine_testbench/resetn">
+      <obj_property name="ElementShortName">resetn</obj_property>
+      <obj_property name="ObjectShortName">resetn</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/i2s_sine_testbench/freq_ce">
+      <obj_property name="ElementShortName">freq_ce</obj_property>
+      <obj_property name="ObjectShortName">freq_ce</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/i2s_sine_testbench/freq">
+      <obj_property name="ElementShortName">freq[19:0]</obj_property>
+      <obj_property name="ObjectShortName">freq[19:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/i2s_sine_testbench/LRCK">
+      <obj_property name="ElementShortName">LRCK</obj_property>
+      <obj_property name="ObjectShortName">LRCK</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/i2s_sine_testbench/SCLK">
+      <obj_property name="ElementShortName">SCLK</obj_property>
+      <obj_property name="ObjectShortName">SCLK</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/i2s_sine_testbench/SDIN">
+      <obj_property name="ElementShortName">SDIN</obj_property>
+      <obj_property name="ObjectShortName">SDIN</obj_property>
+   </wvobject>
+   <wvobject type="other" fp_name="/i2s_sine_testbench/i2s/SDIN_cnt">
+      <obj_property name="ElementShortName">SDIN_cnt</obj_property>
+      <obj_property name="ObjectShortName">SDIN_cnt</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/i2s_sine_testbench/i2s/shift_reg">
+      <obj_property name="ElementShortName">shift_reg[23:0]</obj_property>
+      <obj_property name="ObjectShortName">shift_reg[23:0]</obj_property>
+      <obj_property name="Radix">BINARYRADIX</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/i2s_sine_testbench/wave">
+      <obj_property name="ElementShortName">wave[23:0]</obj_property>
+      <obj_property name="ObjectShortName">wave[23:0]</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/i2s_sine_testbench/wave">
+      <obj_property name="ElementShortName">wave[23:0]</obj_property>
+      <obj_property name="ObjectShortName">wave[23:0]</obj_property>
+      <obj_property name="WaveformStyle">STYLE_ANALOG</obj_property>
+      <obj_property name="CellHeight">100</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+</wave_config>
