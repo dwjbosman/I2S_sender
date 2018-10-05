@@ -279,6 +279,8 @@ set_property CONFIG_VOLTAGE 3.3 [current_design]
 
 
 
+connect_debug_port u_ila_0/probe2 [get_nets [list {i2s/SDIN_cnt[0]} {i2s/SDIN_cnt[1]} {i2s/SDIN_cnt[2]} {i2s/SDIN_cnt[3]} {i2s/SDIN_cnt[4]} {i2s/SDIN_cnt[5]}]]
+
 create_debug_core u_ila_0 ila
 set_property ALL_PROBE_SAME_MU true [get_debug_cores u_ila_0]
 set_property ALL_PROBE_SAME_MU_CNT 4 [get_debug_cores u_ila_0]
@@ -292,31 +294,27 @@ set_property port_width 1 [get_debug_ports u_ila_0/clk]
 connect_debug_port u_ila_0/clk [get_nets [list design_1_i/clk_wiz_0/inst/clk_out2]]
 set_property PROBE_TYPE DATA [get_debug_ports u_ila_0/probe0]
 set_property port_width 24 [get_debug_ports u_ila_0/probe0]
-connect_debug_port u_ila_0/probe0 [get_nets [list {wave_left[0]} {wave_left[1]} {wave_left[2]} {wave_left[3]} {wave_left[4]} {wave_left[5]} {wave_left[6]} {wave_left[7]} {wave_left[8]} {wave_left[9]} {wave_left[10]} {wave_left[11]} {wave_left[12]} {wave_left[13]} {wave_left[14]} {wave_left[15]} {wave_left[16]} {wave_left[17]} {wave_left[18]} {wave_left[19]} {wave_left[20]} {wave_left[21]} {wave_left[22]} {wave_left[23]}]]
+connect_debug_port u_ila_0/probe0 [get_nets [list {i2s/shift_reg[0]} {i2s/shift_reg[1]} {i2s/shift_reg[2]} {i2s/shift_reg[3]} {i2s/shift_reg[4]} {i2s/shift_reg[5]} {i2s/shift_reg[6]} {i2s/shift_reg[7]} {i2s/shift_reg[8]} {i2s/shift_reg[9]} {i2s/shift_reg[10]} {i2s/shift_reg[11]} {i2s/shift_reg[12]} {i2s/shift_reg[13]} {i2s/shift_reg[14]} {i2s/shift_reg[15]} {i2s/shift_reg[16]} {i2s/shift_reg[17]} {i2s/shift_reg[18]} {i2s/shift_reg[19]} {i2s/shift_reg[20]} {i2s/shift_reg[21]} {i2s/shift_reg[22]} {i2s/shift_reg[23]}]]
 create_debug_port u_ila_0 probe
 set_property PROBE_TYPE DATA [get_debug_ports u_ila_0/probe1]
 set_property port_width 24 [get_debug_ports u_ila_0/probe1]
-connect_debug_port u_ila_0/probe1 [get_nets [list {i2s/shift_reg[0]} {i2s/shift_reg[1]} {i2s/shift_reg[2]} {i2s/shift_reg[3]} {i2s/shift_reg[4]} {i2s/shift_reg[5]} {i2s/shift_reg[6]} {i2s/shift_reg[7]} {i2s/shift_reg[8]} {i2s/shift_reg[9]} {i2s/shift_reg[10]} {i2s/shift_reg[11]} {i2s/shift_reg[12]} {i2s/shift_reg[13]} {i2s/shift_reg[14]} {i2s/shift_reg[15]} {i2s/shift_reg[16]} {i2s/shift_reg[17]} {i2s/shift_reg[18]} {i2s/shift_reg[19]} {i2s/shift_reg[20]} {i2s/shift_reg[21]} {i2s/shift_reg[22]} {i2s/shift_reg[23]}]]
+connect_debug_port u_ila_0/probe1 [get_nets [list {wave_left[0]} {wave_left[1]} {wave_left[2]} {wave_left[3]} {wave_left[4]} {wave_left[5]} {wave_left[6]} {wave_left[7]} {wave_left[8]} {wave_left[9]} {wave_left[10]} {wave_left[11]} {wave_left[12]} {wave_left[13]} {wave_left[14]} {wave_left[15]} {wave_left[16]} {wave_left[17]} {wave_left[18]} {wave_left[19]} {wave_left[20]} {wave_left[21]} {wave_left[22]} {wave_left[23]}]]
 create_debug_port u_ila_0 probe
-set_property PROBE_TYPE DATA [get_debug_ports u_ila_0/probe2]
-set_property port_width 6 [get_debug_ports u_ila_0/probe2]
-connect_debug_port u_ila_0/probe2 [get_nets [list {i2s/SDIN_cnt[0]} {i2s/SDIN_cnt[1]} {i2s/SDIN_cnt[2]} {i2s/SDIN_cnt[3]} {i2s/SDIN_cnt[4]} {i2s/SDIN_cnt[5]}]]
+set_property PROBE_TYPE DATA_AND_TRIGGER [get_debug_ports u_ila_0/probe2]
+set_property port_width 1 [get_debug_ports u_ila_0/probe2]
+connect_debug_port u_ila_0/probe2 [get_nets [list LRCK_out_OBUF]]
 create_debug_port u_ila_0 probe
 set_property PROBE_TYPE DATA_AND_TRIGGER [get_debug_ports u_ila_0/probe3]
 set_property port_width 1 [get_debug_ports u_ila_0/probe3]
-connect_debug_port u_ila_0/probe3 [get_nets [list LRCK_out_OBUF]]
+connect_debug_port u_ila_0/probe3 [get_nets [list MCLK_out_OBUF]]
 create_debug_port u_ila_0 probe
 set_property PROBE_TYPE DATA_AND_TRIGGER [get_debug_ports u_ila_0/probe4]
 set_property port_width 1 [get_debug_ports u_ila_0/probe4]
-connect_debug_port u_ila_0/probe4 [get_nets [list MCLK_out_OBUF]]
+connect_debug_port u_ila_0/probe4 [get_nets [list SCLK_out_OBUF]]
 create_debug_port u_ila_0 probe
 set_property PROBE_TYPE DATA_AND_TRIGGER [get_debug_ports u_ila_0/probe5]
 set_property port_width 1 [get_debug_ports u_ila_0/probe5]
-connect_debug_port u_ila_0/probe5 [get_nets [list SCLK_out_OBUF]]
-create_debug_port u_ila_0 probe
-set_property PROBE_TYPE DATA_AND_TRIGGER [get_debug_ports u_ila_0/probe6]
-set_property port_width 1 [get_debug_ports u_ila_0/probe6]
-connect_debug_port u_ila_0/probe6 [get_nets [list SDIN_out_OBUF]]
+connect_debug_port u_ila_0/probe5 [get_nets [list SDIN_out_OBUF]]
 set_property C_CLK_INPUT_FREQ_HZ 300000000 [get_debug_cores dbg_hub]
 set_property C_ENABLE_CLK_DIVIDER false [get_debug_cores dbg_hub]
 set_property C_USER_SCAN_CHAIN 1 [get_debug_cores dbg_hub]

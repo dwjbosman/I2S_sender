@@ -23,12 +23,7 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 use IEEE.NUMERIC_STD.ALL;
 
--- Uncomment the following library declaration if instantiating
--- any Xilinx leaf cells in this code.
-library UNISIM;
-use UNISIM.VComponents.all;
-
-use work.types_pkg.all;
+use work.i2s_types_pkg.all;
 
 entity i2s_testbench is
 --  Port ( );

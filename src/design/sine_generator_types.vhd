@@ -52,7 +52,7 @@ use work.i2s_types_pkg.all;
 use work.sine_generator_func_pkg.all;
 use STD.textio.all;
 
-package sine_generator_i2s_types_pkg is    
+package sine_generator_types_pkg is    
     --parameters in this package are explained in my blog:
     --also a google sheets version can be found here:
 

@@ -14,7 +14,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 
 use IEEE.NUMERIC_STD.ALL;
-use work.types_pkg.all;
+use work.i2s_types_pkg.all;
 use ieee.math_real.all;
 
 entity square_wave is
