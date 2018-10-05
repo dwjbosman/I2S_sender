@@ -1,23 +1,13 @@
 ----------------------------------------------------------------------------------
--- Company: 
--- Engineer: 
+-- Engineer: D.W.J. Bosman
 -- 
--- Create Date: 09/09/2018 08:04:08 PM
--- Design Name: 
--- Module Name: square_wave - Behavioral
--- Project Name: 
--- Target Devices: 
--- Tool Versions: 
--- Description: 
+-- Create Date: 09/06/2018 11:49:12 PM
+-- Module Name: segment_display - Behavioral
 -- 
--- Dependencies: 
--- 
--- Revision:
--- Revision 0.01 - File Created
 -- Additional Comments:
+-- https://pubweb.eng.utah.edu/~nmcdonal/Tutorials/BCDTutorial/BCDConversion.html
 -- 
 ----------------------------------------------------------------------------------
-
 
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
@@ -27,6 +17,10 @@ use ieee.math_real.all;
 use work.types_pkg.all;
 use work.sine_generator_types_pkg.all;
 
+
+--implementation of a decimal display consisting of
+--led 8 segement components
+--TODO generics
 entity segment_display is
     Port ( resetn : std_logic;
            CLK_in : in std_logic; 
@@ -48,7 +42,7 @@ begin
 
             --TODO state enum, switch statement
 
-            --https://pubweb.eng.utah.edu/~nmcdonal/Tutorials/BCDTutorial/BCDConversion.html
+            -- a process that converts the input number to BCD representation
             bcd_converter: process (CLK_in, resetn) is
                 variable bit_counter: integer range 0 to 31;
                 variable decimal_index: integer range 0 to 7;    
@@ -116,7 +110,7 @@ begin
             end process;
 
 
-    
+            -- a process that refreshes the display as fast as possible    
             digit_process: process (CLK_in, resetn) is
 
                 -- led_id:  first 3 bits point the segment

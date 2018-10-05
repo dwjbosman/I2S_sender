@@ -18,7 +18,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use ieee.numeric_std.all;
 
-use work.types_pkg.all;
+use work.i2s_types_pkg.all;
 use work.sine_generator_types_pkg.all;
 
 entity design_1_wrapper is

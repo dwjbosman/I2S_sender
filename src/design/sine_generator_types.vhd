@@ -1,32 +1,23 @@
 ----------------------------------------------------------------------------------
--- Company: 
--- Engineer: 
+-- Engineer: D.W.J. Bosman
 -- 
--- Create Date: 09/04/2018 11:51:51 PM
--- Design Name: 
--- Module Name: types - Behavioral
--- Project Name: 
--- Target Devices: 
--- Tool Versions: 
--- Description: 
+-- Create Date: 09/06/2018 11:49:12 PM
+-- Module Name: sine types package
 -- 
--- Dependencies: 
--- 
--- Revision:
--- Revision 0.01 - File Created
 -- Additional Comments:
--- 
+-- This library contains constants and functions to calculate the phase step when
+-- generating a sine wave given a target frequency
+-- At design time frequency resolution and sample rate should be set
 ----------------------------------------------------------------------------------
+
 
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
-
--- Uncomment the following library declaration if using
--- arithmetic functions with Signed or Unsigned values
 use IEEE.NUMERIC_STD.ALL;
 use ieee.math_real.all;
 
 package sine_generator_func_pkg is    
+     -- this function allows settings constants to certain values given a condition
      function sel(Cond: BOOLEAN; If_True, If_False: natural) return natural;
      function sel(Cond: BOOLEAN; If_True, If_False: real) return real;
 end;
@@ -54,29 +45,21 @@ end;
 
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
-
--- Uncomment the following library declaration if using
--- arithmetic functions with Signed or Unsigned values
 use IEEE.NUMERIC_STD.ALL;
 
 use ieee.math_real.all;
-use work.types_pkg.all;
+use work.i2s_types_pkg.all;
 use work.sine_generator_func_pkg.all;
 use STD.textio.all;
 
---use ieee.std_logic_textio.all;
+package sine_generator_i2s_types_pkg is    
+    --parameters in this package are explained in my blog:
+    --also a google sheets version can be found here:
 
--- Uncomment the following library declaration if instantiating
--- any Xilinx leaf cells in this code.
---library UNISIM;
---use UNISIM.VComponents.all;
-
-package sine_generator_types_pkg is    
-
-    
-    constant TARGET_FREQUENCY_RESOLUTION : real := 0.05; -- Hz
-    
+    --these are the input parameters:    
+    constant TARGET_FREQUENCY_RESOLUTION : real := 0.05; -- Hz    
     constant SAMPLE_RATE: natural := 48000; --Hz
+
     constant SAMPLE_RATE_BITS: natural := natural(ceil(log(real(SAMPLE_RATE))/log(2.0)));
     constant MAX_FREQUENCY : natural := SAMPLE_RATE/2;   
      
@@ -95,7 +78,7 @@ package sine_generator_types_pkg is
     
     type phase_step_t is record 
         decimal : phase_step_decimal_t;
-        fraction : phase_step_fraction_t; -- fractional / sample_rate
+        fraction : phase_step_fraction_t; -- the fraction is not a decimal fraction, it is divided by sample_rate
     end record;
     
     type phase_state_t is record
@@ -103,11 +86,12 @@ package sine_generator_types_pkg is
         -- the decimal part, added each step
         current: phase_t; 
         -- the fractional part, if it overflows (above sample_rate)
-        -- then the it is reset and current is increased by one
+        -- then the it is reset and 'current' is increased by one
         current_fraction: phase_fraction_t; 
         
     end record; 
     
+    --constant to set step and state to zero
     constant ZERO_PHASE_STEP: phase_step_t := (decimal => (others => '0'), fraction => (others => '0'));
     constant ZERO_PHASE_STATE: phase_state_t := 
         (
@@ -169,14 +153,18 @@ package sine_generator_types_pkg is
     procedure Report_Constants(constant dummy: in integer);
     -- synthesis translate_on     
     
+
+    --given a target frequency scaled by POWER2_PHASE_STEP the function calculates
+    -- the required phase step at each sample
     procedure Calculate_Phase_Step(
         constant frequency_scaled: in frequency_t;          
         variable phase_step: out phase_step_t
     );
 
+    --return a random value
     procedure Rand(variable rand_inout: inout unsigned(30 downto 0));
    
-    --update phase according to the step field.
+    --update phase according to the phase.step field.
     procedure Advance_Phase(
         variable phase: inout phase_state_t);
  
@@ -186,6 +174,7 @@ package body sine_generator_types_pkg is
 
 
     -- synthesis translate_off
+    -- print all constants
     procedure Report_Constants ( constant dummy: in integer) is 
         variable l: line;
     begin
@@ -338,8 +327,6 @@ package body sine_generator_types_pkg is
     end Report_Constants ;
     -- synthesis translate_on     
 
-
-
     procedure Rand(variable rand_inout: inout unsigned(30 downto 0)) is
     begin
         rand_inout := resize((rand_inout * 16807) mod 2147483647,31);
@@ -424,7 +411,6 @@ package body sine_generator_types_pkg is
                 writeline( output, l );
 
             end if;
-            
             
     end Calculate_Phase_Step;
  
