@@ -14,7 +14,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.NUMERIC_STD.ALL;
 
-use work.types_pkg.all;
+use work.i2s_types_pkg.all;
 
 entity i2s_sender is
     --wave_x_in are sampled at the rising edge of MCLK
@@ -58,9 +58,6 @@ architecture Behavioral of i2s_sender is
     --set optional debugging signals
     attribute mark_debug of shift_reg : signal is boolean'image(DEBUG);
     attribute keep of shift_reg : signal is boolean'image(debug); 
-           
-    attribute mark_debug of SDIN_cnt : signal is boolean'image(DEBUG);
-    attribute keep of SDIN_cnt : signal is boolean'image(DEBUG); 
 begin
 
     
@@ -104,15 +101,15 @@ begin
                     --assert: SCLK will go low
                     LRCK_out <= '0';
                     -- load shift register for output
-                    -- keep first bit of previous sample. 
-                    shift_reg <= shift_reg(shift_reg'HIGH) & std_logic_vector(wave_left); 
+                    -- keep last not yet shifted bit of previous sample. 
+                    shift_reg <= shift_reg(shift_reg'HIGH-1) & std_logic_vector(wave_left); 
                  else
                     -- rising edge
                     --assert: SCLK will go low
                     LRCK_out <= '1';
                     -- load shift register for output
-                    -- keep first bit of previous sample. 
-                    shift_reg <= shift_reg(shift_reg'HIGH) & std_logic_vector(wave_right);
+                    -- keep last not yet shifted bit of previous sample. 
+                    shift_reg <= shift_reg(shift_reg'HIGH-1) & std_logic_vector(wave_right);
                  end if;
             else
                 if (SCLK_cnt = SCLK_DIV) and (SCLK_out='1') then
