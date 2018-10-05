@@ -1,4 +1,4 @@
-----------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
 -- Engineer: D.W.J. Bosman
 -- 
 -- Create Date: 09/06/2018 11:49:12 PM
@@ -14,7 +14,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.NUMERIC_STD.ALL;
 
-use work.types_pkg.all;
+use work.i2s_types_pkg.all;
 
 entity i2s_sender is
     --wave_x_in are sampled at the rising edge of MCLK
@@ -22,15 +22,17 @@ entity i2s_sender is
         DEBUG : boolean := false
     );
     Port ( 
-       resetn : in std_logic;
-       MCLK_in : in std_logic;
-       LRCK_out : out std_logic;
-       SCLK_out : out std_logic;
-       SDIN_out : out std_logic;
-       wave_left_in : in sample_t;
-       wave_right_in : in sample_t 
+        resetn : in std_logic;
+        MCLK_in : in std_logic;
+        LRCK_out : out std_logic;
+        SCLK_out : out std_logic;
+        SDIN_out : out std_logic;
+        wave_left_in : in sample_t;
+        wave_right_in : in sample_t
     );
 end i2s_sender;
+
+
 
 architecture Behavioral of i2s_sender is
    --Change level every _DIV ticks of MCLK
@@ -46,22 +48,18 @@ architecture Behavioral of i2s_sender is
     --count the number of MCLK ticks before toggling SCLK
     signal SCLK_cnt : div_SCLK_t;
     
-    --count the number of SCLK periods after LRCK went low
-    signal SDIN_cnt : integer range 0 to (SAMPLE_WIDTH*2-1);
-        
     --wave_x_in are sampled at the rising edge of MCLK
     signal wave_left : sample_t := (others => '0');
     signal wave_right: sample_t := (others => '0');  
           
-    signal shift_reg: std_logic_vector(SAMPLE_WIDTH-1 downto 0);
-   
+    --Size: SAMPLE_WIDTH+1, one extra bit needed to keep last bit of previous LRCK cycle
+    signal shift_reg: std_logic_vector(SAMPLE_WIDTH downto 0);
+               
     --set optional debugging signals
     attribute mark_debug of shift_reg : signal is boolean'image(DEBUG);
     attribute keep of shift_reg : signal is boolean'image(debug); 
-           
-    attribute mark_debug of SDIN_cnt : signal is boolean'image(DEBUG);
-    attribute keep of SDIN_cnt : signal is boolean'image(DEBUG); 
 begin
+
     
     -- synthesis translate_off
     debug_process : process is
@@ -87,9 +85,10 @@ begin
             
             LRCK_cnt <= 0;
             SCLK_cnt <= 0;   
-            SDIN_cnt <= 0;      
+            -- SDIN_cnt <= 0;      
             wave_left <= (others => '0');
             wave_right <= (others => '0');
+            shift_reg <= (others => '0');
 
         elsif MCLK_in'event and MCLK_in = '1' then     -- Rising clock edge
             -- MCLK == 18.4320 Mhz
@@ -101,17 +100,22 @@ begin
                     --falling edge
                     --assert: SCLK will go low
                     LRCK_out <= '0';
-                    SDIN_cnt <= 0;
-                else
+                    -- load shift register for output
+                    -- keep last not yet shifted bit of previous sample. 
+                    shift_reg <= shift_reg(shift_reg'HIGH-1) & std_logic_vector(wave_left); 
+                 else
                     -- rising edge
                     --assert: SCLK will go low
                     LRCK_out <= '1';
-                    SDIN_cnt <= SAMPLE_WIDTH;
-                end if;
+                    -- load shift register for output
+                    -- keep last not yet shifted bit of previous sample. 
+                    shift_reg <= shift_reg(shift_reg'HIGH-1) & std_logic_vector(wave_right);
+                 end if;
             else
                 if (SCLK_cnt = SCLK_DIV) and (SCLK_out='1') then
                     --SCLK will go low
-                    SDIN_cnt <= SDIN_cnt + 1;
+                    --shift one bit to the left
+                    shift_reg <= shift_reg(shift_reg'HIGH-1 downto 0) & '0';
                 end if;                            
                 LRCK_cnt <= LRCK_cnt + 1;  
             end if;
@@ -131,26 +135,4 @@ begin
 
     SDIN_out <= shift_reg(shift_reg'HIGH);
 
-    -- a process to shift out the wave data
-    i2s_gen_process : process (SCLK_out, resetn) is
-    begin
-        if resetn = '0' then               -- ASynchronous reset (active low)
-            shift_reg <= (others => '0');
-
-        elsif SCLK_out'event and SCLK_out = '0' then     -- Falling clock edge
-                --SDIN_cnt is the current bit in the LRCK left-righ frame        
-                if SDIN_cnt = 1 then
-                    -- load shift register
-                    shift_reg <= std_logic_vector(wave_left); 
-                elsif SDIN_cnt = 25 then
-                    -- load shift register for output
-                    shift_reg <= std_logic_vector(wave_right);
-                else 
-                    --shift one bit to the right
-                    shift_reg <= shift_reg(shift_reg'HIGH-1 downto 0) & '0';
-                end if;
-        end if;
-            
-    end process;
-    
 end Behavioral;

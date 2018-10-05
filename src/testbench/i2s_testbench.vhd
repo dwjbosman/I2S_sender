@@ -23,12 +23,7 @@ use IEEE.STD_LOGIC_1164.ALL;
 
 use IEEE.NUMERIC_STD.ALL;
 
--- Uncomment the following library declaration if instantiating
--- any Xilinx leaf cells in this code.
-library UNISIM;
-use UNISIM.VComponents.all;
-
-use work.types_pkg.all;
+use work.i2s_types_pkg.all;
 
 entity i2s_testbench is
 --  Port ( );
@@ -53,7 +48,7 @@ begin
    
     resetn <= '0', '1' after 100ns;
     clock <= not clock after 10 ns;
-    MCLK <= not MCLK after 54.253472222222 ns; -- 18.4320 Mhz
+    MCLK <= not MCLK after 27.1267361111 ns; -- 18.4320 Mhz
     
     sqwv : entity work.square_wave
         port map (

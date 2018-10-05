@@ -119,14 +119,14 @@ set_property -name "sim.ip.auto_export_scripts" -value "1" -objects $obj
 set_property -name "simulator_language" -value "Mixed" -objects $obj
 set_property -name "source_mgmt_mode" -value "DisplayOnly" -objects $obj
 set_property -name "target_language" -value "VHDL" -objects $obj
-set_property -name "webtalk.activehdl_export_sim" -value "16" -objects $obj
-set_property -name "webtalk.ies_export_sim" -value "16" -objects $obj
-set_property -name "webtalk.modelsim_export_sim" -value "16" -objects $obj
-set_property -name "webtalk.questa_export_sim" -value "16" -objects $obj
-set_property -name "webtalk.riviera_export_sim" -value "16" -objects $obj
-set_property -name "webtalk.vcs_export_sim" -value "16" -objects $obj
-set_property -name "webtalk.xsim_export_sim" -value "16" -objects $obj
-set_property -name "webtalk.xsim_launch_sim" -value "209" -objects $obj
+set_property -name "webtalk.activehdl_export_sim" -value "174" -objects $obj
+set_property -name "webtalk.ies_export_sim" -value "174" -objects $obj
+set_property -name "webtalk.modelsim_export_sim" -value "174" -objects $obj
+set_property -name "webtalk.questa_export_sim" -value "174" -objects $obj
+set_property -name "webtalk.riviera_export_sim" -value "174" -objects $obj
+set_property -name "webtalk.vcs_export_sim" -value "174" -objects $obj
+set_property -name "webtalk.xsim_export_sim" -value "174" -objects $obj
+set_property -name "webtalk.xsim_launch_sim" -value "393" -objects $obj
 set_property -name "xpm_libraries" -value "XPM_CDC" -objects $obj
 
 # Create 'sources_1' fileset (if not found)
@@ -149,6 +149,9 @@ set files [list \
  [file normalize "${origin_dir}/src/design/square_wave.vhd"] \
  [file normalize "${origin_dir}/src/design/i2s_sender.vhd"] \
  [file normalize "${origin_dir}/src/design/design_1_wrapper.vhd"] \
+ [file normalize "${origin_dir}/src/design/sincos/rtl/sincos_gen.vhdl"] \
+ [file normalize "${origin_dir}/src/design/sine_generator_types.vhd"] \
+ [file normalize "${origin_dir}/src/design/sine_wave.vhd"] \
 ]
 add_files -norecurse -fileset $obj $files
 
@@ -157,6 +160,8 @@ set file "$origin_dir/src/blockdesign/design_1.bd"
 set file [file normalize $file]
 set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
 set_property -name "registered_with_manager" -value "1" -objects $file_obj
+set_property -name "used_in" -value "synthesis implementation" -objects $file_obj
+set_property -name "used_in_simulation" -value "0" -objects $file_obj
 
 set file "$origin_dir/src/design/types.vhd"
 set file [file normalize $file]
@@ -177,6 +182,23 @@ set file "$origin_dir/src/design/design_1_wrapper.vhd"
 set file [file normalize $file]
 set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
 set_property -name "file_type" -value "VHDL 2008" -objects $file_obj
+set_property -name "used_in" -value "synthesis" -objects $file_obj
+set_property -name "used_in_simulation" -value "0" -objects $file_obj
+
+set file "$origin_dir/src/design/sincos/rtl/sincos_gen.vhdl"
+set file [file normalize $file]
+set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
+set_property -name "file_type" -value "VHDL 2008" -objects $file_obj
+
+set file "$origin_dir/src/design/sine_generator_types.vhd"
+set file [file normalize $file]
+set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
+set_property -name "file_type" -value "VHDL 2008" -objects $file_obj
+
+set file "$origin_dir/src/design/sine_wave.vhd"
+set file [file normalize $file]
+set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
+set_property -name "file_type" -value "VHDL 2008" -objects $file_obj
 
 
 # Set 'sources_1' fileset file properties for local files
@@ -185,6 +207,7 @@ set_property -name "file_type" -value "VHDL 2008" -objects $file_obj
 # Set 'sources_1' fileset properties
 set obj [get_filesets sources_1]
 set_property -name "top" -value "design_1_wrapper" -objects $obj
+set_property -name "top_auto_set" -value "0" -objects $obj
 
 # Create 'constrs_1' fileset (if not found)
 if {[string equal [get_filesets -quiet constrs_1] ""]} {
@@ -195,7 +218,7 @@ if {[string equal [get_filesets -quiet constrs_1] ""]} {
 set obj [get_filesets constrs_1]
 
 # Add/Import constrs file and set constrs file properties
-set file "[file normalize ${origin_dir}/src/design/Nexys-4-DDR-Master.xdc]"
+set file "[file normalize "$origin_dir/src/design/Nexys-4-DDR-Master.xdc"]"
 set file_added [add_files -norecurse -fileset $obj [list $file]]
 set file "$origin_dir/src/design/Nexys-4-DDR-Master.xdc"
 set file [file normalize $file]
@@ -204,7 +227,21 @@ set_property -name "file_type" -value "XDC" -objects $file_obj
 
 # Set 'constrs_1' fileset properties
 set obj [get_filesets constrs_1]
+set_property -name "target_constrs_file" -value "[file normalize "$origin_dir/src/design/Nexys-4-DDR-Master.xdc"]" -objects $obj
 set_property -name "target_part" -value "xc7a100tcsg324-1" -objects $obj
+set_property -name "target_ucf" -value "[file normalize "$origin_dir/src/design/Nexys-4-DDR-Master.xdc"]" -objects $obj
+
+# Create 'sim_1' fileset (if not found)
+if {[string equal [get_filesets -quiet sim_1] ""]} {
+  create_fileset -simset sim_1
+}
+
+# Set 'sim_1' fileset object
+set obj [get_filesets sim_1]
+# Empty (no sources present)
+
+# Set 'sim_1' fileset properties
+set obj [get_filesets sim_1]
 
 # Create 'sim_i2s' fileset (if not found)
 if {[string equal [get_filesets -quiet sim_i2s] ""]} {
@@ -223,7 +260,7 @@ add_files -norecurse -fileset $obj $files
 set file "$origin_dir/src/testbench/i2s_testbench.vhd"
 set file [file normalize $file]
 set file_obj [get_files -of_objects [get_filesets sim_i2s] [list "*$file"]]
-set_property -name "file_type" -value "VHDL" -objects $file_obj
+set_property -name "file_type" -value "VHDL 2008" -objects $file_obj
 
 
 # Set 'sim_i2s' fileset file properties for local files
@@ -232,6 +269,91 @@ set_property -name "file_type" -value "VHDL" -objects $file_obj
 # Set 'sim_i2s' fileset properties
 set obj [get_filesets sim_i2s]
 set_property -name "top" -value "i2s_testbench" -objects $obj
+set_property -name "top_auto_set" -value "0" -objects $obj
+
+# Create 'sine_sim' fileset (if not found)
+if {[string equal [get_filesets -quiet sine_sim] ""]} {
+  create_fileset -simset sine_sim
+}
+
+# Set 'sine_sim' fileset object
+set obj [get_filesets sine_sim]
+set files [list \
+ [file normalize "${origin_dir}/src/testbench/sine/sine_testbench.vhd"] \
+]
+add_files -norecurse -fileset $obj $files
+
+# Set 'sine_sim' fileset file properties for remote files
+set file "$origin_dir/src/testbench/sine/sine_testbench.vhd"
+set file [file normalize $file]
+set file_obj [get_files -of_objects [get_filesets sine_sim] [list "*$file"]]
+set_property -name "file_type" -value "VHDL 2008" -objects $file_obj
+set_property -name "used_in" -value "simulation" -objects $file_obj
+set_property -name "used_in_synthesis" -value "0" -objects $file_obj
+
+
+# Set 'sine_sim' fileset file properties for local files
+# None
+
+# Set 'sine_sim' fileset properties
+set obj [get_filesets sine_sim]
+set_property -name "top" -value "sine_testbench" -objects $obj
+set_property -name "top_auto_set" -value "0" -objects $obj
+
+# Create 'wave_sim' fileset (if not found)
+if {[string equal [get_filesets -quiet wave_sim] ""]} {
+  create_fileset -simset wave_sim
+}
+
+# Set 'wave_sim' fileset object
+set obj [get_filesets wave_sim]
+set files [list \
+ [file normalize "${origin_dir}/src/testbench/wave/wave_testbench.vhd"] \
+ [file normalize "${origin_dir}/src/testbench/wave/wave_testbench_behav.wcfg"] \
+]
+add_files -norecurse -fileset $obj $files
+
+# Set 'wave_sim' fileset file properties for remote files
+set file "$origin_dir/src/testbench/wave/wave_testbench.vhd"
+set file [file normalize $file]
+set file_obj [get_files -of_objects [get_filesets wave_sim] [list "*$file"]]
+set_property -name "file_type" -value "VHDL 2008" -objects $file_obj
+
+
+# Set 'wave_sim' fileset file properties for local files
+# None
+
+# Set 'wave_sim' fileset properties
+set obj [get_filesets wave_sim]
+set_property -name "top" -value "wave_testbench" -objects $obj
+set_property -name "top_auto_set" -value "0" -objects $obj
+
+# Create 'sine_i2s' fileset (if not found)
+if {[string equal [get_filesets -quiet sine_i2s] ""]} {
+  create_fileset -simset sine_i2s
+}
+
+# Set 'sine_i2s' fileset object
+set obj [get_filesets sine_i2s]
+set files [list \
+ [file normalize "${origin_dir}/src/testbench/i2s_sine/i2s_sine_testbench.vhd"] \
+ [file normalize "${origin_dir}/src/testbench/i2s_sine/i2s_sine_testbench_behav.wcfg"] \
+]
+add_files -norecurse -fileset $obj $files
+
+# Set 'sine_i2s' fileset file properties for remote files
+set file "$origin_dir/src/testbench/i2s_sine/i2s_sine_testbench.vhd"
+set file [file normalize $file]
+set file_obj [get_files -of_objects [get_filesets sine_i2s] [list "*$file"]]
+set_property -name "file_type" -value "VHDL 2008" -objects $file_obj
+
+
+# Set 'sine_i2s' fileset file properties for local files
+# None
+
+# Set 'sine_i2s' fileset properties
+set obj [get_filesets sine_i2s]
+set_property -name "top" -value "i2s_sine_testbench" -objects $obj
 set_property -name "top_auto_set" -value "0" -objects $obj
 
 # Create 'synth_1' run (if not found)
