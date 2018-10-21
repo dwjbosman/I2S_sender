@@ -127,7 +127,7 @@ set_property -name "webtalk.riviera_export_sim" -value "174" -objects $obj
 set_property -name "webtalk.vcs_export_sim" -value "174" -objects $obj
 set_property -name "webtalk.xsim_export_sim" -value "174" -objects $obj
 set_property -name "webtalk.xsim_launch_sim" -value "393" -objects $obj
-set_property -name "xpm_libraries" -value "XPM_CDC" -objects $obj
+set_property -name "xpm_libraries" -value "XPM_CDC XPM_FIFO XPM_MEMORY" -objects $obj
 
 # Create 'sources_1' fileset (if not found)
 if {[string equal [get_filesets -quiet sources_1] ""]} {
@@ -152,6 +152,9 @@ set files [list \
  [file normalize "${origin_dir}/src/design/sincos/rtl/sincos_gen.vhdl"] \
  [file normalize "${origin_dir}/src/design/sine_generator_types.vhd"] \
  [file normalize "${origin_dir}/src/design/sine_wave.vhd"] \
+ [file normalize "${origin_dir}/src/blockdesign/ip/design_1_mig_7series_0_0/mig_a.prj"] \
+ [file normalize "${origin_dir}/src/blockdesign/ip/design_1_mig_7series_0_0/mig_b.prj"] \
+ [file normalize "${origin_dir}/src/blockdesign/hdl/design_1_wrapper.vhd"] \
 ]
 add_files -norecurse -fileset $obj $files
 
@@ -167,21 +170,25 @@ set file "$origin_dir/src/design/types.vhd"
 set file [file normalize $file]
 set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
 set_property -name "file_type" -value "VHDL 2008" -objects $file_obj
+set_property -name "is_enabled" -value "0" -objects $file_obj
 
 set file "$origin_dir/src/design/square_wave.vhd"
 set file [file normalize $file]
 set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
 set_property -name "file_type" -value "VHDL 2008" -objects $file_obj
+set_property -name "is_enabled" -value "0" -objects $file_obj
 
 set file "$origin_dir/src/design/i2s_sender.vhd"
 set file [file normalize $file]
 set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
 set_property -name "file_type" -value "VHDL 2008" -objects $file_obj
+set_property -name "is_enabled" -value "0" -objects $file_obj
 
 set file "$origin_dir/src/design/design_1_wrapper.vhd"
 set file [file normalize $file]
 set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
 set_property -name "file_type" -value "VHDL 2008" -objects $file_obj
+set_property -name "is_enabled" -value "0" -objects $file_obj
 set_property -name "used_in" -value "synthesis" -objects $file_obj
 set_property -name "used_in_simulation" -value "0" -objects $file_obj
 
@@ -189,16 +196,34 @@ set file "$origin_dir/src/design/sincos/rtl/sincos_gen.vhdl"
 set file [file normalize $file]
 set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
 set_property -name "file_type" -value "VHDL 2008" -objects $file_obj
+set_property -name "is_enabled" -value "0" -objects $file_obj
 
 set file "$origin_dir/src/design/sine_generator_types.vhd"
 set file [file normalize $file]
 set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
 set_property -name "file_type" -value "VHDL 2008" -objects $file_obj
+set_property -name "is_enabled" -value "0" -objects $file_obj
 
 set file "$origin_dir/src/design/sine_wave.vhd"
 set file [file normalize $file]
 set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
 set_property -name "file_type" -value "VHDL 2008" -objects $file_obj
+set_property -name "is_enabled" -value "0" -objects $file_obj
+
+set file "$origin_dir/src/blockdesign/ip/design_1_mig_7series_0_0/mig_a.prj"
+set file [file normalize $file]
+set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
+set_property -name "scoped_to_cells" -value "design_1_mig_7series_0_0" -objects $file_obj
+
+set file "$origin_dir/src/blockdesign/ip/design_1_mig_7series_0_0/mig_b.prj"
+set file [file normalize $file]
+set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
+set_property -name "scoped_to_cells" -value "design_1_mig_7series_0_0" -objects $file_obj
+
+set file "$origin_dir/src/blockdesign/hdl/design_1_wrapper.vhd"
+set file [file normalize $file]
+set file_obj [get_files -of_objects [get_filesets sources_1] [list "*$file"]]
+set_property -name "file_type" -value "VHDL" -objects $file_obj
 
 
 # Set 'sources_1' fileset file properties for local files
