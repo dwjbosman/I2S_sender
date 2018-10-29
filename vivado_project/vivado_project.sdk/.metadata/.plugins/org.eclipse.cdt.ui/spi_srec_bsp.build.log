@@ -1,0 +1,188 @@
+00:37:23 **** Build of project spi_srec_bsp ****
+make -k all 
+Running Make include in microblaze_0/libsrc/standalone_v6_7/src
+make -C microblaze_0/libsrc/standalone_v6_7/src -s include  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS=  -O2 -c -mcpu=v10.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Running Make include in microblaze_0/libsrc/cpu_v2_7/src
+make -C microblaze_0/libsrc/cpu_v2_7/src -s include  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS=  -O2 -c -mcpu=v10.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Running Make include in microblaze_0/libsrc/xilisf_v5_11/src
+make -C microblaze_0/libsrc/xilisf_v5_11/src -s include  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS=  -O2 -c -mcpu=v10.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Running Make include in microblaze_0/libsrc/emaclite_v4_3/src
+make -C microblaze_0/libsrc/emaclite_v4_3/src -s include  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS=  -O2 -c -mcpu=v10.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Running Make include in microblaze_0/libsrc/uartlite_v3_2/src
+make -C microblaze_0/libsrc/uartlite_v3_2/src -s include  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS=  -O2 -c -mcpu=v10.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Running Make include in microblaze_0/libsrc/bram_v4_2/src
+make -C microblaze_0/libsrc/bram_v4_2/src -s include  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS=  -O2 -c -mcpu=v10.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Running Make include in microblaze_0/libsrc/spi_v4_4/src
+make -C microblaze_0/libsrc/spi_v4_4/src -s include  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS=  -O2 -c -mcpu=v10.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Running Make include in microblaze_0/libsrc/gpio_v4_3/src
+make -C microblaze_0/libsrc/gpio_v4_3/src -s include  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS=  -O2 -c -mcpu=v10.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Running Make include in microblaze_0/libsrc/intc_v3_7/src
+make -C microblaze_0/libsrc/intc_v3_7/src -s include  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS=  -O2 -c -mcpu=v10.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Running Make include in microblaze_0/libsrc/tmrctr_v4_4/src
+make -C microblaze_0/libsrc/tmrctr_v4_4/src -s include  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS=  -O2 -c -mcpu=v10.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Running Make libs in microblaze_0/libsrc/standalone_v6_7/src
+make -C microblaze_0/libsrc/standalone_v6_7/src -s libs  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS=  -O2 -c -mcpu=v10.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Compiling standalone
+microblaze_sleep.c:74:9: note: #pragma message: For the sleep routines, assembly instructions are used
+ #pragma message ("For the sleep routines, assembly instructions are used")
+         ^~~~~~~
+mb-ar: creating ../../../lib/libxil.a
+Running Make libs in microblaze_0/libsrc/cpu_v2_7/src
+make -C microblaze_0/libsrc/cpu_v2_7/src -s libs  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS=  -O2 -c -mcpu=v10.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Compiling cpu
+Running Make libs in microblaze_0/libsrc/xilisf_v5_11/src
+make -C microblaze_0/libsrc/xilisf_v5_11/src -s libs  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS=  -O2 -c -mcpu=v10.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Compiling XilIsf Library
+xilisf_read.c: In function 'ReadData':
+xilisf_read.c:434:6: warning: unused variable 'TempByteCnt' [-Wunused-variable]
+  u32 TempByteCnt = LocalByteCnt;
+      ^~~~~~~~~~~
+xilisf_read.c:430:5: warning: unused variable 'ShiftSize' [-Wunused-variable]
+  u8 ShiftSize;
+     ^~~~~~~~~
+xilisf_read.c:429:6: warning: unused variable 'BufferIndex' [-Wunused-variable]
+  u32 BufferIndex;
+      ^~~~~~~~~~~
+xilisf_read.c:425:6: warning: unused variable 'BankSel' [-Wunused-variable]
+  u32 BankSel;
+      ^~~~~~~
+xilisf_read.c:424:5: warning: unused variable 'Mode' [-Wunused-variable]
+  u8 Mode;
+     ^~~~
+xilisf_read.c: In function 'FastReadData':
+xilisf_read.c:660:6: warning: unused variable 'TempByteCnt' [-Wunused-variable]
+  u32 TempByteCnt = LocalByteCnt;
+      ^~~~~~~~~~~
+xilisf_read.c:656:5: warning: unused variable 'ShiftSize' [-Wunused-variable]
+  u8 ShiftSize;
+     ^~~~~~~~~
+xilisf_read.c:655:6: warning: unused variable 'BufferIndex' [-Wunused-variable]
+  u32 BufferIndex;
+      ^~~~~~~~~~~
+xilisf_read.c:652:6: warning: unused variable 'BankSel' [-Wunused-variable]
+  u32 BankSel;
+      ^~~~~~~
+xilisf_read.c:649:5: warning: unused variable 'Mode' [-Wunused-variable]
+  u8 Mode;
+     ^~~~
+xilisf.c: In function 'XIsf_RegisterInterface':
+xilisf.c:1404:37: warning: assignment from incompatible pointer type [-Wincompatible-pointer-types]
+  InstancePtr->XIsf_Iface_SetOptions = XSpi_SetOptions;
+                                     ^
+xilisf.c:1405:41: warning: assignment from incompatible pointer type [-Wincompatible-pointer-types]
+  InstancePtr->XIsf_Iface_SetSlaveSelect = XSpi_SetSlaveSelect;
+                                         ^
+xilisf.c:1406:35: warning: assignment from incompatible pointer type [-Wincompatible-pointer-types]
+  InstancePtr->XIsf_Iface_Transfer = XSpi_Transfer;
+                                   ^
+xilisf.c: In function 'GetRealAddr':
+xilisf.c:2242:6: warning: unused variable 'LqspiCr' [-Wunused-variable]
+  u32 LqspiCr;
+      ^~~~~~~
+xilisf.c:2240:29: warning: unused parameter 'QspiPtr' [-Wunused-parameter]
+ u32 GetRealAddr(XIsf_Iface *QspiPtr, u32 Address)
+                             ^~~~~~~
+At top level:
+xilisf.c:579:12: warning: 'XIsf_FCTIndex' defined but not used [-Wunused-variable]
+ static u32 XIsf_FCTIndex;
+            ^~~~~~~~~~~~~
+xilisf_write.c: In function 'WriteData':
+xilisf_write.c:451:5: warning: unused variable 'ReadFlagSRCmd' [-Wunused-variable]
+  u8 ReadFlagSRCmd[] = {READ_FLAG_STATUS_CMD, 0};
+     ^~~~~~~~~~~~~
+xilisf_write.c:450:5: warning: unused variable 'ReadStatusCmdBuf' [-Wunused-variable]
+  u8 ReadStatusCmdBuf[] = { READ_STATUS_CMD, 0 };
+     ^~~~~~~~~~~~~~~~
+xilisf_write.c:438:5: warning: unused variable 'FlashStatus' [-Wunused-variable]
+  u8 FlashStatus[2] = {0};
+     ^~~~~~~~~~~
+xilisf_write.c:437:5: warning: unused variable 'FlagStatus' [-Wunused-variable]
+  u8 FlagStatus[2] = {0};
+     ^~~~~~~~~~
+xilisf_write.c:434:6: warning: unused variable 'BankSel' [-Wunused-variable]
+  u32 BankSel;
+      ^~~~~~~
+xilisf_write.c:432:5: warning: unused variable 'Mode' [-Wunused-variable]
+  u8 Mode;
+     ^~~~
+xilisf_erase.c: In function 'SectorErase':
+xilisf_erase.c:322:14: warning: unused variable 'ReadStatusCmd' [-Wunused-variable]
+  u8 FSRFlag, ReadStatusCmd;
+              ^~~~~~~~~~~~~
+xilisf_erase.c:322:5: warning: unused variable 'FSRFlag' [-Wunused-variable]
+  u8 FSRFlag, ReadStatusCmd;
+     ^~~~~~~
+xilisf_erase.c:321:6: warning: unused variable 'WriteBfrPtr' [-Wunused-variable]
+  u8 *WriteBfrPtr = InstancePtr->WriteBufPtr;
+      ^~~~~~~~~~~
+xilisf_erase.c:320:5: warning: unused variable 'ReadFlagSRCmd' [-Wunused-variable]
+  u8 ReadFlagSRCmd[] = {READ_FLAG_STATUS_CMD, 0};
+     ^~~~~~~~~~~~~
+xilisf_erase.c:319:5: warning: unused variable 'ReadStatusCmdBuf' [-Wunused-variable]
+  u8 ReadStatusCmdBuf[] = { READ_STATUS_CMD, 0 };
+     ^~~~~~~~~~~~~~~~
+xilisf_erase.c:318:5: warning: unused variable 'FlashStatus' [-Wunused-variable]
+  u8 FlashStatus[2] = {0};
+     ^~~~~~~~~~~
+xilisf_erase.c:317:5: warning: unused variable 'FlagStatus' [-Wunused-variable]
+  u8 FlagStatus[2] = {0};
+     ^~~~~~~~~~
+xilisf_erase.c:314:6: warning: unused variable 'BankSel' [-Wunused-variable]
+  u32 BankSel;
+      ^~~~~~~
+xilisf_erase.c:313:5: warning: unused variable 'Mode' [-Wunused-variable]
+  u8 Mode;
+     ^~~~
+xilisf_erase.c: In function 'SubSectorErase':
+xilisf_erase.c:566:14: warning: unused variable 'ReadStatusCmd' [-Wunused-variable]
+  u8 FSRFlag, ReadStatusCmd;
+              ^~~~~~~~~~~~~
+xilisf_erase.c:566:5: warning: unused variable 'FSRFlag' [-Wunused-variable]
+  u8 FSRFlag, ReadStatusCmd;
+     ^~~~~~~
+xilisf_erase.c:565:6: warning: unused variable 'WriteBfrPtr' [-Wunused-variable]
+  u8 *WriteBfrPtr = InstancePtr->WriteBufPtr;
+      ^~~~~~~~~~~
+xilisf_erase.c:564:5: warning: unused variable 'ReadFlagSRCmd' [-Wunused-variable]
+  u8 ReadFlagSRCmd[] = {READ_FLAG_STATUS_CMD, 0};
+     ^~~~~~~~~~~~~
+xilisf_erase.c:563:5: warning: unused variable 'ReadStatusCmdBuf' [-Wunused-variable]
+  u8 ReadStatusCmdBuf[] = { READ_STATUS_CMD, 0 };
+     ^~~~~~~~~~~~~~~~
+xilisf_erase.c:562:5: warning: unused variable 'FlashStatus' [-Wunused-variable]
+  u8 FlashStatus[2] = {0};
+     ^~~~~~~~~~~
+xilisf_erase.c:561:5: warning: unused variable 'FlagStatus' [-Wunused-variable]
+  u8 FlagStatus[2] = {0};
+     ^~~~~~~~~~
+xilisf_erase.c:558:6: warning: unused variable 'BankSel' [-Wunused-variable]
+  u32 BankSel;
+      ^~~~~~~
+xilisf_erase.c:557:5: warning: unused variable 'Mode' [-Wunused-variable]
+  u8 Mode;
+     ^~~~
+Running Make libs in microblaze_0/libsrc/emaclite_v4_3/src
+make -C microblaze_0/libsrc/emaclite_v4_3/src -s libs  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS=  -O2 -c -mcpu=v10.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Compiling emaclite
+Running Make libs in microblaze_0/libsrc/uartlite_v3_2/src
+make -C microblaze_0/libsrc/uartlite_v3_2/src -s libs  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS=  -O2 -c -mcpu=v10.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Compiling uartlite
+Running Make libs in microblaze_0/libsrc/bram_v4_2/src
+make -C microblaze_0/libsrc/bram_v4_2/src -s libs  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS=  -O2 -c -mcpu=v10.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Compiling bram
+Running Make libs in microblaze_0/libsrc/spi_v4_4/src
+make -C microblaze_0/libsrc/spi_v4_4/src -s libs  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS=  -O2 -c -mcpu=v10.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Compiling spi
+Running Make libs in microblaze_0/libsrc/gpio_v4_3/src
+make -C microblaze_0/libsrc/gpio_v4_3/src -s libs  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS=  -O2 -c -mcpu=v10.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Compiling gpio
+Running Make libs in microblaze_0/libsrc/intc_v3_7/src
+make -C microblaze_0/libsrc/intc_v3_7/src -s libs  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS=  -O2 -c -mcpu=v10.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Compiling intc
+Running Make libs in microblaze_0/libsrc/tmrctr_v4_4/src
+make -C microblaze_0/libsrc/tmrctr_v4_4/src -s libs  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS=  -O2 -c -mcpu=v10.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Compiling tmrctr
+Finished building libraries
+
+00:37:26 Build Finished (took 2s.603ms)
+

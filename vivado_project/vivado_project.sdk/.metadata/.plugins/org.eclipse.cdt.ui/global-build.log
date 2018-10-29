@@ -1,0 +1,1143 @@
+00:37:22 **** Clean-only build of configuration Debug for project spi_srec ****
+make clean 
+rm -rf  ./src/bootloader.o ./src/platform.o ./src/srec.o  ./src/bootloader.d ./src/platform.d ./src/srec.d  spi_srec.elf.size  spi_srec.elf
+ 
+00:37:23 **** Clean-only build of project spi_srec_bsp ****
+make -k clean 
+make -C microblaze_0/libsrc/standalone_v6_7/src -s clean 
+make -C microblaze_0/libsrc/cpu_v2_7/src -s clean 
+make -C microblaze_0/libsrc/xilisf_v5_11/src -s clean 
+make -C microblaze_0/libsrc/emaclite_v4_3/src -s clean 
+make -C microblaze_0/libsrc/uartlite_v3_2/src -s clean 
+make -C microblaze_0/libsrc/bram_v4_2/src -s clean 
+make -C microblaze_0/libsrc/spi_v4_4/src -s clean 
+make -C microblaze_0/libsrc/gpio_v4_3/src -s clean 
+make -C microblaze_0/libsrc/intc_v3_7/src -s clean 
+make -C microblaze_0/libsrc/tmrctr_v4_4/src -s clean 
+rm -f microblaze_0/lib/libxil.a
+00:37:23 **** Build of project spi_srec_bsp ****
+make -k all 
+Running Make include in microblaze_0/libsrc/standalone_v6_7/src
+make -C microblaze_0/libsrc/standalone_v6_7/src -s include  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS=  -O2 -c -mcpu=v10.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Running Make include in microblaze_0/libsrc/cpu_v2_7/src
+make -C microblaze_0/libsrc/cpu_v2_7/src -s include  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS=  -O2 -c -mcpu=v10.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Running Make include in microblaze_0/libsrc/xilisf_v5_11/src
+make -C microblaze_0/libsrc/xilisf_v5_11/src -s include  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS=  -O2 -c -mcpu=v10.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Running Make include in microblaze_0/libsrc/emaclite_v4_3/src
+make -C microblaze_0/libsrc/emaclite_v4_3/src -s include  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS=  -O2 -c -mcpu=v10.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Running Make include in microblaze_0/libsrc/uartlite_v3_2/src
+make -C microblaze_0/libsrc/uartlite_v3_2/src -s include  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS=  -O2 -c -mcpu=v10.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Running Make include in microblaze_0/libsrc/bram_v4_2/src
+make -C microblaze_0/libsrc/bram_v4_2/src -s include  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS=  -O2 -c -mcpu=v10.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Running Make include in microblaze_0/libsrc/spi_v4_4/src
+make -C microblaze_0/libsrc/spi_v4_4/src -s include  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS=  -O2 -c -mcpu=v10.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Running Make include in microblaze_0/libsrc/gpio_v4_3/src
+make -C microblaze_0/libsrc/gpio_v4_3/src -s include  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS=  -O2 -c -mcpu=v10.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Running Make include in microblaze_0/libsrc/intc_v3_7/src
+make -C microblaze_0/libsrc/intc_v3_7/src -s include  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS=  -O2 -c -mcpu=v10.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Running Make include in microblaze_0/libsrc/tmrctr_v4_4/src
+make -C microblaze_0/libsrc/tmrctr_v4_4/src -s include  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS=  -O2 -c -mcpu=v10.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Running Make libs in microblaze_0/libsrc/standalone_v6_7/src
+make -C microblaze_0/libsrc/standalone_v6_7/src -s libs  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS=  -O2 -c -mcpu=v10.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Compiling standalone
+microblaze_sleep.c:74:9: note: #pragma message: For the sleep routines, assembly instructions are used
+ #pragma message ("For the sleep routines, assembly instructions are used")
+         ^~~~~~~
+mb-ar: creating ../../../lib/libxil.a
+Running Make libs in microblaze_0/libsrc/cpu_v2_7/src
+make -C microblaze_0/libsrc/cpu_v2_7/src -s libs  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS=  -O2 -c -mcpu=v10.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Compiling cpu
+Running Make libs in microblaze_0/libsrc/xilisf_v5_11/src
+make -C microblaze_0/libsrc/xilisf_v5_11/src -s libs  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS=  -O2 -c -mcpu=v10.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Compiling XilIsf Library
+xilisf_read.c: In function 'ReadData':
+xilisf_read.c:434:6: warning: unused variable 'TempByteCnt' [-Wunused-variable]
+  u32 TempByteCnt = LocalByteCnt;
+      ^~~~~~~~~~~
+xilisf_read.c:430:5: warning: unused variable 'ShiftSize' [-Wunused-variable]
+  u8 ShiftSize;
+     ^~~~~~~~~
+xilisf_read.c:429:6: warning: unused variable 'BufferIndex' [-Wunused-variable]
+  u32 BufferIndex;
+      ^~~~~~~~~~~
+xilisf_read.c:425:6: warning: unused variable 'BankSel' [-Wunused-variable]
+  u32 BankSel;
+      ^~~~~~~
+xilisf_read.c:424:5: warning: unused variable 'Mode' [-Wunused-variable]
+  u8 Mode;
+     ^~~~
+xilisf_read.c: In function 'FastReadData':
+xilisf_read.c:660:6: warning: unused variable 'TempByteCnt' [-Wunused-variable]
+  u32 TempByteCnt = LocalByteCnt;
+      ^~~~~~~~~~~
+xilisf_read.c:656:5: warning: unused variable 'ShiftSize' [-Wunused-variable]
+  u8 ShiftSize;
+     ^~~~~~~~~
+xilisf_read.c:655:6: warning: unused variable 'BufferIndex' [-Wunused-variable]
+  u32 BufferIndex;
+      ^~~~~~~~~~~
+xilisf_read.c:652:6: warning: unused variable 'BankSel' [-Wunused-variable]
+  u32 BankSel;
+      ^~~~~~~
+xilisf_read.c:649:5: warning: unused variable 'Mode' [-Wunused-variable]
+  u8 Mode;
+     ^~~~
+xilisf.c: In function 'XIsf_RegisterInterface':
+xilisf.c:1404:37: warning: assignment from incompatible pointer type [-Wincompatible-pointer-types]
+  InstancePtr->XIsf_Iface_SetOptions = XSpi_SetOptions;
+                                     ^
+xilisf.c:1405:41: warning: assignment from incompatible pointer type [-Wincompatible-pointer-types]
+  InstancePtr->XIsf_Iface_SetSlaveSelect = XSpi_SetSlaveSelect;
+                                         ^
+xilisf.c:1406:35: warning: assignment from incompatible pointer type [-Wincompatible-pointer-types]
+  InstancePtr->XIsf_Iface_Transfer = XSpi_Transfer;
+                                   ^
+xilisf.c: In function 'GetRealAddr':
+xilisf.c:2242:6: warning: unused variable 'LqspiCr' [-Wunused-variable]
+  u32 LqspiCr;
+      ^~~~~~~
+xilisf.c:2240:29: warning: unused parameter 'QspiPtr' [-Wunused-parameter]
+ u32 GetRealAddr(XIsf_Iface *QspiPtr, u32 Address)
+                             ^~~~~~~
+At top level:
+xilisf.c:579:12: warning: 'XIsf_FCTIndex' defined but not used [-Wunused-variable]
+ static u32 XIsf_FCTIndex;
+            ^~~~~~~~~~~~~
+xilisf_write.c: In function 'WriteData':
+xilisf_write.c:451:5: warning: unused variable 'ReadFlagSRCmd' [-Wunused-variable]
+  u8 ReadFlagSRCmd[] = {READ_FLAG_STATUS_CMD, 0};
+     ^~~~~~~~~~~~~
+xilisf_write.c:450:5: warning: unused variable 'ReadStatusCmdBuf' [-Wunused-variable]
+  u8 ReadStatusCmdBuf[] = { READ_STATUS_CMD, 0 };
+     ^~~~~~~~~~~~~~~~
+xilisf_write.c:438:5: warning: unused variable 'FlashStatus' [-Wunused-variable]
+  u8 FlashStatus[2] = {0};
+     ^~~~~~~~~~~
+xilisf_write.c:437:5: warning: unused variable 'FlagStatus' [-Wunused-variable]
+  u8 FlagStatus[2] = {0};
+     ^~~~~~~~~~
+xilisf_write.c:434:6: warning: unused variable 'BankSel' [-Wunused-variable]
+  u32 BankSel;
+      ^~~~~~~
+xilisf_write.c:432:5: warning: unused variable 'Mode' [-Wunused-variable]
+  u8 Mode;
+     ^~~~
+xilisf_erase.c: In function 'SectorErase':
+xilisf_erase.c:322:14: warning: unused variable 'ReadStatusCmd' [-Wunused-variable]
+  u8 FSRFlag, ReadStatusCmd;
+              ^~~~~~~~~~~~~
+xilisf_erase.c:322:5: warning: unused variable 'FSRFlag' [-Wunused-variable]
+  u8 FSRFlag, ReadStatusCmd;
+     ^~~~~~~
+xilisf_erase.c:321:6: warning: unused variable 'WriteBfrPtr' [-Wunused-variable]
+  u8 *WriteBfrPtr = InstancePtr->WriteBufPtr;
+      ^~~~~~~~~~~
+xilisf_erase.c:320:5: warning: unused variable 'ReadFlagSRCmd' [-Wunused-variable]
+  u8 ReadFlagSRCmd[] = {READ_FLAG_STATUS_CMD, 0};
+     ^~~~~~~~~~~~~
+xilisf_erase.c:319:5: warning: unused variable 'ReadStatusCmdBuf' [-Wunused-variable]
+  u8 ReadStatusCmdBuf[] = { READ_STATUS_CMD, 0 };
+     ^~~~~~~~~~~~~~~~
+xilisf_erase.c:318:5: warning: unused variable 'FlashStatus' [-Wunused-variable]
+  u8 FlashStatus[2] = {0};
+     ^~~~~~~~~~~
+xilisf_erase.c:317:5: warning: unused variable 'FlagStatus' [-Wunused-variable]
+  u8 FlagStatus[2] = {0};
+     ^~~~~~~~~~
+xilisf_erase.c:314:6: warning: unused variable 'BankSel' [-Wunused-variable]
+  u32 BankSel;
+      ^~~~~~~
+xilisf_erase.c:313:5: warning: unused variable 'Mode' [-Wunused-variable]
+  u8 Mode;
+     ^~~~
+xilisf_erase.c: In function 'SubSectorErase':
+xilisf_erase.c:566:14: warning: unused variable 'ReadStatusCmd' [-Wunused-variable]
+  u8 FSRFlag, ReadStatusCmd;
+              ^~~~~~~~~~~~~
+xilisf_erase.c:566:5: warning: unused variable 'FSRFlag' [-Wunused-variable]
+  u8 FSRFlag, ReadStatusCmd;
+     ^~~~~~~
+xilisf_erase.c:565:6: warning: unused variable 'WriteBfrPtr' [-Wunused-variable]
+  u8 *WriteBfrPtr = InstancePtr->WriteBufPtr;
+      ^~~~~~~~~~~
+xilisf_erase.c:564:5: warning: unused variable 'ReadFlagSRCmd' [-Wunused-variable]
+  u8 ReadFlagSRCmd[] = {READ_FLAG_STATUS_CMD, 0};
+     ^~~~~~~~~~~~~
+xilisf_erase.c:563:5: warning: unused variable 'ReadStatusCmdBuf' [-Wunused-variable]
+  u8 ReadStatusCmdBuf[] = { READ_STATUS_CMD, 0 };
+     ^~~~~~~~~~~~~~~~
+xilisf_erase.c:562:5: warning: unused variable 'FlashStatus' [-Wunused-variable]
+  u8 FlashStatus[2] = {0};
+     ^~~~~~~~~~~
+xilisf_erase.c:561:5: warning: unused variable 'FlagStatus' [-Wunused-variable]
+  u8 FlagStatus[2] = {0};
+     ^~~~~~~~~~
+xilisf_erase.c:558:6: warning: unused variable 'BankSel' [-Wunused-variable]
+  u32 BankSel;
+      ^~~~~~~
+xilisf_erase.c:557:5: warning: unused variable 'Mode' [-Wunused-variable]
+  u8 Mode;
+     ^~~~
+Running Make libs in microblaze_0/libsrc/emaclite_v4_3/src
+make -C microblaze_0/libsrc/emaclite_v4_3/src -s libs  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS=  -O2 -c -mcpu=v10.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Compiling emaclite
+Running Make libs in microblaze_0/libsrc/uartlite_v3_2/src
+make -C microblaze_0/libsrc/uartlite_v3_2/src -s libs  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS=  -O2 -c -mcpu=v10.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Compiling uartlite
+Running Make libs in microblaze_0/libsrc/bram_v4_2/src
+make -C microblaze_0/libsrc/bram_v4_2/src -s libs  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS=  -O2 -c -mcpu=v10.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Compiling bram
+Running Make libs in microblaze_0/libsrc/spi_v4_4/src
+make -C microblaze_0/libsrc/spi_v4_4/src -s libs  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS=  -O2 -c -mcpu=v10.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Compiling spi
+Running Make libs in microblaze_0/libsrc/gpio_v4_3/src
+make -C microblaze_0/libsrc/gpio_v4_3/src -s libs  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS=  -O2 -c -mcpu=v10.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Compiling gpio
+Running Make libs in microblaze_0/libsrc/intc_v3_7/src
+make -C microblaze_0/libsrc/intc_v3_7/src -s libs  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS=  -O2 -c -mcpu=v10.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Compiling intc
+Running Make libs in microblaze_0/libsrc/tmrctr_v4_4/src
+make -C microblaze_0/libsrc/tmrctr_v4_4/src -s libs  "SHELL=/bin/sh" "COMPILER=mb-gcc" "ARCHIVER=mb-ar" "COMPILER_FLAGS=  -O2 -c -mcpu=v10.0 -mlittle-endian -mxl-soft-mul" "EXTRA_COMPILER_FLAGS=-ffunction-sections -fdata-sections -Wall -Wextra"
+Compiling tmrctr
+Finished building libraries
+00:37:26 **** Build of configuration Debug for project spi_srec ****
+make all 
+Building file: ../src/bootloader.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/bootloader.o" -I../../spi_srec_bsp/microblaze_0/include -mlittle-endian -mcpu=v10.0 -mxl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/bootloader.d" -MT"src/bootloader.o" -o "src/bootloader.o" "../src/bootloader.c"
+../src/bootloader.c:56:2: warning: #warning "Set your Device ID here, as defined in xparameters.h" [-Wcpp]
+ #warning "Set your Device ID here, as defined in xparameters.h"
+  ^~~~~~~
+../src/bootloader.c:135:5: warning: pointer targets in initialization differ in signedness [-Wpointer-sign]
+     "",
+     ^~
+../src/bootloader.c:135:5: note: (near initialization for 'errors[0]')
+../src/bootloader.c:136:5: warning: pointer targets in initialization differ in signedness [-Wpointer-sign]
+     "Error while copying executable image into RAM",
+     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/bootloader.c:136:5: note: (near initialization for 'errors[1]')
+../src/bootloader.c:137:5: warning: pointer targets in initialization differ in signedness [-Wpointer-sign]
+     "Error while reading an SREC line from flash",
+     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/bootloader.c:137:5: note: (near initialization for 'errors[2]')
+../src/bootloader.c:138:5: warning: pointer targets in initialization differ in signedness [-Wpointer-sign]
+     "SREC line is corrupted",
+     ^~~~~~~~~~~~~~~~~~~~~~~~
+../src/bootloader.c:138:5: note: (near initialization for 'errors[3]')
+../src/bootloader.c:139:5: warning: pointer targets in initialization differ in signedness [-Wpointer-sign]
+     "SREC has invalid checksum."
+     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/bootloader.c:139:5: note: (near initialization for 'errors[4]')
+../src/bootloader.c: In function 'main':
+../src/bootloader.c:202:16: warning: pointer targets in passing argument 1 of 'print' differ in signedness [-Wpointer-sign]
+         print (errors[ret]);
+                ^~~~~~
+In file included from /home/dinne/Xilinx/SDK/2018.2/gnu/microblaze/lin/microblaze-xilinx-elf/include/stdio.h:29:0,
+                 from ../src/bootloader.c:34:
+/home/dinne/Xilinx/SDK/2018.2/gnu/microblaze/lin/microblaze-xilinx-elf/include/stdio.h:231:9: note: expected 'const char *' but argument is of type 'int8_t * {aka signed char *}'
+ void    _EXFUN(print, (const char* ));
+         ^
+../src/bootloader.c:205:16: warning: pointer targets in passing argument 1 of 'print' differ in signedness [-Wpointer-sign]
+         print (errors[ret]);
+                ^~~~~~
+In file included from /home/dinne/Xilinx/SDK/2018.2/gnu/microblaze/lin/microblaze-xilinx-elf/include/stdio.h:29:0,
+                 from ../src/bootloader.c:34:
+/home/dinne/Xilinx/SDK/2018.2/gnu/microblaze/lin/microblaze-xilinx-elf/include/stdio.h:231:9: note: expected 'const char *' but argument is of type 'int8_t * {aka signed char *}'
+ void    _EXFUN(print, (const char* ));
+         ^
+../src/bootloader.c: In function 'flash_get_srec_line':
+../src/bootloader.c:289:24: warning: assignment makes integer from pointer without a cast [-Wint-conversion]
+      ReadParam.Address = flbuf++;
+                        ^
+../src/bootloader.c:309:13: warning: implicit declaration of function 'IsfWaitForFlashNotBusy' [-Wimplicit-function-declaration]
+    Status = IsfWaitForFlashNotBusy();
+             ^~~~~~~~~~~~~~~~~~~~~~
+../src/bootloader.c:334:28: warning: assignment makes integer from pointer without a cast [-Wint-conversion]
+          ReadParam.Address = flbuf++;
+                            ^
+Finished building: ../src/bootloader.c
+ 
+Building file: ../src/platform.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/platform.o" -I../../spi_srec_bsp/microblaze_0/include -mlittle-endian -mcpu=v10.0 -mxl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/platform.d" -MT"src/platform.o" -o "src/platform.o" "../src/platform.c"
+Finished building: ../src/platform.c
+ 
+Building file: ../src/srec.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/srec.o" -I../../spi_srec_bsp/microblaze_0/include -mlittle-endian -mcpu=v10.0 -mxl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/srec.d" -MT"src/srec.o" -o "src/srec.o" "../src/srec.c"
+Finished building: ../src/srec.c
+ 
+Building target: spi_srec.elf
+Invoking: MicroBlaze gcc linker
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../spi_srec_bsp/microblaze_0/lib -mlittle-endian -mcpu=v10.0 -mxl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "spi_srec.elf"  ./src/bootloader.o ./src/platform.o ./src/srec.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group -Wl,--start-group,-lxilisf,-lxil,-lgcc,-lc,--end-group
+Finished building target: spi_srec.elf
+ 
+Invoking: MicroBlaze Print Size
+mb-size spi_srec.elf  |tee "spi_srec.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  15860	    312	   1932	  18104	   46b8	spi_srec.elf
+Finished building: spi_srec.elf.size
+ 
+14:39:11 **** Auto Build of configuration Debug for project sdk_test_t1 ****
+make all 
+Building file: ../src/testperiph.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/testperiph.o" -I../../sdk_test_t1_bsp/microblaze_0/include -mlittle-endian -mcpu=v10.0 -mxl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/testperiph.d" -MT"src/testperiph.o" -o "src/testperiph.o" "../src/testperiph.c"
+Finished building: ../src/testperiph.c
+ 
+Building target: sdk_test_t1.elf
+Invoking: MicroBlaze gcc linker
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../sdk_test_t1_bsp/microblaze_0/lib -mlittle-endian -mcpu=v10.0 -mxl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "sdk_test_t1.elf"  ./src/testperiph.o ./src/xemaclite_example_util.o ./src/xemaclite_intr_example.o ./src/xemaclite_polled_example.o ./src/xgpio_tapp_example.o ./src/xintc_tapp_example.o ./src/xtmrctr_intr_example.o ./src/xtmrctr_selftest_example.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+Finished building target: sdk_test_t1.elf
+ 
+Invoking: MicroBlaze Print Size
+mb-size sdk_test_t1.elf  |tee "sdk_test_t1.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  26268	    400	   6532	  33200	   81b0	sdk_test_t1.elf
+Finished building: sdk_test_t1.elf.size
+ 
+15:48:58 **** Auto Build of configuration Debug for project sdk_test_t1 ****
+make all 
+Building file: ../src/testperiph.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/testperiph.o" -I../../sdk_test_t1_bsp/microblaze_0/include -mlittle-endian -mcpu=v10.0 -mxl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/testperiph.d" -MT"src/testperiph.o" -o "src/testperiph.o" "../src/testperiph.c"
+Finished building: ../src/testperiph.c
+ 
+Building target: sdk_test_t1.elf
+Invoking: MicroBlaze gcc linker
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../sdk_test_t1_bsp/microblaze_0/lib -mlittle-endian -mcpu=v10.0 -mxl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "sdk_test_t1.elf"  ./src/testperiph.o ./src/xemaclite_example_util.o ./src/xemaclite_intr_example.o ./src/xemaclite_polled_example.o ./src/xgpio_tapp_example.o ./src/xintc_tapp_example.o ./src/xtmrctr_intr_example.o ./src/xtmrctr_selftest_example.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+Finished building target: sdk_test_t1.elf
+ 
+Invoking: MicroBlaze Print Size
+mb-size sdk_test_t1.elf  |tee "sdk_test_t1.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+ 114612	   1568	   6612	 122792	  1dfa8	sdk_test_t1.elf
+Finished building: sdk_test_t1.elf.size
+ 
+15:49:58 **** Auto Build of configuration Debug for project sdk_test_t1 ****
+make all 
+Building file: ../src/testperiph.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/testperiph.o" -I../../sdk_test_t1_bsp/microblaze_0/include -mlittle-endian -mcpu=v10.0 -mxl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/testperiph.d" -MT"src/testperiph.o" -o "src/testperiph.o" "../src/testperiph.c"
+Finished building: ../src/testperiph.c
+ 
+Building target: sdk_test_t1.elf
+Invoking: MicroBlaze gcc linker
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../sdk_test_t1_bsp/microblaze_0/lib -mlittle-endian -mcpu=v10.0 -mxl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "sdk_test_t1.elf"  ./src/testperiph.o ./src/xemaclite_example_util.o ./src/xemaclite_intr_example.o ./src/xemaclite_polled_example.o ./src/xgpio_tapp_example.o ./src/xintc_tapp_example.o ./src/xtmrctr_intr_example.o ./src/xtmrctr_selftest_example.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+Finished building target: sdk_test_t1.elf
+ 
+Invoking: MicroBlaze Print Size
+mb-size sdk_test_t1.elf  |tee "sdk_test_t1.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+ 114612	   1568	   6612	 122792	  1dfa8	sdk_test_t1.elf
+Finished building: sdk_test_t1.elf.size
+ 
+15:50:14 **** Auto Build of configuration Debug for project sdk_test_t1 ****
+make all 
+Building file: ../src/testperiph.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/testperiph.o" -I../../sdk_test_t1_bsp/microblaze_0/include -mlittle-endian -mcpu=v10.0 -mxl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/testperiph.d" -MT"src/testperiph.o" -o "src/testperiph.o" "../src/testperiph.c"
+Finished building: ../src/testperiph.c
+ 
+Building target: sdk_test_t1.elf
+Invoking: MicroBlaze gcc linker
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../sdk_test_t1_bsp/microblaze_0/lib -mlittle-endian -mcpu=v10.0 -mxl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "sdk_test_t1.elf"  ./src/testperiph.o ./src/xemaclite_example_util.o ./src/xemaclite_intr_example.o ./src/xemaclite_polled_example.o ./src/xgpio_tapp_example.o ./src/xintc_tapp_example.o ./src/xtmrctr_intr_example.o ./src/xtmrctr_selftest_example.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+Finished building target: sdk_test_t1.elf
+ 
+Invoking: MicroBlaze Print Size
+mb-size sdk_test_t1.elf  |tee "sdk_test_t1.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+ 114624	   1568	   6608	 122800	  1dfb0	sdk_test_t1.elf
+Finished building: sdk_test_t1.elf.size
+ 
+15:50:31 **** Auto Build of configuration Debug for project sdk_test_t1 ****
+make all 
+Building file: ../src/testperiph.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/testperiph.o" -I../../sdk_test_t1_bsp/microblaze_0/include -mlittle-endian -mcpu=v10.0 -mxl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/testperiph.d" -MT"src/testperiph.o" -o "src/testperiph.o" "../src/testperiph.c"
+Finished building: ../src/testperiph.c
+ 
+Building target: sdk_test_t1.elf
+Invoking: MicroBlaze gcc linker
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../sdk_test_t1_bsp/microblaze_0/lib -mlittle-endian -mcpu=v10.0 -mxl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "sdk_test_t1.elf"  ./src/testperiph.o ./src/xemaclite_example_util.o ./src/xemaclite_intr_example.o ./src/xemaclite_polled_example.o ./src/xgpio_tapp_example.o ./src/xintc_tapp_example.o ./src/xtmrctr_intr_example.o ./src/xtmrctr_selftest_example.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+Finished building target: sdk_test_t1.elf
+ 
+Invoking: MicroBlaze Print Size
+mb-size sdk_test_t1.elf  |tee "sdk_test_t1.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+ 114612	   1568	   6612	 122792	  1dfa8	sdk_test_t1.elf
+Finished building: sdk_test_t1.elf.size
+ 
+15:55:36 **** Auto Build of configuration Debug for project spi_srec ****
+make all 
+Building file: ../src/bootloader.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/bootloader.o" -I../../spi_srec_bsp/microblaze_0/include -mlittle-endian -mcpu=v10.0 -mxl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/bootloader.d" -MT"src/bootloader.o" -o "src/bootloader.o" "../src/bootloader.c"
+../src/bootloader.c:56:2: warning: #warning "Set your Device ID here, as defined in xparameters.h" [-Wcpp]
+ #warning "Set your Device ID here, as defined in xparameters.h"
+  ^~~~~~~
+../src/bootloader.c:135:5: warning: pointer targets in initialization differ in signedness [-Wpointer-sign]
+     "",
+     ^~
+../src/bootloader.c:135:5: note: (near initialization for 'errors[0]')
+../src/bootloader.c:136:5: warning: pointer targets in initialization differ in signedness [-Wpointer-sign]
+     "Error while copying executable image into RAM",
+     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/bootloader.c:136:5: note: (near initialization for 'errors[1]')
+../src/bootloader.c:137:5: warning: pointer targets in initialization differ in signedness [-Wpointer-sign]
+     "Error while reading an SREC line from flash",
+     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/bootloader.c:137:5: note: (near initialization for 'errors[2]')
+../src/bootloader.c:138:5: warning: pointer targets in initialization differ in signedness [-Wpointer-sign]
+     "SREC line is corrupted",
+     ^~~~~~~~~~~~~~~~~~~~~~~~
+../src/bootloader.c:138:5: note: (near initialization for 'errors[3]')
+../src/bootloader.c:139:5: warning: pointer targets in initialization differ in signedness [-Wpointer-sign]
+     "SREC has invalid checksum."
+     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/bootloader.c:139:5: note: (near initialization for 'errors[4]')
+../src/bootloader.c: In function 'main':
+../src/bootloader.c:202:16: warning: pointer targets in passing argument 1 of 'print' differ in signedness [-Wpointer-sign]
+         print (errors[ret]);
+                ^~~~~~
+In file included from /home/dinne/Xilinx/SDK/2018.2/gnu/microblaze/lin/microblaze-xilinx-elf/include/stdio.h:29:0,
+                 from ../src/bootloader.c:34:
+/home/dinne/Xilinx/SDK/2018.2/gnu/microblaze/lin/microblaze-xilinx-elf/include/stdio.h:231:9: note: expected 'const char *' but argument is of type 'int8_t * {aka signed char *}'
+ void    _EXFUN(print, (const char* ));
+         ^
+../src/bootloader.c:205:16: warning: pointer targets in passing argument 1 of 'print' differ in signedness [-Wpointer-sign]
+         print (errors[ret]);
+                ^~~~~~
+In file included from /home/dinne/Xilinx/SDK/2018.2/gnu/microblaze/lin/microblaze-xilinx-elf/include/stdio.h:29:0,
+                 from ../src/bootloader.c:34:
+/home/dinne/Xilinx/SDK/2018.2/gnu/microblaze/lin/microblaze-xilinx-elf/include/stdio.h:231:9: note: expected 'const char *' but argument is of type 'int8_t * {aka signed char *}'
+ void    _EXFUN(print, (const char* ));
+         ^
+../src/bootloader.c: In function 'flash_get_srec_line':
+../src/bootloader.c:292:24: warning: assignment makes integer from pointer without a cast [-Wint-conversion]
+      ReadParam.Address = flbuf++;
+                        ^
+../src/bootloader.c:312:13: warning: implicit declaration of function 'IsfWaitForFlashNotBusy' [-Wimplicit-function-declaration]
+    Status = IsfWaitForFlashNotBusy();
+             ^~~~~~~~~~~~~~~~~~~~~~
+../src/bootloader.c:337:28: warning: assignment makes integer from pointer without a cast [-Wint-conversion]
+          ReadParam.Address = flbuf++;
+                            ^
+Finished building: ../src/bootloader.c
+ 
+Building target: spi_srec.elf
+Invoking: MicroBlaze gcc linker
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../spi_srec_bsp/microblaze_0/lib -mlittle-endian -mcpu=v10.0 -mxl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "spi_srec.elf"  ./src/bootloader.o ./src/platform.o ./src/srec.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group -Wl,--start-group,-lxilisf,-lxil,-lgcc,-lc,--end-group
+/home/dinne/Xilinx/SDK/2018.2/gnu/microblaze/lin/bin/../lib/gcc/microblaze-xilinx-elf/7.2.0/../../../../microblaze-xilinx-elf/bin/ld: spi_srec.elf section `.text' will not fit in region `microblaze_0_local_memory_ilmb_bram_if_cntlr_Mem_microblaze_0_local_memory_dlmb_bram_if_cntlr_Mem'
+/home/dinne/Xilinx/SDK/2018.2/gnu/microblaze/lin/bin/../lib/gcc/microblaze-xilinx-elf/7.2.0/../../../../microblaze-xilinx-elf/bin/ld: region `microblaze_0_local_memory_ilmb_bram_if_cntlr_Mem_microblaze_0_local_memory_dlmb_bram_if_cntlr_Mem' overflowed by 75712 bytes
+collect2: error: ld returned 1 exit status
+make: *** [spi_srec.elf] Error 1
+makefile:36: recipe for target 'spi_srec.elf' failed
+15:56:52 **** Auto Build of configuration Debug for project spi_srec ****
+make all 
+Building file: ../src/bootloader.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/bootloader.o" -I../../spi_srec_bsp/microblaze_0/include -mlittle-endian -mcpu=v10.0 -mxl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/bootloader.d" -MT"src/bootloader.o" -o "src/bootloader.o" "../src/bootloader.c"
+../src/bootloader.c:56:2: warning: #warning "Set your Device ID here, as defined in xparameters.h" [-Wcpp]
+ #warning "Set your Device ID here, as defined in xparameters.h"
+  ^~~~~~~
+../src/bootloader.c:135:5: warning: pointer targets in initialization differ in signedness [-Wpointer-sign]
+     "",
+     ^~
+../src/bootloader.c:135:5: note: (near initialization for 'errors[0]')
+../src/bootloader.c:136:5: warning: pointer targets in initialization differ in signedness [-Wpointer-sign]
+     "Error while copying executable image into RAM",
+     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/bootloader.c:136:5: note: (near initialization for 'errors[1]')
+../src/bootloader.c:137:5: warning: pointer targets in initialization differ in signedness [-Wpointer-sign]
+     "Error while reading an SREC line from flash",
+     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/bootloader.c:137:5: note: (near initialization for 'errors[2]')
+../src/bootloader.c:138:5: warning: pointer targets in initialization differ in signedness [-Wpointer-sign]
+     "SREC line is corrupted",
+     ^~~~~~~~~~~~~~~~~~~~~~~~
+../src/bootloader.c:138:5: note: (near initialization for 'errors[3]')
+../src/bootloader.c:139:5: warning: pointer targets in initialization differ in signedness [-Wpointer-sign]
+     "SREC has invalid checksum."
+     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/bootloader.c:139:5: note: (near initialization for 'errors[4]')
+../src/bootloader.c: In function 'main':
+../src/bootloader.c:202:16: warning: pointer targets in passing argument 1 of 'print' differ in signedness [-Wpointer-sign]
+         print (errors[ret]);
+                ^~~~~~
+In file included from /home/dinne/Xilinx/SDK/2018.2/gnu/microblaze/lin/microblaze-xilinx-elf/include/stdio.h:29:0,
+                 from ../src/bootloader.c:34:
+/home/dinne/Xilinx/SDK/2018.2/gnu/microblaze/lin/microblaze-xilinx-elf/include/stdio.h:231:9: note: expected 'const char *' but argument is of type 'int8_t * {aka signed char *}'
+ void    _EXFUN(print, (const char* ));
+         ^
+../src/bootloader.c:205:16: warning: pointer targets in passing argument 1 of 'print' differ in signedness [-Wpointer-sign]
+         print (errors[ret]);
+                ^~~~~~
+In file included from /home/dinne/Xilinx/SDK/2018.2/gnu/microblaze/lin/microblaze-xilinx-elf/include/stdio.h:29:0,
+                 from ../src/bootloader.c:34:
+/home/dinne/Xilinx/SDK/2018.2/gnu/microblaze/lin/microblaze-xilinx-elf/include/stdio.h:231:9: note: expected 'const char *' but argument is of type 'int8_t * {aka signed char *}'
+ void    _EXFUN(print, (const char* ));
+         ^
+../src/bootloader.c: In function 'flash_get_srec_line':
+../src/bootloader.c:293:24: warning: assignment makes integer from pointer without a cast [-Wint-conversion]
+      ReadParam.Address = flbuf++;
+                        ^
+../src/bootloader.c:313:13: warning: implicit declaration of function 'IsfWaitForFlashNotBusy' [-Wimplicit-function-declaration]
+    Status = IsfWaitForFlashNotBusy();
+             ^~~~~~~~~~~~~~~~~~~~~~
+../src/bootloader.c:338:28: warning: assignment makes integer from pointer without a cast [-Wint-conversion]
+          ReadParam.Address = flbuf++;
+                            ^
+Finished building: ../src/bootloader.c
+ 
+Building target: spi_srec.elf
+Invoking: MicroBlaze gcc linker
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../spi_srec_bsp/microblaze_0/lib -mlittle-endian -mcpu=v10.0 -mxl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "spi_srec.elf"  ./src/bootloader.o ./src/platform.o ./src/srec.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group -Wl,--start-group,-lxilisf,-lxil,-lgcc,-lc,--end-group
+Finished building target: spi_srec.elf
+ 
+Invoking: MicroBlaze Print Size
+mb-size spi_srec.elf  |tee "spi_srec.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  15932	    312	   1932	  18176	   4700	spi_srec.elf
+Finished building: spi_srec.elf.size
+ 
+15:59:19 **** Auto Build of configuration Debug for project spi_srec ****
+make all 
+Building file: ../src/bootloader.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/bootloader.o" -I../../spi_srec_bsp/microblaze_0/include -mlittle-endian -mcpu=v10.0 -mxl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/bootloader.d" -MT"src/bootloader.o" -o "src/bootloader.o" "../src/bootloader.c"
+../src/bootloader.c:135:5: warning: pointer targets in initialization differ in signedness [-Wpointer-sign]
+     "",
+     ^~
+../src/bootloader.c:135:5: note: (near initialization for 'errors[0]')
+../src/bootloader.c:136:5: warning: pointer targets in initialization differ in signedness [-Wpointer-sign]
+     "Error while copying executable image into RAM",
+     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/bootloader.c:136:5: note: (near initialization for 'errors[1]')
+../src/bootloader.c:137:5: warning: pointer targets in initialization differ in signedness [-Wpointer-sign]
+     "Error while reading an SREC line from flash",
+     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/bootloader.c:137:5: note: (near initialization for 'errors[2]')
+../src/bootloader.c:138:5: warning: pointer targets in initialization differ in signedness [-Wpointer-sign]
+     "SREC line is corrupted",
+     ^~~~~~~~~~~~~~~~~~~~~~~~
+../src/bootloader.c:138:5: note: (near initialization for 'errors[3]')
+../src/bootloader.c:139:5: warning: pointer targets in initialization differ in signedness [-Wpointer-sign]
+     "SREC has invalid checksum."
+     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/bootloader.c:139:5: note: (near initialization for 'errors[4]')
+../src/bootloader.c: In function 'main':
+../src/bootloader.c:202:16: warning: pointer targets in passing argument 1 of 'print' differ in signedness [-Wpointer-sign]
+         print (errors[ret]);
+                ^~~~~~
+In file included from /home/dinne/Xilinx/SDK/2018.2/gnu/microblaze/lin/microblaze-xilinx-elf/include/stdio.h:29:0,
+                 from ../src/bootloader.c:34:
+/home/dinne/Xilinx/SDK/2018.2/gnu/microblaze/lin/microblaze-xilinx-elf/include/stdio.h:231:9: note: expected 'const char *' but argument is of type 'int8_t * {aka signed char *}'
+ void    _EXFUN(print, (const char* ));
+         ^
+../src/bootloader.c:205:16: warning: pointer targets in passing argument 1 of 'print' differ in signedness [-Wpointer-sign]
+         print (errors[ret]);
+                ^~~~~~
+In file included from /home/dinne/Xilinx/SDK/2018.2/gnu/microblaze/lin/microblaze-xilinx-elf/include/stdio.h:29:0,
+                 from ../src/bootloader.c:34:
+/home/dinne/Xilinx/SDK/2018.2/gnu/microblaze/lin/microblaze-xilinx-elf/include/stdio.h:231:9: note: expected 'const char *' but argument is of type 'int8_t * {aka signed char *}'
+ void    _EXFUN(print, (const char* ));
+         ^
+../src/bootloader.c: In function 'flash_get_srec_line':
+../src/bootloader.c:293:24: warning: assignment makes integer from pointer without a cast [-Wint-conversion]
+      ReadParam.Address = flbuf++;
+                        ^
+../src/bootloader.c:313:13: warning: implicit declaration of function 'IsfWaitForFlashNotBusy' [-Wimplicit-function-declaration]
+    Status = IsfWaitForFlashNotBusy();
+             ^~~~~~~~~~~~~~~~~~~~~~
+../src/bootloader.c:338:28: warning: assignment makes integer from pointer without a cast [-Wint-conversion]
+          ReadParam.Address = flbuf++;
+                            ^
+Finished building: ../src/bootloader.c
+ 
+Building target: spi_srec.elf
+Invoking: MicroBlaze gcc linker
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../spi_srec_bsp/microblaze_0/lib -mlittle-endian -mcpu=v10.0 -mxl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "spi_srec.elf"  ./src/bootloader.o ./src/platform.o ./src/srec.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group -Wl,--start-group,-lxilisf,-lxil,-lgcc,-lc,--end-group
+Finished building target: spi_srec.elf
+ 
+Invoking: MicroBlaze Print Size
+mb-size spi_srec.elf  |tee "spi_srec.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  15932	    312	   1932	  18176	   4700	spi_srec.elf
+Finished building: spi_srec.elf.size
+ 
+15:59:28 **** Auto Build of configuration Debug for project spi_srec ****
+make all 
+Building file: ../src/bootloader.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/bootloader.o" -I../../spi_srec_bsp/microblaze_0/include -mlittle-endian -mcpu=v10.0 -mxl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/bootloader.d" -MT"src/bootloader.o" -o "src/bootloader.o" "../src/bootloader.c"
+../src/bootloader.c:135:5: warning: pointer targets in initialization differ in signedness [-Wpointer-sign]
+     "",
+     ^~
+../src/bootloader.c:135:5: note: (near initialization for 'errors[0]')
+../src/bootloader.c:136:5: warning: pointer targets in initialization differ in signedness [-Wpointer-sign]
+     "Error while copying executable image into RAM",
+     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/bootloader.c:136:5: note: (near initialization for 'errors[1]')
+../src/bootloader.c:137:5: warning: pointer targets in initialization differ in signedness [-Wpointer-sign]
+     "Error while reading an SREC line from flash",
+     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/bootloader.c:137:5: note: (near initialization for 'errors[2]')
+../src/bootloader.c:138:5: warning: pointer targets in initialization differ in signedness [-Wpointer-sign]
+     "SREC line is corrupted",
+     ^~~~~~~~~~~~~~~~~~~~~~~~
+../src/bootloader.c:138:5: note: (near initialization for 'errors[3]')
+../src/bootloader.c:139:5: warning: pointer targets in initialization differ in signedness [-Wpointer-sign]
+     "SREC has invalid checksum."
+     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/bootloader.c:139:5: note: (near initialization for 'errors[4]')
+../src/bootloader.c: In function 'main':
+../src/bootloader.c:202:16: warning: pointer targets in passing argument 1 of 'print' differ in signedness [-Wpointer-sign]
+         print (errors[ret]);
+                ^~~~~~
+In file included from /home/dinne/Xilinx/SDK/2018.2/gnu/microblaze/lin/microblaze-xilinx-elf/include/stdio.h:29:0,
+                 from ../src/bootloader.c:34:
+/home/dinne/Xilinx/SDK/2018.2/gnu/microblaze/lin/microblaze-xilinx-elf/include/stdio.h:231:9: note: expected 'const char *' but argument is of type 'int8_t * {aka signed char *}'
+ void    _EXFUN(print, (const char* ));
+         ^
+../src/bootloader.c:205:16: warning: pointer targets in passing argument 1 of 'print' differ in signedness [-Wpointer-sign]
+         print (errors[ret]);
+                ^~~~~~
+In file included from /home/dinne/Xilinx/SDK/2018.2/gnu/microblaze/lin/microblaze-xilinx-elf/include/stdio.h:29:0,
+                 from ../src/bootloader.c:34:
+/home/dinne/Xilinx/SDK/2018.2/gnu/microblaze/lin/microblaze-xilinx-elf/include/stdio.h:231:9: note: expected 'const char *' but argument is of type 'int8_t * {aka signed char *}'
+ void    _EXFUN(print, (const char* ));
+         ^
+../src/bootloader.c: In function 'flash_get_srec_line':
+../src/bootloader.c:293:24: warning: assignment makes integer from pointer without a cast [-Wint-conversion]
+      ReadParam.Address = flbuf++;
+                        ^
+../src/bootloader.c:313:13: warning: implicit declaration of function 'IsfWaitForFlashNotBusy' [-Wimplicit-function-declaration]
+    Status = IsfWaitForFlashNotBusy();
+             ^~~~~~~~~~~~~~~~~~~~~~
+../src/bootloader.c:338:28: warning: assignment makes integer from pointer without a cast [-Wint-conversion]
+          ReadParam.Address = flbuf++;
+                            ^
+Finished building: ../src/bootloader.c
+ 
+Building target: spi_srec.elf
+Invoking: MicroBlaze gcc linker
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../spi_srec_bsp/microblaze_0/lib -mlittle-endian -mcpu=v10.0 -mxl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "spi_srec.elf"  ./src/bootloader.o ./src/platform.o ./src/srec.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group -Wl,--start-group,-lxilisf,-lxil,-lgcc,-lc,--end-group
+Finished building target: spi_srec.elf
+ 
+Invoking: MicroBlaze Print Size
+mb-size spi_srec.elf  |tee "spi_srec.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  15932	    312	   1932	  18176	   4700	spi_srec.elf
+Finished building: spi_srec.elf.size
+ 
+21:56:53 **** Auto Build of configuration Debug for project spi_srec ****
+make all 
+Building file: ../src/bootloader.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/bootloader.o" -I../../spi_srec_bsp/microblaze_0/include -mlittle-endian -mcpu=v10.0 -mxl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/bootloader.d" -MT"src/bootloader.o" -o "src/bootloader.o" "../src/bootloader.c"
+../src/bootloader.c:135:5: warning: pointer targets in initialization differ in signedness [-Wpointer-sign]
+     "",
+     ^~
+../src/bootloader.c:135:5: note: (near initialization for 'errors[0]')
+../src/bootloader.c:136:5: warning: pointer targets in initialization differ in signedness [-Wpointer-sign]
+     "Error while copying executable image into RAM",
+     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/bootloader.c:136:5: note: (near initialization for 'errors[1]')
+../src/bootloader.c:137:5: warning: pointer targets in initialization differ in signedness [-Wpointer-sign]
+     "Error while reading an SREC line from flash",
+     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/bootloader.c:137:5: note: (near initialization for 'errors[2]')
+../src/bootloader.c:138:5: warning: pointer targets in initialization differ in signedness [-Wpointer-sign]
+     "SREC line is corrupted",
+     ^~~~~~~~~~~~~~~~~~~~~~~~
+../src/bootloader.c:138:5: note: (near initialization for 'errors[3]')
+../src/bootloader.c:139:5: warning: pointer targets in initialization differ in signedness [-Wpointer-sign]
+     "SREC has invalid checksum."
+     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/bootloader.c:139:5: note: (near initialization for 'errors[4]')
+../src/bootloader.c: In function 'main':
+../src/bootloader.c:205:16: warning: pointer targets in passing argument 1 of 'print' differ in signedness [-Wpointer-sign]
+         print (errors[ret]);
+                ^~~~~~
+In file included from /home/dinne/Xilinx/SDK/2018.2/gnu/microblaze/lin/microblaze-xilinx-elf/include/stdio.h:29:0,
+                 from ../src/bootloader.c:34:
+/home/dinne/Xilinx/SDK/2018.2/gnu/microblaze/lin/microblaze-xilinx-elf/include/stdio.h:231:9: note: expected 'const char *' but argument is of type 'int8_t * {aka signed char *}'
+ void    _EXFUN(print, (const char* ));
+         ^
+../src/bootloader.c:208:16: warning: pointer targets in passing argument 1 of 'print' differ in signedness [-Wpointer-sign]
+         print (errors[ret]);
+                ^~~~~~
+In file included from /home/dinne/Xilinx/SDK/2018.2/gnu/microblaze/lin/microblaze-xilinx-elf/include/stdio.h:29:0,
+                 from ../src/bootloader.c:34:
+/home/dinne/Xilinx/SDK/2018.2/gnu/microblaze/lin/microblaze-xilinx-elf/include/stdio.h:231:9: note: expected 'const char *' but argument is of type 'int8_t * {aka signed char *}'
+ void    _EXFUN(print, (const char* ));
+         ^
+../src/bootloader.c: In function 'flash_get_srec_line':
+../src/bootloader.c:294:24: warning: assignment makes integer from pointer without a cast [-Wint-conversion]
+      ReadParam.Address = flbuf++;
+                        ^
+../src/bootloader.c:314:13: warning: implicit declaration of function 'IsfWaitForFlashNotBusy' [-Wimplicit-function-declaration]
+    Status = IsfWaitForFlashNotBusy();
+             ^~~~~~~~~~~~~~~~~~~~~~
+../src/bootloader.c:339:28: warning: assignment makes integer from pointer without a cast [-Wint-conversion]
+          ReadParam.Address = flbuf++;
+                            ^
+Finished building: ../src/bootloader.c
+ 
+Building target: spi_srec.elf
+Invoking: MicroBlaze gcc linker
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../spi_srec_bsp/microblaze_0/lib -mlittle-endian -mcpu=v10.0 -mxl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "spi_srec.elf"  ./src/bootloader.o ./src/platform.o ./src/srec.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group -Wl,--start-group,-lxilisf,-lxil,-lgcc,-lc,--end-group
+Finished building target: spi_srec.elf
+ 
+Invoking: MicroBlaze Print Size
+mb-size spi_srec.elf  |tee "spi_srec.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  15932	    312	   1932	  18176	   4700	spi_srec.elf
+Finished building: spi_srec.elf.size
+ 
+22:01:35 **** Auto Build of configuration Debug for project spi_srec ****
+make all 
+Building file: ../src/bootloader.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/bootloader.o" -I../../spi_srec_bsp/microblaze_0/include -mlittle-endian -mcpu=v10.0 -mxl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/bootloader.d" -MT"src/bootloader.o" -o "src/bootloader.o" "../src/bootloader.c"
+../src/bootloader.c:135:5: warning: pointer targets in initialization differ in signedness [-Wpointer-sign]
+     "",
+     ^~
+../src/bootloader.c:135:5: note: (near initialization for 'errors[0]')
+../src/bootloader.c:136:5: warning: pointer targets in initialization differ in signedness [-Wpointer-sign]
+     "Error while copying executable image into RAM",
+     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/bootloader.c:136:5: note: (near initialization for 'errors[1]')
+../src/bootloader.c:137:5: warning: pointer targets in initialization differ in signedness [-Wpointer-sign]
+     "Error while reading an SREC line from flash",
+     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/bootloader.c:137:5: note: (near initialization for 'errors[2]')
+../src/bootloader.c:138:5: warning: pointer targets in initialization differ in signedness [-Wpointer-sign]
+     "SREC line is corrupted",
+     ^~~~~~~~~~~~~~~~~~~~~~~~
+../src/bootloader.c:138:5: note: (near initialization for 'errors[3]')
+../src/bootloader.c:139:5: warning: pointer targets in initialization differ in signedness [-Wpointer-sign]
+     "SREC has invalid checksum."
+     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/bootloader.c:139:5: note: (near initialization for 'errors[4]')
+../src/bootloader.c: In function 'main':
+../src/bootloader.c:207:16: warning: pointer targets in passing argument 1 of 'print' differ in signedness [-Wpointer-sign]
+         print (errors[ret]);
+                ^~~~~~
+In file included from /home/dinne/Xilinx/SDK/2018.2/gnu/microblaze/lin/microblaze-xilinx-elf/include/stdio.h:29:0,
+                 from ../src/bootloader.c:34:
+/home/dinne/Xilinx/SDK/2018.2/gnu/microblaze/lin/microblaze-xilinx-elf/include/stdio.h:231:9: note: expected 'const char *' but argument is of type 'int8_t * {aka signed char *}'
+ void    _EXFUN(print, (const char* ));
+         ^
+../src/bootloader.c:210:16: warning: pointer targets in passing argument 1 of 'print' differ in signedness [-Wpointer-sign]
+         print (errors[ret]);
+                ^~~~~~
+In file included from /home/dinne/Xilinx/SDK/2018.2/gnu/microblaze/lin/microblaze-xilinx-elf/include/stdio.h:29:0,
+                 from ../src/bootloader.c:34:
+/home/dinne/Xilinx/SDK/2018.2/gnu/microblaze/lin/microblaze-xilinx-elf/include/stdio.h:231:9: note: expected 'const char *' but argument is of type 'int8_t * {aka signed char *}'
+ void    _EXFUN(print, (const char* ));
+         ^
+../src/bootloader.c: In function 'flash_get_srec_line':
+../src/bootloader.c:296:24: warning: assignment makes integer from pointer without a cast [-Wint-conversion]
+      ReadParam.Address = flbuf++;
+                        ^
+../src/bootloader.c:316:13: warning: implicit declaration of function 'IsfWaitForFlashNotBusy' [-Wimplicit-function-declaration]
+    Status = IsfWaitForFlashNotBusy();
+             ^~~~~~~~~~~~~~~~~~~~~~
+../src/bootloader.c:341:28: warning: assignment makes integer from pointer without a cast [-Wint-conversion]
+          ReadParam.Address = flbuf++;
+                            ^
+Finished building: ../src/bootloader.c
+ 
+Building target: spi_srec.elf
+Invoking: MicroBlaze gcc linker
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../spi_srec_bsp/microblaze_0/lib -mlittle-endian -mcpu=v10.0 -mxl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "spi_srec.elf"  ./src/bootloader.o ./src/platform.o ./src/srec.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group -Wl,--start-group,-lxilisf,-lxil,-lgcc,-lc,--end-group
+Finished building target: spi_srec.elf
+ 
+Invoking: MicroBlaze Print Size
+mb-size spi_srec.elf  |tee "spi_srec.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  15952	    312	   1928	  18192	   4710	spi_srec.elf
+Finished building: spi_srec.elf.size
+ 
+22:10:58 **** Auto Build of configuration Debug for project spi_srec ****
+make all 
+Building file: ../src/bootloader.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/bootloader.o" -I../../spi_srec_bsp/microblaze_0/include -mlittle-endian -mcpu=v10.0 -mxl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/bootloader.d" -MT"src/bootloader.o" -o "src/bootloader.o" "../src/bootloader.c"
+../src/bootloader.c:135:5: warning: pointer targets in initialization differ in signedness [-Wpointer-sign]
+     "",
+     ^~
+../src/bootloader.c:135:5: note: (near initialization for 'errors[0]')
+../src/bootloader.c:136:5: warning: pointer targets in initialization differ in signedness [-Wpointer-sign]
+     "Error while copying executable image into RAM",
+     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/bootloader.c:136:5: note: (near initialization for 'errors[1]')
+../src/bootloader.c:137:5: warning: pointer targets in initialization differ in signedness [-Wpointer-sign]
+     "Error while reading an SREC line from flash",
+     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/bootloader.c:137:5: note: (near initialization for 'errors[2]')
+../src/bootloader.c:138:5: warning: pointer targets in initialization differ in signedness [-Wpointer-sign]
+     "SREC line is corrupted",
+     ^~~~~~~~~~~~~~~~~~~~~~~~
+../src/bootloader.c:138:5: note: (near initialization for 'errors[3]')
+../src/bootloader.c:139:5: warning: pointer targets in initialization differ in signedness [-Wpointer-sign]
+     "SREC has invalid checksum."
+     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/bootloader.c:139:5: note: (near initialization for 'errors[4]')
+../src/bootloader.c: In function 'main':
+../src/bootloader.c:207:16: warning: pointer targets in passing argument 1 of 'print' differ in signedness [-Wpointer-sign]
+         print (errors[ret]);
+                ^~~~~~
+In file included from /home/dinne/Xilinx/SDK/2018.2/gnu/microblaze/lin/microblaze-xilinx-elf/include/stdio.h:29:0,
+                 from ../src/bootloader.c:34:
+/home/dinne/Xilinx/SDK/2018.2/gnu/microblaze/lin/microblaze-xilinx-elf/include/stdio.h:231:9: note: expected 'const char *' but argument is of type 'int8_t * {aka signed char *}'
+ void    _EXFUN(print, (const char* ));
+         ^
+../src/bootloader.c:210:16: warning: pointer targets in passing argument 1 of 'print' differ in signedness [-Wpointer-sign]
+         print (errors[ret]);
+                ^~~~~~
+In file included from /home/dinne/Xilinx/SDK/2018.2/gnu/microblaze/lin/microblaze-xilinx-elf/include/stdio.h:29:0,
+                 from ../src/bootloader.c:34:
+/home/dinne/Xilinx/SDK/2018.2/gnu/microblaze/lin/microblaze-xilinx-elf/include/stdio.h:231:9: note: expected 'const char *' but argument is of type 'int8_t * {aka signed char *}'
+ void    _EXFUN(print, (const char* ));
+         ^
+../src/bootloader.c: In function 'flash_get_srec_line':
+../src/bootloader.c:297:24: warning: assignment makes integer from pointer without a cast [-Wint-conversion]
+      ReadParam.Address = flbuf++;
+                        ^
+../src/bootloader.c:317:13: warning: implicit declaration of function 'IsfWaitForFlashNotBusy' [-Wimplicit-function-declaration]
+    Status = IsfWaitForFlashNotBusy();
+             ^~~~~~~~~~~~~~~~~~~~~~
+../src/bootloader.c:342:28: warning: assignment makes integer from pointer without a cast [-Wint-conversion]
+          ReadParam.Address = flbuf++;
+                            ^
+At top level:
+../src/bootloader.c:218:13: warning: 'display_progress' defined but not used [-Wunused-function]
+ static void display_progress (uint32_t count)
+             ^~~~~~~~~~~~~~~~
+Finished building: ../src/bootloader.c
+ 
+Building target: spi_srec.elf
+Invoking: MicroBlaze gcc linker
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../spi_srec_bsp/microblaze_0/lib -mlittle-endian -mcpu=v10.0 -mxl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "spi_srec.elf"  ./src/bootloader.o ./src/platform.o ./src/srec.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group -Wl,--start-group,-lxilisf,-lxil,-lgcc,-lc,--end-group
+Finished building target: spi_srec.elf
+ 
+Invoking: MicroBlaze Print Size
+mb-size spi_srec.elf  |tee "spi_srec.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  15832	    312	   1928	  18072	   4698	spi_srec.elf
+Finished building: spi_srec.elf.size
+ 
+22:12:30 **** Auto Build of configuration Debug for project sdk_test_t1 ****
+make all 
+Building file: ../src/testperiph.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/testperiph.o" -I../../sdk_test_t1_bsp/microblaze_0/include -mlittle-endian -mcpu=v10.0 -mxl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/testperiph.d" -MT"src/testperiph.o" -o "src/testperiph.o" "../src/testperiph.c"
+Finished building: ../src/testperiph.c
+ 
+Building target: sdk_test_t1.elf
+Invoking: MicroBlaze gcc linker
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../sdk_test_t1_bsp/microblaze_0/lib -mlittle-endian -mcpu=v10.0 -mxl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "sdk_test_t1.elf"  ./src/testperiph.o ./src/xemaclite_example_util.o ./src/xemaclite_intr_example.o ./src/xemaclite_polled_example.o ./src/xgpio_tapp_example.o ./src/xintc_tapp_example.o ./src/xtmrctr_intr_example.o ./src/xtmrctr_selftest_example.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+Finished building target: sdk_test_t1.elf
+ 
+Invoking: MicroBlaze Print Size
+mb-size sdk_test_t1.elf  |tee "sdk_test_t1.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+ 114612	   1568	   6612	 122792	  1dfa8	sdk_test_t1.elf
+Finished building: sdk_test_t1.elf.size
+ 
+22:15:50 **** Auto Build of configuration Debug for project sdk_test_t1 ****
+make all 
+Building file: ../src/testperiph.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/testperiph.o" -I../../sdk_test_t1_bsp/microblaze_0/include -mlittle-endian -mcpu=v10.0 -mxl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/testperiph.d" -MT"src/testperiph.o" -o "src/testperiph.o" "../src/testperiph.c"
+Finished building: ../src/testperiph.c
+ 
+Building target: sdk_test_t1.elf
+Invoking: MicroBlaze gcc linker
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../sdk_test_t1_bsp/microblaze_0/lib -mlittle-endian -mcpu=v10.0 -mxl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "sdk_test_t1.elf"  ./src/testperiph.o ./src/xemaclite_example_util.o ./src/xemaclite_intr_example.o ./src/xemaclite_polled_example.o ./src/xgpio_tapp_example.o ./src/xintc_tapp_example.o ./src/xtmrctr_intr_example.o ./src/xtmrctr_selftest_example.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+Finished building target: sdk_test_t1.elf
+ 
+Invoking: MicroBlaze Print Size
+mb-size sdk_test_t1.elf  |tee "sdk_test_t1.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+ 114612	   1568	   6612	 122792	  1dfa8	sdk_test_t1.elf
+Finished building: sdk_test_t1.elf.size
+ 
+23:09:47 **** Auto Build of configuration Debug for project sdk_test_t1 ****
+make all 
+Building file: ../src/testperiph.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/testperiph.o" -I../../sdk_test_t1_bsp/microblaze_0/include -mlittle-endian -mcpu=v10.0 -mxl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/testperiph.d" -MT"src/testperiph.o" -o "src/testperiph.o" "../src/testperiph.c"
+Finished building: ../src/testperiph.c
+ 
+Building target: sdk_test_t1.elf
+Invoking: MicroBlaze gcc linker
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../sdk_test_t1_bsp/microblaze_0/lib -mlittle-endian -mcpu=v10.0 -mxl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "sdk_test_t1.elf"  ./src/testperiph.o ./src/xemaclite_example_util.o ./src/xemaclite_intr_example.o ./src/xemaclite_polled_example.o ./src/xgpio_tapp_example.o ./src/xintc_tapp_example.o ./src/xtmrctr_intr_example.o ./src/xtmrctr_selftest_example.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+Finished building target: sdk_test_t1.elf
+ 
+Invoking: MicroBlaze Print Size
+mb-size sdk_test_t1.elf  |tee "sdk_test_t1.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  26268	    400	   6532	  33200	   81b0	sdk_test_t1.elf
+Finished building: sdk_test_t1.elf.size
+ 
+23:12:56 **** Auto Build of configuration Debug for project sdk_test_t1 ****
+make all 
+Building file: ../src/testperiph.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/testperiph.o" -I../../sdk_test_t1_bsp/microblaze_0/include -mlittle-endian -mcpu=v10.0 -mxl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/testperiph.d" -MT"src/testperiph.o" -o "src/testperiph.o" "../src/testperiph.c"
+Finished building: ../src/testperiph.c
+ 
+Building target: sdk_test_t1.elf
+Invoking: MicroBlaze gcc linker
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../sdk_test_t1_bsp/microblaze_0/lib -mlittle-endian -mcpu=v10.0 -mxl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "sdk_test_t1.elf"  ./src/testperiph.o ./src/xemaclite_example_util.o ./src/xemaclite_intr_example.o ./src/xemaclite_polled_example.o ./src/xgpio_tapp_example.o ./src/xintc_tapp_example.o ./src/xtmrctr_intr_example.o ./src/xtmrctr_selftest_example.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+Finished building target: sdk_test_t1.elf
+ 
+Invoking: MicroBlaze Print Size
+mb-size sdk_test_t1.elf  |tee "sdk_test_t1.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  26588	    400	   6532	  33520	   82f0	sdk_test_t1.elf
+Finished building: sdk_test_t1.elf.size
+ 
+23:17:54 **** Auto Build of configuration Debug for project sdk_test_t1 ****
+make all 
+Building file: ../src/testperiph.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/testperiph.o" -I../../sdk_test_t1_bsp/microblaze_0/include -mlittle-endian -mcpu=v10.0 -mxl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/testperiph.d" -MT"src/testperiph.o" -o "src/testperiph.o" "../src/testperiph.c"
+Finished building: ../src/testperiph.c
+ 
+Building target: sdk_test_t1.elf
+Invoking: MicroBlaze gcc linker
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../sdk_test_t1_bsp/microblaze_0/lib -mlittle-endian -mcpu=v10.0 -mxl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "sdk_test_t1.elf"  ./src/testperiph.o ./src/xemaclite_example_util.o ./src/xemaclite_intr_example.o ./src/xemaclite_polled_example.o ./src/xgpio_tapp_example.o ./src/xintc_tapp_example.o ./src/xtmrctr_intr_example.o ./src/xtmrctr_selftest_example.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+Finished building target: sdk_test_t1.elf
+ 
+Invoking: MicroBlaze Print Size
+mb-size sdk_test_t1.elf  |tee "sdk_test_t1.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  26588	    400	   6532	  33520	   82f0	sdk_test_t1.elf
+Finished building: sdk_test_t1.elf.size
+ 
+23:23:03 **** Auto Build of configuration Debug for project sdk_test_t1 ****
+make all 
+Building file: ../src/testperiph.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/testperiph.o" -I../../sdk_test_t1_bsp/microblaze_0/include -mlittle-endian -mcpu=v10.0 -mxl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/testperiph.d" -MT"src/testperiph.o" -o "src/testperiph.o" "../src/testperiph.c"
+Finished building: ../src/testperiph.c
+ 
+Building target: sdk_test_t1.elf
+Invoking: MicroBlaze gcc linker
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../sdk_test_t1_bsp/microblaze_0/lib -mlittle-endian -mcpu=v10.0 -mxl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "sdk_test_t1.elf"  ./src/testperiph.o ./src/xemaclite_example_util.o ./src/xemaclite_intr_example.o ./src/xemaclite_polled_example.o ./src/xgpio_tapp_example.o ./src/xintc_tapp_example.o ./src/xtmrctr_intr_example.o ./src/xtmrctr_selftest_example.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+Finished building target: sdk_test_t1.elf
+ 
+Invoking: MicroBlaze Print Size
+mb-size sdk_test_t1.elf  |tee "sdk_test_t1.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  26588	    400	   6532	  33520	   82f0	sdk_test_t1.elf
+Finished building: sdk_test_t1.elf.size
+ 
+23:23:43 **** Auto Build of configuration Debug for project sdk_test_t1 ****
+make all 
+Building file: ../src/testperiph.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/testperiph.o" -I../../sdk_test_t1_bsp/microblaze_0/include -mlittle-endian -mcpu=v10.0 -mxl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/testperiph.d" -MT"src/testperiph.o" -o "src/testperiph.o" "../src/testperiph.c"
+Finished building: ../src/testperiph.c
+ 
+Building target: sdk_test_t1.elf
+Invoking: MicroBlaze gcc linker
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../sdk_test_t1_bsp/microblaze_0/lib -mlittle-endian -mcpu=v10.0 -mxl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "sdk_test_t1.elf"  ./src/testperiph.o ./src/xemaclite_example_util.o ./src/xemaclite_intr_example.o ./src/xemaclite_polled_example.o ./src/xgpio_tapp_example.o ./src/xintc_tapp_example.o ./src/xtmrctr_intr_example.o ./src/xtmrctr_selftest_example.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+Finished building target: sdk_test_t1.elf
+ 
+Invoking: MicroBlaze Print Size
+mb-size sdk_test_t1.elf  |tee "sdk_test_t1.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  26588	    400	   6532	  33520	   82f0	sdk_test_t1.elf
+Finished building: sdk_test_t1.elf.size
+ 
+23:24:38 **** Auto Build of configuration Debug for project sdk_test_t1 ****
+make all 
+Building file: ../src/testperiph.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/testperiph.o" -I../../sdk_test_t1_bsp/microblaze_0/include -mlittle-endian -mcpu=v10.0 -mxl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/testperiph.d" -MT"src/testperiph.o" -o "src/testperiph.o" "../src/testperiph.c"
+Finished building: ../src/testperiph.c
+ 
+Building target: sdk_test_t1.elf
+Invoking: MicroBlaze gcc linker
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../sdk_test_t1_bsp/microblaze_0/lib -mlittle-endian -mcpu=v10.0 -mxl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "sdk_test_t1.elf"  ./src/testperiph.o ./src/xemaclite_example_util.o ./src/xemaclite_intr_example.o ./src/xemaclite_polled_example.o ./src/xgpio_tapp_example.o ./src/xintc_tapp_example.o ./src/xtmrctr_intr_example.o ./src/xtmrctr_selftest_example.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+Finished building target: sdk_test_t1.elf
+ 
+Invoking: MicroBlaze Print Size
+mb-size sdk_test_t1.elf  |tee "sdk_test_t1.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  26588	    400	   6532	  33520	   82f0	sdk_test_t1.elf
+Finished building: sdk_test_t1.elf.size
+ 
+23:27:53 **** Auto Build of configuration Debug for project sdk_test_t1 ****
+make all 
+Building file: ../src/testperiph.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/testperiph.o" -I../../sdk_test_t1_bsp/microblaze_0/include -mlittle-endian -mcpu=v10.0 -mxl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/testperiph.d" -MT"src/testperiph.o" -o "src/testperiph.o" "../src/testperiph.c"
+Finished building: ../src/testperiph.c
+ 
+Building target: sdk_test_t1.elf
+Invoking: MicroBlaze gcc linker
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../sdk_test_t1_bsp/microblaze_0/lib -mlittle-endian -mcpu=v10.0 -mxl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "sdk_test_t1.elf"  ./src/testperiph.o ./src/xemaclite_example_util.o ./src/xemaclite_intr_example.o ./src/xemaclite_polled_example.o ./src/xgpio_tapp_example.o ./src/xintc_tapp_example.o ./src/xtmrctr_intr_example.o ./src/xtmrctr_selftest_example.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+Finished building target: sdk_test_t1.elf
+ 
+Invoking: MicroBlaze Print Size
+mb-size sdk_test_t1.elf  |tee "sdk_test_t1.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  26640	    400	   6528	  33568	   8320	sdk_test_t1.elf
+Finished building: sdk_test_t1.elf.size
+ 
+23:29:54 **** Auto Build of configuration Debug for project sdk_test_t1 ****
+make all 
+Building file: ../src/testperiph.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/testperiph.o" -I../../sdk_test_t1_bsp/microblaze_0/include -mlittle-endian -mcpu=v10.0 -mxl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/testperiph.d" -MT"src/testperiph.o" -o "src/testperiph.o" "../src/testperiph.c"
+Finished building: ../src/testperiph.c
+ 
+Building target: sdk_test_t1.elf
+Invoking: MicroBlaze gcc linker
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../sdk_test_t1_bsp/microblaze_0/lib -mlittle-endian -mcpu=v10.0 -mxl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "sdk_test_t1.elf"  ./src/testperiph.o ./src/xemaclite_example_util.o ./src/xemaclite_intr_example.o ./src/xemaclite_polled_example.o ./src/xgpio_tapp_example.o ./src/xintc_tapp_example.o ./src/xtmrctr_intr_example.o ./src/xtmrctr_selftest_example.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+Finished building target: sdk_test_t1.elf
+ 
+Invoking: MicroBlaze Print Size
+mb-size sdk_test_t1.elf  |tee "sdk_test_t1.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  26632	    400	   6528	  33560	   8318	sdk_test_t1.elf
+Finished building: sdk_test_t1.elf.size
+ 
+23:33:37 **** Auto Build of configuration Debug for project spi_srec ****
+make all 
+Building file: ../src/bootloader.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/bootloader.o" -I../../spi_srec_bsp/microblaze_0/include -mlittle-endian -mcpu=v10.0 -mxl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/bootloader.d" -MT"src/bootloader.o" -o "src/bootloader.o" "../src/bootloader.c"
+../src/bootloader.c:135:5: warning: pointer targets in initialization differ in signedness [-Wpointer-sign]
+     "",
+     ^~
+../src/bootloader.c:135:5: note: (near initialization for 'errors[0]')
+../src/bootloader.c:136:5: warning: pointer targets in initialization differ in signedness [-Wpointer-sign]
+     "Error while copying executable image into RAM",
+     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/bootloader.c:136:5: note: (near initialization for 'errors[1]')
+../src/bootloader.c:137:5: warning: pointer targets in initialization differ in signedness [-Wpointer-sign]
+     "Error while reading an SREC line from flash",
+     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/bootloader.c:137:5: note: (near initialization for 'errors[2]')
+../src/bootloader.c:138:5: warning: pointer targets in initialization differ in signedness [-Wpointer-sign]
+     "SREC line is corrupted",
+     ^~~~~~~~~~~~~~~~~~~~~~~~
+../src/bootloader.c:138:5: note: (near initialization for 'errors[3]')
+../src/bootloader.c:139:5: warning: pointer targets in initialization differ in signedness [-Wpointer-sign]
+     "SREC has invalid checksum."
+     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/bootloader.c:139:5: note: (near initialization for 'errors[4]')
+../src/bootloader.c: In function 'main':
+../src/bootloader.c:214:16: warning: pointer targets in passing argument 1 of 'print' differ in signedness [-Wpointer-sign]
+         print (errors[ret]);
+                ^~~~~~
+In file included from /home/dinne/Xilinx/SDK/2018.2/gnu/microblaze/lin/microblaze-xilinx-elf/include/stdio.h:29:0,
+                 from ../src/bootloader.c:34:
+/home/dinne/Xilinx/SDK/2018.2/gnu/microblaze/lin/microblaze-xilinx-elf/include/stdio.h:231:9: note: expected 'const char *' but argument is of type 'int8_t * {aka signed char *}'
+ void    _EXFUN(print, (const char* ));
+         ^
+../src/bootloader.c:217:16: warning: pointer targets in passing argument 1 of 'print' differ in signedness [-Wpointer-sign]
+         print (errors[ret]);
+                ^~~~~~
+In file included from /home/dinne/Xilinx/SDK/2018.2/gnu/microblaze/lin/microblaze-xilinx-elf/include/stdio.h:29:0,
+                 from ../src/bootloader.c:34:
+/home/dinne/Xilinx/SDK/2018.2/gnu/microblaze/lin/microblaze-xilinx-elf/include/stdio.h:231:9: note: expected 'const char *' but argument is of type 'int8_t * {aka signed char *}'
+ void    _EXFUN(print, (const char* ));
+         ^
+../src/bootloader.c: In function 'flash_get_srec_line':
+../src/bootloader.c:304:24: warning: assignment makes integer from pointer without a cast [-Wint-conversion]
+      ReadParam.Address = flbuf++;
+                        ^
+../src/bootloader.c:324:13: warning: implicit declaration of function 'IsfWaitForFlashNotBusy' [-Wimplicit-function-declaration]
+    Status = IsfWaitForFlashNotBusy();
+             ^~~~~~~~~~~~~~~~~~~~~~
+../src/bootloader.c:349:28: warning: assignment makes integer from pointer without a cast [-Wint-conversion]
+          ReadParam.Address = flbuf++;
+                            ^
+At top level:
+../src/bootloader.c:225:13: warning: 'display_progress' defined but not used [-Wunused-function]
+ static void display_progress (uint32_t count)
+             ^~~~~~~~~~~~~~~~
+Finished building: ../src/bootloader.c
+ 
+Building target: spi_srec.elf
+Invoking: MicroBlaze gcc linker
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../spi_srec_bsp/microblaze_0/lib -mlittle-endian -mcpu=v10.0 -mxl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "spi_srec.elf"  ./src/bootloader.o ./src/platform.o ./src/srec.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group -Wl,--start-group,-lxilisf,-lxil,-lgcc,-lc,--end-group
+Finished building target: spi_srec.elf
+ 
+Invoking: MicroBlaze Print Size
+mb-size spi_srec.elf  |tee "spi_srec.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  15964	    312	   1932	  18208	   4720	spi_srec.elf
+Finished building: spi_srec.elf.size
+ 
+23:34:00 **** Auto Build of configuration Debug for project sdk_test_t1 ****
+make all 
+Building file: ../src/testperiph.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/testperiph.o" -I../../sdk_test_t1_bsp/microblaze_0/include -mlittle-endian -mcpu=v10.0 -mxl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/testperiph.d" -MT"src/testperiph.o" -o "src/testperiph.o" "../src/testperiph.c"
+Finished building: ../src/testperiph.c
+ 
+Building target: sdk_test_t1.elf
+Invoking: MicroBlaze gcc linker
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../sdk_test_t1_bsp/microblaze_0/lib -mlittle-endian -mcpu=v10.0 -mxl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "sdk_test_t1.elf"  ./src/testperiph.o ./src/xemaclite_example_util.o ./src/xemaclite_intr_example.o ./src/xemaclite_polled_example.o ./src/xgpio_tapp_example.o ./src/xintc_tapp_example.o ./src/xtmrctr_intr_example.o ./src/xtmrctr_selftest_example.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+Finished building target: sdk_test_t1.elf
+ 
+Invoking: MicroBlaze Print Size
+mb-size sdk_test_t1.elf  |tee "sdk_test_t1.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  26764	    400	   6532	  33696	   83a0	sdk_test_t1.elf
+Finished building: sdk_test_t1.elf.size
+ 
+23:34:15 **** Auto Build of configuration Debug for project sdk_test_t1 ****
+make all 
+Building file: ../src/testperiph.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/testperiph.o" -I../../sdk_test_t1_bsp/microblaze_0/include -mlittle-endian -mcpu=v10.0 -mxl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/testperiph.d" -MT"src/testperiph.o" -o "src/testperiph.o" "../src/testperiph.c"
+../src/testperiph.c: In function 'mb_reset':
+../src/testperiph.c:47:10: warning: variable 'laddr' set but not used [-Wunused-but-set-variable]
+   void (*laddr)();
+          ^~~~~
+Finished building: ../src/testperiph.c
+ 
+Building target: sdk_test_t1.elf
+Invoking: MicroBlaze gcc linker
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../sdk_test_t1_bsp/microblaze_0/lib -mlittle-endian -mcpu=v10.0 -mxl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "sdk_test_t1.elf"  ./src/testperiph.o ./src/xemaclite_example_util.o ./src/xemaclite_intr_example.o ./src/xemaclite_polled_example.o ./src/xgpio_tapp_example.o ./src/xintc_tapp_example.o ./src/xtmrctr_intr_example.o ./src/xtmrctr_selftest_example.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+Finished building target: sdk_test_t1.elf
+ 
+Invoking: MicroBlaze Print Size
+mb-size sdk_test_t1.elf  |tee "sdk_test_t1.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  26856	    400	   6528	  33784	   83f8	sdk_test_t1.elf
+Finished building: sdk_test_t1.elf.size
+ 
+23:38:50 **** Auto Build of configuration Debug for project sdk_test_t1 ****
+make all 
+Building file: ../src/testperiph.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/testperiph.o" -I../../sdk_test_t1_bsp/microblaze_0/include -mlittle-endian -mcpu=v10.0 -mxl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/testperiph.d" -MT"src/testperiph.o" -o "src/testperiph.o" "../src/testperiph.c"
+../src/testperiph.c: In function 'mb_reset':
+../src/testperiph.c:47:10: warning: variable 'laddr' set but not used [-Wunused-but-set-variable]
+   void (*laddr)();
+          ^~~~~
+Finished building: ../src/testperiph.c
+ 
+Building target: sdk_test_t1.elf
+Invoking: MicroBlaze gcc linker
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../sdk_test_t1_bsp/microblaze_0/lib -mlittle-endian -mcpu=v10.0 -mxl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "sdk_test_t1.elf"  ./src/testperiph.o ./src/xemaclite_example_util.o ./src/xemaclite_intr_example.o ./src/xemaclite_polled_example.o ./src/xgpio_tapp_example.o ./src/xintc_tapp_example.o ./src/xtmrctr_intr_example.o ./src/xtmrctr_selftest_example.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+Finished building target: sdk_test_t1.elf
+ 
+Invoking: MicroBlaze Print Size
+mb-size sdk_test_t1.elf  |tee "sdk_test_t1.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  26904	    400	   6528	  33832	   8428	sdk_test_t1.elf
+Finished building: sdk_test_t1.elf.size
+ 

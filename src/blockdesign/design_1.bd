@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<bd:repository xmlns:bd="http://www.xilinx.com/bd" bd:BoundaryCRC="0xACC1C8CC199DFD6E" bd:device="xc7a100tcsg324-1" bd:isValidated="true" bd:synthFlowMode="Hierarchical" bd:tool_version="2018.2" bd:top="design_1" bd:version="1.00.a">
+<bd:repository xmlns:bd="http://www.xilinx.com/bd" bd:BoundaryCRC="0x410140970A14D999" bd:device="xc7a100tcsg324-1" bd:isValidated="true" bd:synthFlowMode="Hierarchical" bd:tool_version="2018.2" bd:top="design_1" bd:version="1.00.a">
 
   <spirit:component xmlns:spirit="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1685-2009">
     <spirit:vendor>xilinx.com</spirit:vendor>
@@ -163,6 +163,12 @@
         <spirit:master/>
         <spirit:busType spirit:library="interface" spirit:name="uart" spirit:vendor="xilinx.com" spirit:version="1.0"/>
         <spirit:abstractionType spirit:library="interface" spirit:name="uart_rtl" spirit:vendor="xilinx.com" spirit:version="1.0"/>
+      </spirit:busInterface>
+      <spirit:busInterface>
+        <spirit:name>QSPI_FLASH</spirit:name>
+        <spirit:master/>
+        <spirit:busType spirit:library="interface" spirit:name="spi" spirit:vendor="xilinx.com" spirit:version="1.0"/>
+        <spirit:abstractionType spirit:library="interface" spirit:name="spi_rtl" spirit:vendor="xilinx.com" spirit:version="1.0"/>
       </spirit:busInterface>
       <spirit:busInterface>
         <spirit:name>CLK.CLK100MHZ</spirit:name>
@@ -500,7 +506,7 @@
         <spirit:componentRef spirit:library="ip" spirit:name="smartconnect" spirit:vendor="xilinx.com" spirit:version="1.0"/>
         <spirit:configurableElementValues>
           <spirit:configurableElementValue spirit:referenceId="bd:xciName">design_1_smartconnect_0_0</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="NUM_MI">6</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="NUM_MI">7</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="NUM_SI">3</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="NUM_CLKS">2</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="ADVANCED_PROPERTIES"> __view__ { }</spirit:configurableElementValue>
@@ -532,6 +538,17 @@
           <spirit:configurableElementValue spirit:referenceId="bd:xciName">design_1_util_vector_logic_0_0</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="C_SIZE">1</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="C_OPERATION">not</spirit:configurableElementValue>
+        </spirit:configurableElementValues>
+      </spirit:componentInstance>
+      <spirit:componentInstance>
+        <spirit:instanceName>axi_quad_spi_0</spirit:instanceName>
+        <spirit:componentRef spirit:library="ip" spirit:name="axi_quad_spi" spirit:vendor="xilinx.com" spirit:version="3.2"/>
+        <spirit:configurableElementValues>
+          <spirit:configurableElementValue spirit:referenceId="bd:xciName">design_1_axi_quad_spi_0_0</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="C_SPI_MODE">2</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="C_XIP_MODE">0</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="C_SHARED_STARTUP">0</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="C_TYPE_OF_AXI4_INTERFACE">0</spirit:configurableElementValue>
         </spirit:configurableElementValues>
       </spirit:componentInstance>
     </spirit:componentInstances>
@@ -606,6 +623,11 @@
         <spirit:activeInterface spirit:busRef="S02_AXI" spirit:componentRef="smartconnect_0"/>
         <spirit:activeInterface spirit:busRef="M_AXI_IC" spirit:componentRef="microblaze_0"/>
       </spirit:interconnection>
+      <spirit:interconnection>
+        <spirit:name>smartconnect_0_M06_AXI</spirit:name>
+        <spirit:activeInterface spirit:busRef="M06_AXI" spirit:componentRef="smartconnect_0"/>
+        <spirit:activeInterface spirit:busRef="AXI_LITE" spirit:componentRef="axi_quad_spi_0"/>
+      </spirit:interconnection>
     </spirit:interconnections>
     <spirit:adHocConnections>
       <spirit:adHocConnection>
@@ -640,6 +662,7 @@
         <spirit:internalPortReference spirit:componentRef="smartconnect_0" spirit:portRef="aclk"/>
         <spirit:internalPortReference spirit:componentRef="axi_gpio_0" spirit:portRef="s_axi_aclk"/>
         <spirit:internalPortReference spirit:componentRef="microblaze_0_local_memory" spirit:portRef="LMB_Clk"/>
+        <spirit:internalPortReference spirit:componentRef="axi_quad_spi_0" spirit:portRef="s_axi_aclk"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
         <spirit:name>microblaze_0_intr</spirit:name>
@@ -668,6 +691,7 @@
         <spirit:internalPortReference spirit:componentRef="clk_wiz_0" spirit:portRef="clk_out4"/>
         <spirit:externalPortReference spirit:portRef="eth_ref_clk"/>
         <spirit:internalPortReference spirit:componentRef="mii_to_rmii_0" spirit:portRef="ref_clk"/>
+        <spirit:internalPortReference spirit:componentRef="axi_quad_spi_0" spirit:portRef="ext_spi_clk"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
         <spirit:name>clk_wiz_0_clk_out3</spirit:name>
@@ -727,6 +751,7 @@
         <spirit:internalPortReference spirit:componentRef="axi_timer_0" spirit:portRef="s_axi_aresetn"/>
         <spirit:internalPortReference spirit:componentRef="axi_uartlite_0" spirit:portRef="s_axi_aresetn"/>
         <spirit:externalPortReference spirit:portRef="LED6"/>
+        <spirit:internalPortReference spirit:componentRef="axi_quad_spi_0" spirit:portRef="s_axi_aresetn"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
         <spirit:name>mig_7series_0_init_calib_complete</spirit:name>
@@ -754,6 +779,9 @@
       </spirit:hierConnection>
       <spirit:hierConnection spirit:interfaceRef="UART_0/axi_uartlite_0_UART">
         <spirit:activeInterface spirit:busRef="UART" spirit:componentRef="axi_uartlite_0"/>
+      </spirit:hierConnection>
+      <spirit:hierConnection spirit:interfaceRef="QSPI_FLASH/axi_quad_spi_0_SPI_0">
+        <spirit:activeInterface spirit:busRef="SPI_0" spirit:componentRef="axi_quad_spi_0"/>
       </spirit:hierConnection>
     </spirit:hierConnections>
   </spirit:design>
@@ -1019,6 +1047,12 @@
             <spirit:range>64K</spirit:range>
           </spirit:segment>
           <spirit:segment>
+            <spirit:name>SEG_axi_quad_spi_0_Reg</spirit:name>
+            <spirit:displayName>/axi_quad_spi_0/AXI_LITE/Reg</spirit:displayName>
+            <spirit:addressOffset>0x44A00000</spirit:addressOffset>
+            <spirit:range>64K</spirit:range>
+          </spirit:segment>
+          <spirit:segment>
             <spirit:name>SEG_axi_timer_0_Reg</spirit:name>
             <spirit:displayName>/axi_timer_0/S_AXI/Reg</spirit:displayName>
             <spirit:addressOffset>0x41C00000</spirit:addressOffset>
@@ -1077,6 +1111,12 @@
             <spirit:name>SEG_axi_gpio_0_Reg</spirit:name>
             <spirit:displayName>/axi_gpio_0/S_AXI/Reg</spirit:displayName>
             <spirit:addressOffset>0x40000000</spirit:addressOffset>
+            <spirit:range>64K</spirit:range>
+          </spirit:segment>
+          <spirit:segment bd:isExcluded="true">
+            <spirit:name>SEG_axi_quad_spi_0_Reg</spirit:name>
+            <spirit:displayName>/axi_quad_spi_0/AXI_LITE/Reg</spirit:displayName>
+            <spirit:addressOffset>0x44A00000</spirit:addressOffset>
             <spirit:range>64K</spirit:range>
           </spirit:segment>
           <spirit:segment bd:isExcluded="true">

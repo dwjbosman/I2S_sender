@@ -1,0 +1,72 @@
+23:33:37 **** Auto Build of configuration Debug for project spi_srec ****
+make all 
+Building file: ../src/bootloader.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/bootloader.o" -I../../spi_srec_bsp/microblaze_0/include -mlittle-endian -mcpu=v10.0 -mxl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/bootloader.d" -MT"src/bootloader.o" -o "src/bootloader.o" "../src/bootloader.c"
+../src/bootloader.c:135:5: warning: pointer targets in initialization differ in signedness [-Wpointer-sign]
+     "",
+     ^~
+../src/bootloader.c:135:5: note: (near initialization for 'errors[0]')
+../src/bootloader.c:136:5: warning: pointer targets in initialization differ in signedness [-Wpointer-sign]
+     "Error while copying executable image into RAM",
+     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/bootloader.c:136:5: note: (near initialization for 'errors[1]')
+../src/bootloader.c:137:5: warning: pointer targets in initialization differ in signedness [-Wpointer-sign]
+     "Error while reading an SREC line from flash",
+     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/bootloader.c:137:5: note: (near initialization for 'errors[2]')
+../src/bootloader.c:138:5: warning: pointer targets in initialization differ in signedness [-Wpointer-sign]
+     "SREC line is corrupted",
+     ^~~~~~~~~~~~~~~~~~~~~~~~
+../src/bootloader.c:138:5: note: (near initialization for 'errors[3]')
+../src/bootloader.c:139:5: warning: pointer targets in initialization differ in signedness [-Wpointer-sign]
+     "SREC has invalid checksum."
+     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../src/bootloader.c:139:5: note: (near initialization for 'errors[4]')
+../src/bootloader.c: In function 'main':
+../src/bootloader.c:214:16: warning: pointer targets in passing argument 1 of 'print' differ in signedness [-Wpointer-sign]
+         print (errors[ret]);
+                ^~~~~~
+In file included from /home/dinne/Xilinx/SDK/2018.2/gnu/microblaze/lin/microblaze-xilinx-elf/include/stdio.h:29:0,
+                 from ../src/bootloader.c:34:
+/home/dinne/Xilinx/SDK/2018.2/gnu/microblaze/lin/microblaze-xilinx-elf/include/stdio.h:231:9: note: expected 'const char *' but argument is of type 'int8_t * {aka signed char *}'
+ void    _EXFUN(print, (const char* ));
+         ^
+../src/bootloader.c:217:16: warning: pointer targets in passing argument 1 of 'print' differ in signedness [-Wpointer-sign]
+         print (errors[ret]);
+                ^~~~~~
+In file included from /home/dinne/Xilinx/SDK/2018.2/gnu/microblaze/lin/microblaze-xilinx-elf/include/stdio.h:29:0,
+                 from ../src/bootloader.c:34:
+/home/dinne/Xilinx/SDK/2018.2/gnu/microblaze/lin/microblaze-xilinx-elf/include/stdio.h:231:9: note: expected 'const char *' but argument is of type 'int8_t * {aka signed char *}'
+ void    _EXFUN(print, (const char* ));
+         ^
+../src/bootloader.c: In function 'flash_get_srec_line':
+../src/bootloader.c:304:24: warning: assignment makes integer from pointer without a cast [-Wint-conversion]
+      ReadParam.Address = flbuf++;
+                        ^
+../src/bootloader.c:324:13: warning: implicit declaration of function 'IsfWaitForFlashNotBusy' [-Wimplicit-function-declaration]
+    Status = IsfWaitForFlashNotBusy();
+             ^~~~~~~~~~~~~~~~~~~~~~
+../src/bootloader.c:349:28: warning: assignment makes integer from pointer without a cast [-Wint-conversion]
+          ReadParam.Address = flbuf++;
+                            ^
+At top level:
+../src/bootloader.c:225:13: warning: 'display_progress' defined but not used [-Wunused-function]
+ static void display_progress (uint32_t count)
+             ^~~~~~~~~~~~~~~~
+Finished building: ../src/bootloader.c
+ 
+Building target: spi_srec.elf
+Invoking: MicroBlaze gcc linker
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../spi_srec_bsp/microblaze_0/lib -mlittle-endian -mcpu=v10.0 -mxl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "spi_srec.elf"  ./src/bootloader.o ./src/platform.o ./src/srec.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group -Wl,--start-group,-lxilisf,-lxil,-lgcc,-lc,--end-group
+Finished building target: spi_srec.elf
+ 
+Invoking: MicroBlaze Print Size
+mb-size spi_srec.elf  |tee "spi_srec.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  15964	    312	   1932	  18208	   4720	spi_srec.elf
+Finished building: spi_srec.elf.size
+ 
+
+23:33:37 Build Finished (took 410ms)
+

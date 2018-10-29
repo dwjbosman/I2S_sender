@@ -1,0 +1,25 @@
+23:38:50 **** Auto Build of configuration Debug for project sdk_test_t1 ****
+make all 
+Building file: ../src/testperiph.c
+Invoking: MicroBlaze gcc compiler
+mb-gcc -Wall -O0 -g3 -c -fmessage-length=0 -MT"src/testperiph.o" -I../../sdk_test_t1_bsp/microblaze_0/include -mlittle-endian -mcpu=v10.0 -mxl-soft-mul -Wl,--no-relax -ffunction-sections -fdata-sections -MMD -MP -MF"src/testperiph.d" -MT"src/testperiph.o" -o "src/testperiph.o" "../src/testperiph.c"
+../src/testperiph.c: In function 'mb_reset':
+../src/testperiph.c:47:10: warning: variable 'laddr' set but not used [-Wunused-but-set-variable]
+   void (*laddr)();
+          ^~~~~
+Finished building: ../src/testperiph.c
+ 
+Building target: sdk_test_t1.elf
+Invoking: MicroBlaze gcc linker
+mb-gcc -Wl,-T -Wl,../src/lscript.ld -L../../sdk_test_t1_bsp/microblaze_0/lib -mlittle-endian -mcpu=v10.0 -mxl-soft-mul -Wl,--no-relax -Wl,--gc-sections -o "sdk_test_t1.elf"  ./src/testperiph.o ./src/xemaclite_example_util.o ./src/xemaclite_intr_example.o ./src/xemaclite_polled_example.o ./src/xgpio_tapp_example.o ./src/xintc_tapp_example.o ./src/xtmrctr_intr_example.o ./src/xtmrctr_selftest_example.o   -Wl,--start-group,-lxil,-lgcc,-lc,--end-group
+Finished building target: sdk_test_t1.elf
+ 
+Invoking: MicroBlaze Print Size
+mb-size sdk_test_t1.elf  |tee "sdk_test_t1.elf.size"
+   text	   data	    bss	    dec	    hex	filename
+  26904	    400	   6528	  33832	   8428	sdk_test_t1.elf
+Finished building: sdk_test_t1.elf.size
+ 
+
+23:38:50 Build Finished (took 362ms)
+
