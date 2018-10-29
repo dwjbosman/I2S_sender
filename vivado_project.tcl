@@ -606,6 +606,7 @@ set obj [get_runs impl_1]
 set_property -name "part" -value "xc7a100tcsg324-1" -objects $obj
 set_property -name "gen_full_bitstream" -value "0" -objects $obj
 set_property -name "strategy" -value "Vivado Implementation Defaults" -objects $obj
+set_property -name "steps.write_bitstream.args.bin_file" -value "1" -objects $obj
 set_property -name "steps.write_bitstream.args.readback_file" -value "0" -objects $obj
 set_property -name "steps.write_bitstream.args.verbose" -value "0" -objects $obj
 
